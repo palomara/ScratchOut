@@ -1,8 +1,3 @@
----
-
-
----
-
 <h1 id="bem-vindo-ao-scratchout">Bem-vindo ao ScratchOut</h1>
 <p>O <strong>Scratch Out</strong> é uma aplicação móvel em desenvolvimento com o propósito de aumentar produtividade dos seus usuários, indicando pontos de melhorias nas suas rotinas e tarefas.</p>
 <p><img src="https://i.imgur.com/83ZQgoC.png" alt="enter image description here"></p>
