@@ -3,14 +3,26 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 
 ## Diagramas
 ### - Casos de Uso
-![Diagrama de Casos de Uso sOut](https://i.imgur.com/WzUrZJ2.png)
+![Diagrama de Casos de Uso sOut](https://i.imgur.com/LbyUwig.png)
+
 ### - Atividades
+#### - Login
+![Efetuar Login](https://i.imgur.com/QLn15uU.png)
+#### - Manter Tarefa
+![Manter Tarefa](https://i.imgur.com/yjUM2Y9.png)
+#### - Concluir Tarefa
+![Concluir Tarefa](https://i.imgur.com/QpkPBiq.png)
+#### - Editar Tarefa
+![Editar Tarefa](https://i.imgur.com/Er9fcPK.png)
+#### - Manter Influência
+![Manter Influência](https://i.imgur.com/UKHgglG.png)
+#### - Editar Influência
+![Editar Influência](https://i.imgur.com/4jXsEoU.png)
 
-### - Classe
-
-### - DER
-
-### - MER
+### - Classes
+![Editar Influência](https://i.imgur.com/SShKhbS.png)
+### - DER&MER
+![Editar Influência](https://i.imgur.com/eHTf35l.png)
 
 ## Linguagem & Frameworks
 
