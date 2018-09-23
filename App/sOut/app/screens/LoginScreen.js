@@ -20,7 +20,7 @@ export default class LoginScreen extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <Image resizeMode="contain" source={require('./resources/img/LogoWhite.png')} style={styles.image} />
+                <Image source={require('./resources/img/LogoWhite.png')} style={styles.logo} />
                 <Image
                     source={require('./resources/img/Background.png')}
                     style={styles.backgroundImage}
@@ -39,7 +39,7 @@ export default class LoginScreen extends Component<Props> {
                         onChangeText={text => this.setState({senha: text})}
                     />
                 </View>
-
+                <ButtonLogin/>
             </View>
         );
     }
@@ -51,7 +51,7 @@ const DEVICE_HEIGHT = Dimensions.get('window').height;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 3,
+        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -64,6 +64,10 @@ const styles = StyleSheet.create({
          paddingLeft: 45,
          borderRadius:20, */
         color: '#FFFFFF',
+        alignSelf: 'stretch',
+        borderBottomColor: '#FFFFFF',
+        borderBottomWidth: 3,
+        marginBottom: 30,
 
     },
     backgroundImage: {
@@ -76,11 +80,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     },
-    image: {
+    logo: {
         width: 300,
         height:  100,
         position: 'absolute'
-
     },
 });
 
