@@ -1,5 +1,5 @@
 {
-  "name": "sOut",
+  "name": "ScratchOut",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -8,15 +8,21 @@
   },
   "dependencies": {
     "react": "16.5.0",
-    "react-native": "0.57.0"
+    "react-native": "0.57.1"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
     "jest": "23.6.0",
-    "metro-react-native-babel-preset": "0.45.2",
+    "metro-react-native-babel-preset": "0.45.6",
+    "react-autocomplete-cli": "0.0.3",
     "react-test-renderer": "16.5.0"
   },
   "jest": {
     "preset": "react-native"
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }
