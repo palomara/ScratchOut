@@ -78,7 +78,7 @@ Tendo ainda a hotfix/ ligada diretamente a master, release e development.**
 
 ### **Nomenclatura de versionamento**
 
-"Versão X.Y.Z", onde X,Y e Z são números positivos representando, respectivamente: Projeto, Features, Bugfix. Ou seja, esta >primeira versão do ScratchOut, Feature 12, correção do segundo bug achado ficaria: "Versão 1.12.4"
+"Versão X.Y.Z", onde X,Y e Z são números positivos representando, respectivamente: Projeto, Features, Bugfix. Ou seja, esta >primeira versão do ScratchOut, Feature 12, correção do quarto bug achado ficaria: "Versão 1.12.4"
 
  ## Padrões de Commit
  
