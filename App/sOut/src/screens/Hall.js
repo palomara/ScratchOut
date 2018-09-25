@@ -15,15 +15,18 @@ export default class Hall extends Component<Props> {
                         style={styles.logo}
                         source={require('../../resources/images/logo-login-w.png')}/>
                 </View>
-
+                <View>
+                    <Text style={styles.texto}>Aumente sua produtividade!</Text>
+                </View>
+                <View style={styles.buttonField}>
+                    <TouchableOpacity style={styles.buttonFbG}>
+                        <Text style={styles.textButtonFbG}>Entrar com Facebook</Text>
+                    </TouchableOpacity>
+                </View>
                 <View style={styles.buttonField}>
                     <TouchableOpacity  style={styles.buttonEmail}>
                         <Text style={styles.textButtonEmail}>Entre com e-mail</Text>
                     </TouchableOpacity>
-                </View>
-
-                <View>
-                    <Text style={styles.texto}>Aumente sua produtividade!</Text>
                 </View>
             </View>
          </ImageBackground>
@@ -36,12 +39,13 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         alignItems:'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
     },
     logoField:{
         alignItems:'center',
         justifyContent: 'center',
-        marginBottom: height / 7
+        marginBottom: height / 4
+
     },
 
     logo:{
@@ -49,26 +53,42 @@ const styles = StyleSheet.create({
     },
 
     texto: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto Light',
         fontSize: 18,
-        color: '#fff'
+        color: '#fff',
+        alignItems: 'center',
+        flexDirection: 'row',
     },
     textButtonEmail: {
         fontFamily: 'Roboto',
         fontSize: 18,
         color: '#00E075'
     },
+    textButtonFbG: {
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        color: '#FFFFFF'
+    },
+    buttonFbG: {
+        width: 300,
+        borderRadius: 600,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#518EF8',
+        height: 50,
+        zIndex: 100,
+    },
     background:{
         width: width,
         height: height
     },
     buttonEmail:{
-        width: width * 0.88,
+        width: 300,
         borderRadius: 600,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#FFF',
-        height: margin,
+        height: 50,
         zIndex: 100,
     },
     buttonField:{
