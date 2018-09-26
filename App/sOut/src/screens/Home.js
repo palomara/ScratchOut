@@ -5,11 +5,18 @@ export default class Home extends Component<Props> {
 
   render() {
     return (
-      <View>
-        <Text>Olá</Text>
+      <View style={styles.container}>
+        <Text>Login Efetuado!</Text>
       </View>
     );
   }
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems:'center',
+        justifyContent: 'center',
+    }
+
+})
