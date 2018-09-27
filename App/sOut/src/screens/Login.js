@@ -120,8 +120,8 @@ export default class Login extends Component<Props> {
         if(this.state.usuario === 'lunadis' && this.state.senha === '862411'){
             this.props.navigation.navigate('Home')
         }
-        /*
-      fetch('http://127.0.0.1:3000/sout',{
+
+     /* fetch('http://localhost/sout',{
           method: 'POST',
           headers:{
               Accept: 'application/json',
@@ -147,7 +147,7 @@ export default class Login extends Component<Props> {
                   alert(res.message)
               }
           })
-          .done();*/
+          .done(); */
 
   }
 }
