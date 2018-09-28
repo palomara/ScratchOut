@@ -8,18 +8,47 @@ import {
   Dimensions,
   ImageBackground,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+    StatusBar,
+    KeyboardAvoidingView,
+    AsyncStorage
 } from 'react-native';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
+
+
+
 export default class Login extends Component<Props> {
+    constructor(props){
+        super(props);
+        this.state = {
+            usuario: "",
+            senha: "",
+        }
+    }
+
+    componentDidMount(){
+        this._loadInitialState().done();
+    }
+
+    _loadInitialState = async () => {
+
+        var value = await AsyncStorage.getItem('usuario');
+        if(value !== null){
+            this.props.navigation.navigate('Home')
+        }
+
+    }
 
   render() {
     return (
       <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.background} blurRadius={8}>
-        <View style={styles.container}>
+        <KeyboardAvoidingView behavior="padding" style={styles.container}>
+            <StatusBar
+                backgroundColor="#00E075"
+            />
           <View style={styles.form}>
 
             <View style={styles.logoField}>
@@ -30,8 +59,12 @@ export default class Login extends Component<Props> {
 
             <View style={styles.inputField} >
               <TextInput style={styles.input}
-                placeholder= "email" placeholderTextColor="#fff"
-                onChangeText={texto => this.setState({usuario: texto})}
+                placeholder= "email ou usuario" placeholderTextColor="#fff"
+                         returnKeyType="next"
+                       keyboardType="email-address"
+                         autoCorrect={false}
+                         onSubmitEditing={()=> this.senhaInput.focus()}
+                         onChangeText={(usuario) => this.setState({usuario})}
                 autoCapitalize="none"/>
               <Image
                 style={styles.icon}
@@ -39,10 +72,14 @@ export default class Login extends Component<Props> {
             </View>
 
             <View style={styles.inputField} >
+
+
               <TextInput style={styles.input}
                 placeholder= "senha" placeholderTextColor="#fff"
-                onChangeText={texto => this.setState({senha: texto})}
-                secureTextEntry={true}/>
+                         onChangeText={(senha) => this.setState({senha})}
+                secureTextEntry={true}
+              returnKeytype="go"
+              ref={(input) => this.senhaInput = input}/>
               <Image
                 style={styles.icon}
                 source={require('../../resources/images/icons/icon-locker-login.png')}/>
@@ -56,7 +93,7 @@ export default class Login extends Component<Props> {
             </View>
 
             <View style={styles.buttonField}>
-              <TouchableOpacity onPress={this._onPressButton}>
+              <TouchableOpacity onPress={this.login}>
                 <Image
                 style={styles.button}
                 source={require('../../resources/images/drawables/btn-login-valid.png')}/>
@@ -74,9 +111,44 @@ export default class Login extends Component<Props> {
             </View>
 
           </View>
-        </View>
+        </KeyboardAvoidingView>
       </ImageBackground>
     );
+  }
+  login = () => {
+
+        if(this.state.usuario === 'lunadis' && this.state.senha === '862411'){
+            this.props.navigation.navigate('Home')
+        }
+
+     /* fetch('http://localhost/sout',{
+          method: 'POST',
+          headers:{
+              Accept: 'application/json',
+              'Content-type':'application/jason',
+          },
+          body: JSON.stringify({
+              usuario: this.state.usuario,
+              senha: this.state.senha
+          })
+      })
+
+          .then((response) => response.json())
+          .then((res) =>{
+
+
+              alert(res.message);
+
+
+              if(res.success === true){
+                  AsyncStorage.setItem('usuario', res.usuario);
+
+              }else{
+                  alert(res.message)
+              }
+          })
+          .done(); */
+
   }
 }
 

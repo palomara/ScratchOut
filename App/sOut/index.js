@@ -7,6 +7,7 @@ import Login from './src/screens/Login';
 <<<<<<< HEAD
 import Hall from './src/screens/Hall';
 import RegisterFirst from "./src/screens/RegisterFirst";
+import App from './src/App'
 
 =======
 >>>>>>> parent of 6a33dcf... hall init
@@ -18,7 +19,7 @@ import {name as appName} from './app.json';
 <<<<<<< HEAD
 //AppRegistry.registerComponent(appName, () => Login);
 //AppRegistry.registerComponent(appName, () => Hall);
-AppRegistry.registerComponent(appName, () => RegisterFirst);
+AppRegistry.registerComponent(appName, () => App);
 
 =======
 AppRegistry.registerComponent(appName, () => Login);
