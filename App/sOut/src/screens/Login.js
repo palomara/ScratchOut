@@ -30,17 +30,17 @@ export default class Login extends Component<Props> {
     }
 
     componentDidMount(){
-        this._loadInitialState().done();
+            this._loadInitialState().done();
     }
 
     _loadInitialState = async () => {
 
-        var value = await AsyncStorage.getItem('usuario');
+        var value = await AsyncStorage.getItem('token');
         if(value !== null){
             this.props.navigation.navigate('Home')
         }
 
-    }
+    };
 
   render() {
     return (
@@ -116,38 +116,32 @@ export default class Login extends Component<Props> {
     );
   }
   login = () => {
-
-        if(this.state.usuario === 'lunadis' && this.state.senha === '862411'){
-            this.props.navigation.navigate('Home')
-        }
-
-     /* fetch('http://localhost/sout',{
+        // posteriormente sera substituido por um link web
+      fetch('http://10.0.2.2:3000/users', {
           method: 'POST',
-          headers:{
-              Accept: 'application/json',
-              'Content-type':'application/jason',
+          headers: {
+              /*Accept: 'application/json'*/
+              'Content-Type': 'application/json',
           },
           body: JSON.stringify({
-              usuario: this.state.usuario,
-              senha: this.state.senha
-          })
+              "usuario": this.state.usuario,
+              "senha": this.state.senha,
+          }),
       })
 
           .then((response) => response.json())
           .then((res) =>{
 
-
-              alert(res.message);
-
-
               if(res.success === true){
-                  AsyncStorage.setItem('usuario', res.usuario);
+                  console.warn(res.usuario);
+                  AsyncStorage.setItem('token', '1');
+                  this.props.navigation.navigate('Home')
 
               }else{
                   alert(res.message)
               }
           })
-          .done(); */
+          .done()
 
   }
 }
