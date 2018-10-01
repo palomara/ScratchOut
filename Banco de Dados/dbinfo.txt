@@ -1,0 +1,11 @@
+EndPoint:
+projeto-sout-tcc.cuevqr10c1ly.sa-east-1.rds.amazonaws.com
+
+port:
+3306
+
+user:
+soutroot
+
+senha:
+soutroot211
