@@ -10,14 +10,9 @@
     "@babel/runtime": "^7.0.0",
     "react": "16.5.0",
     "react-native": "0.57.1",
-<<<<<<< HEAD
-    "react-native-navbar": "^2.1.0",
-    "react-native-paper": "^2.0.1",
-=======
->>>>>>> e5975c3293aee06f8b5efd7daee8a9a3250994bc
+    "react-native-fbsdk": "^0.8.0",
     "react-native-simple-radio-button": "^2.7.3",
-    "react-navigation": "^2.17.0",
-    "react-navigation-material-bottom-tabs": "^0.4.0"
+    "react-navigation": "^2.17.0"
   },
   "devDependencies": {
     "babel-jest": "23.6.0",
