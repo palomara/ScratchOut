@@ -9,46 +9,71 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
-    StatusBar,
-    KeyboardAvoidingView,
-    AsyncStorage
+  StatusBar,
+  KeyboardAvoidingView,
+  AsyncStorage
 } from 'react-native';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
-
-
-
 export default class Login extends Component<Props> {
-    constructor(props){
-        super(props);
-        this.state = {
-            usuario: "",
-            senha: "",
-        }
+
+  constructor(props){
+    super(props);
+    this.state = {
+      usuario: "",
+      senha: "",
     }
+  }
 
-    componentDidMount(){
-            this._loadInitialState().done();
+  componentDidMount(){
+    this._loadInitialState().done();
+  }
+
+  _loadInitialState = async () => {
+
+    var value = await AsyncStorage.getItem('token');
+    if(value !== null){
+      this.props.navigation.navigate('Home')
     }
+  };
 
-    _loadInitialState = async () => {
+  login = () => {
+    // posteriormente sera substituido por um link web
+    fetch('http://10.0.2.2:3000/users', {
+      method: 'POST',
+      headers: {
+        /*Accept: 'application/json'*/
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "usuario": this.state.usuario,
+        "senha": this.state.senha,
+      }),
+    })
 
-        var value = await AsyncStorage.getItem('token');
-        if(value !== null){
-            this.props.navigation.navigate('Home')
-        }
+    .then((response) => response.json())
+    .then((res) =>{
 
-    };
+      if(res.success === true){
+        console.warn(res.usuario);
+        AsyncStorage.setItem('token', '1');
+        this.props.navigation.navigate('Home')
+
+      }else{
+        alert(res.message)
+      }
+    })
+    .done()
+
+  }
 
   render() {
     return (
       <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.background} blurRadius={8}>
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-            <StatusBar
-                backgroundColor="#00E075"
-            />
+          <StatusBar backgroundColor="#00E075"/>
           <View style={styles.form}>
 
             <View style={styles.logoField}>
@@ -114,35 +139,6 @@ export default class Login extends Component<Props> {
         </KeyboardAvoidingView>
       </ImageBackground>
     );
-  }
-  login = () => {
-        // posteriormente sera substituido por um link web
-      fetch('http://10.0.2.2:3000/users', {
-          method: 'POST',
-          headers: {
-              /*Accept: 'application/json'*/
-              'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-              "usuario": this.state.usuario,
-              "senha": this.state.senha,
-          }),
-      })
-
-          .then((response) => response.json())
-          .then((res) =>{
-
-              if(res.success === true){
-                  console.warn(res.usuario);
-                  AsyncStorage.setItem('token', '1');
-                  this.props.navigation.navigate('Home')
-
-              }else{
-                  alert(res.message)
-              }
-          })
-          .done()
-
   }
 }
 
