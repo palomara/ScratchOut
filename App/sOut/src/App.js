@@ -6,10 +6,12 @@ import{
 import {createStackNavigator} from 'react-navigation'
 import Login from './screens/Login'
 import Home from './screens/Home'
+import Hall from './screens/Hall'
 
 const Application = createStackNavigator({
-    Login: { screen: Login},
-    Home: {screen: Home}
+  Hall: { screen: Hall},
+  Login: { screen: Login},
+  Home: {screen: Home}
     },{
     headerMode: 'none'
 });
