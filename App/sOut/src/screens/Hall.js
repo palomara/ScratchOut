@@ -1,9 +1,12 @@
 import React, {Component} from 'react';
 import {ImageBackground, View, Image, Text, StyleSheet, Dimensions, TouchableOpacity} from 'react-native';
 
+var FBLoginButton = require('../components/FBLoginButton');
+
+
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
-const margin = 40;
+
 
 export default class Hall extends Component<Props> {
  render () {
@@ -19,9 +22,9 @@ export default class Hall extends Component<Props> {
                     <Text style={styles.texto}>Aumente sua produtividade!</Text>
                 </View>
                 <View style={styles.buttonField}>
-                    <TouchableOpacity style={styles.buttonFbG}>
-                        <Text style={styles.textButtonFbG}>Entrar com Facebook</Text>
-                    </TouchableOpacity>
+
+                        <FBLoginButton style={styles.buttonFbG} />
+
                 </View>
                 <View style={styles.buttonField}>
                     <TouchableOpacity  style={styles.buttonEmail}>
@@ -77,6 +80,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#518EF8',
         height: 50,
         zIndex: 100,
+        margin: 5,
+        marginBottom: 10
     },
     background:{
         width: width,
