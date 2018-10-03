@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {AsyncStorage, Platform, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
+
 export default class Home extends Component<Props> {
 
     logout = ()=>{
