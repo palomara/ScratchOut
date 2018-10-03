@@ -7,7 +7,8 @@ import {
     StyleSheet,
     Dimensions,
     StatusBar,
-    TouchableOpacity, AsyncStorage
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
 
 var FBLoginButton = require('../components/FBLoginButton');
@@ -85,7 +86,6 @@ export default class Hall extends Component<Props> {
 
 const styles = StyleSheet.create({
 
-<<<<<<< HEAD
     container: {
         flex: 1,
         alignItems:'center',
@@ -147,71 +147,3 @@ const styles = StyleSheet.create({
         marginBottom: height / 26,
     }
 })
-=======
-  container: {
-      flex: 1,
-      alignItems:'center',
-      justifyContent: 'center',
-  },
-  logoField:{
-      alignItems:'center',
-      justifyContent: 'center',
-      marginBottom: height / 4
-
-  },
-
-  logo:{
-      width: width * 0.9
-  },
-
-  texto: {
-      fontFamily: 'Roboto Light',
-      fontSize: 14,
-      color: '#fff',
-      alignItems: 'center',
-      flexDirection: 'row',
-  },
-
-  textLink:{
-    fontFamily: 'Roboto',
-    fontSize: 14,
-    color: '#fff'
-  },
-
-  textButtonEmail: {
-      fontFamily: 'Roboto',
-      fontSize: 18,
-      color: '#00E075'
-  },
-  textButtonFbG: {
-      fontFamily: 'Roboto',
-      fontSize: 18,
-      color: '#FFFFFF'
-  },
-  buttonFbG: {
-      width: 300,
-      borderRadius: 600,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#518EF8',
-      height: 50,
-      zIndex: 100,
-  },
-  background:{
-      width: width,
-      height: height
-  },
-  buttonEmail:{
-      width: 300,
-      borderRadius: 600,
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#FFF',
-      height: 50,
-      zIndex: 100,
-  },
-  buttonField:{
-      marginBottom: height / 26,
-  }
-})
->>>>>>> a31d672ce4e49343b54b4f743d7768ebeb345ea1

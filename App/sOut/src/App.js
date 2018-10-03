@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import{
     Text,
-    View,
+    View
 } from 'react-native'
 import {createStackNavigator} from 'react-navigation'
 import Login from './screens/Login'

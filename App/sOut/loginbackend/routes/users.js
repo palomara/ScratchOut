@@ -17,7 +17,7 @@ router.post('/', function(req, res, next) {
     var senha = req.body.senha;
 
     connection.query(
-        "SELECT * FROM users WHERE usuario = ? AND senha =?",
+        "SELECT * FROM usuario WHERE username = ? AND senha =?",
         [usuario,senha],function (err,row,fild) {
             if (err){
                 console.log(err);
@@ -27,11 +27,8 @@ router.post('/', function(req, res, next) {
             }else{
                 res.send({'success': false, 'message': 'usuario ou senha não encotnrados'});
             }
-
-
         }
     )
-
 });
 
 module.exports = router;
