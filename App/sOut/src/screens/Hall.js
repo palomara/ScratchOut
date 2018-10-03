@@ -11,6 +11,7 @@ import {
     AsyncStorage
 } from 'react-native';
 
+
 var FBLoginButton = require('../components/FBLoginButton');
 
 
@@ -109,6 +110,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
     },
+    textLink:{
+        fontFamily: 'Roboto',
+        fontSize: 14,
+        color: '#fff'
+    },
+
+    textLinkBold:{
+        fontFamily: 'Roboto Bold',
+        fontSize: 14,
+        color: '#fff'
+    },
     textButtonEmail: {
         fontFamily: 'Roboto',
         fontSize: 18,
@@ -120,12 +132,12 @@ const styles = StyleSheet.create({
         color: '#FFFFFF'
     },
     buttonFbG: {
-        width: 300,
+        width: 400,
         borderRadius: 600,
         alignItems: 'center',
         justifyContent: 'center',
         backgroundColor: '#518EF8',
-        height: 50,
+        height: 200,
         zIndex: 100,
         margin: 5,
         marginBottom: 10
