@@ -52,9 +52,7 @@ export default class Hall extends Component<Props> {
                 </View>
 
                 <View style={styles.buttonField}>
-
-                        <FBLoginButton style={styles.buttonFbG} />
-
+                  <FBLoginButton style={styles.buttonFbG} />
                 </View>
 
                 <View style={styles.textLinkCadastro}>
