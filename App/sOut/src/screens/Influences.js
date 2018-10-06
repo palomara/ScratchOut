@@ -7,7 +7,7 @@ import {
   StyleSheet,
 } from 'react-native';
 
-export default class MyComponent extends Component {
+export default class Influences extends Component {
   render() {
     return (
       <View style={styles.container}>

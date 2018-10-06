@@ -76,61 +76,46 @@ export default class Login extends Component<Props> {
           <View style={styles.form}>
 
             <View style={styles.logoField}>
-              <Image
-              style={styles.logo}
-              source={require('../../resources/images/logo-login-w.png')}/>
+              <Image style={styles.logo} source={require('../../resources/images/logos/logo-sout-white.png')}/>
             </View>
 
-            <View style={styles.inputField} >
+            <View style={styles.inputField}>
               <TextInput style={styles.input}
-                placeholder= "email ou usuario" placeholderTextColor="#fff"
-                         returnKeyType="next"
-                       keyboardType="email-address"
-                         autoCorrect={false}
-                         onSubmitEditing={()=> this.senhaInput.focus()}
-                         onChangeText={(usuario) => this.setState({usuario})}
+                placeholder= "email ou usuario"
+                placeholderTextColor="#fff"
+                returnKeyType="next"
+                keyboardType="email-address"
+                autoCorrect={false}
+                onSubmitEditing={()=> this.senhaInput.focus()}
+                onChangeText={(usuario) => this.setState({usuario})}
                 autoCapitalize="none"/>
-              <Image
-                style={styles.icon}
-                source={require('../../resources/images/icons/icon-mail-login.png')}/>
+              <Image style={styles.icon} source={require('../../resources/images/icons/icon-mail-white.png')}/>
             </View>
 
             <View style={styles.inputField} >
-
-
               <TextInput style={styles.input}
                 placeholder= "senha" placeholderTextColor="#fff"
-                         onChangeText={(senha) => this.setState({senha})}
+                onChangeText={(senha) => this.setState({senha})}
                 secureTextEntry={true}
-              returnKeytype="go"
-              ref={(input) => this.senhaInput = input}/>
-              <Image
-                style={styles.icon}
-                source={require('../../resources/images/icons/icon-locker-login.png')}/>
+                returnKeytype="go"
+                ref={(input) => this.senhaInput = input}/>
+              <Image style={styles.icon} source={require('../../resources/images/icons/icon-pass-white.png')}/>
             </View>
 
-            <View style={styles.dataField} >
-              <Text style={styles.textLink}
-                onPress={() => console.warn("Fui tocado!")}>
-                Não consegue entrar?
-              </Text>
+            <View style={styles.dataField}>
+              <Text style={styles.textLink} onPress={() => console.warn("Fui tocado!")}> Não consegue entrar? </Text>
             </View>
 
             <View style={styles.buttonField}>
               <TouchableOpacity onPress={this.login}>
-                <Image
-                style={styles.button}
-                source={require('../../resources/images/drawables/btn-login-valid.png')}/>
+                <Image style={styles.button} source={require('../../resources/images/drawables/draw-login-invalid.png')}/>
               </TouchableOpacity>
             </View>
 
             <View style={styles.textLinkCadastro}>
-              <Text style={styles.textLink}
-                onPress={() => console.warn("Fui tocado!")}>
+              <Text style={styles.textLink} onPress={() => console.warn("Fui tocado!")}>
                 Ainda não possui uma conta?
-                <Text style={styles.textLinkBold}
-                  onPress={() => console.warn("Fui tocado!")}> Crie uma agora!
-                </Text>
+                <Text style={styles.textLinkBold} onPress={() => console.warn("Fui tocado!")}> Crie uma agora!</Text>
               </Text>
             </View>
 
@@ -166,7 +151,7 @@ const styles = StyleSheet.create({
   },
 
   logo:{
-    width: width * 0.9
+    width: width * 0.78
   },
 
   icon:{
