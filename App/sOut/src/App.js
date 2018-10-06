@@ -10,7 +10,7 @@ import Hall from './screens/Hall'
 
 const Application = createStackNavigator({
   Hall: { screen: Hall},
-  Login: { screen: Login},
+  Login: {screen: Login},
   Home: {screen: Home}
     },{
     headerMode: 'none'

@@ -11,6 +11,8 @@ import {
     AsyncStorage
 } from 'react-native';
 
+import { LoginManager } from 'react-native-fbsdk'
+
 
 /*var FBLoginButton = require('../components/FBLoginButton');
 
@@ -41,6 +43,21 @@ export default class Hall extends Component<Props> {
     }
   };
 
+    handleFacebookLogin () {
+        LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(
+            function (result) {
+                if (result.isCancelled) {
+                    console.log('Login cancelled')
+                } else {
+                    console.log('Login success with permissions: ' + result.grantedPermissions.toString())
+                }
+            },
+            function (error) {
+                console.log('Login fail with error: ' + error)
+            }
+        )
+    }
+
   render () {
     return (
       <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container}>
@@ -69,7 +86,7 @@ export default class Hall extends Component<Props> {
             <View style={styles.emptyView}></View>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={() => console.warn("Login com Facebook")}>
+          <TouchableOpacity onPress={this.handleFacebookLogin}>
             <View style={styles.withSocialFacebook}>
               <Image style={styles.SocialFacebook} source={require('../../resources/images/drawables/draw-f_facebook.png')}/>
             </View>
@@ -97,8 +114,8 @@ export default class Hall extends Component<Props> {
         </View>
 
         <View style={styles.fieldTermos}>
-          <Text style={styles.textTermos} onPress={()=>console.warn("Link Para os Termos de Uso")}>ao continuar você aceita os nossos
-            <Text> <Text style={styles.textTermosBold}>Termos de Uso</Text></Text>
+          <Text style={styles.textTermos} onPress={()=>console.warn("Link Para os Termos de Uso")}>Ao continuar você aceita os nossos
+            <Text> <Text style={styles.textTermosBold}> Termos de Uso</Text></Text>
           </Text>
         </View>
 
