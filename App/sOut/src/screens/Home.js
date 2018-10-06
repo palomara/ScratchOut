@@ -9,7 +9,8 @@ import {
   Image,
   TouchableOpacity,
   AsyncStorage,
-  ScrollView
+  ScrollView,
+  StatusBar
 } from 'react-native';
 
 const width = Dimensions.get('screen').width;
@@ -17,55 +18,55 @@ const height = Dimensions.get('screen').height;
 
 export default class Home extends Component<Props> {
 
-/* Logout não ficará aqui por isso vou deixar comentado
+  /* Logout não ficará aqui por isso vou deixar comentado
 
   logout = ()=>{
-      console.warn('Saindo');
-      AsyncStorage.setItem('token', '');
-      this.props.navigation.navigate('Hall')
+  console.warn('Saindo');
+  AsyncStorage.setItem('token', '');
+  this.props.navigation.navigate('Hall')
 
-      <TouchableOpacity  style={styles.buttonEmail} onPress={() => this.logout()}></TouchableOpacity>
+  <TouchableOpacity  style={styles.buttonEmail} onPress={() => this.logout()}></TouchableOpacity>
   };
-*/
+  */
   render() {
     return (
       <View style={styles.container}>
+        <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+        <View style={styles.fixedNav}>
+          <TouchableOpacity style={styles.fixedNavArea} onPress={() => console.warn("Menu")}>
+            <Image source={require('../../resources/images/icons/icon-nav_menu-green.png')}/>
+          </TouchableOpacity>
+          <Image source={require('../../resources/images/logos/logo-sout-nav.png')}/>
+          <View style={styles.emptyView}></View>
+        </View>
 
-          <View style={styles.fixedNav}>
-            <TouchableOpacity style={styles.fixedNavArea} onPress={() => console.warn("Menu")}>
-              <Image source={require('../../resources/images/icons/icon-nav_menu-green.png')}/>
-            </TouchableOpacity>
-            <Image source={require('../../resources/images/logos/logo-sout-nav.png')}/>
-            <View style={styles.emptyView}></View>
-          </View>
+        <ScrollView style={styles.mainView}>
 
-          <ScrollView style={styles.mainView}>
+        </ScrollView>
 
-          </ScrollView>
+        <View style={styles.fixedMenu}>
 
-          <View style={styles.fixedMenu}>
+          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Indicador de Performance")}>
+            <Image source={require('../../resources/images/icons/icon-sout.png')}/>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.fixedMenuArea}>
-              <Image source={require('../../resources/images/icons/icon-sout.png')}/>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Tarefas")}>
+            <Image source={require('../../resources/images/icons/icon-tasks.png')}/>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.fixedMenuArea}>
-              <Image source={require('../../resources/images/icons/icon-tasks.png')}/>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Criar Nova Tarefa")}>
+            <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.fixedMenuArea}>
-              <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Influenciadores")}>
+            <Image source={require('../../resources/images/icons/icon-influences.png')}/>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.fixedMenuArea}>
-              <Image source={require('../../resources/images/icons/icon-influences.png')}/>
-            </TouchableOpacity>
+          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Perfil e Configurações")}>
+            <Image source={require('../../resources/images/icons/icon-profile.png')}/>
+          </TouchableOpacity>
 
-            <TouchableOpacity style={styles.fixedMenuArea}>
-              <Image source={require('../../resources/images/icons/icon-profile.png')}/>
-            </TouchableOpacity>
-
-          </View>
+        </View>
       </View>
     )
   }

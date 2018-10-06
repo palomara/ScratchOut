@@ -44,6 +44,7 @@ export default class Hall extends Component<Props> {
   render () {
     return (
       <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container}>
+        <StatusBar translucent={true} backgroundColor={'transparent'}/>
         <View style={styles.emptyView}></View>
         <View style={styles.logoField}>
           <Image style={styles.logo} source={require('../../resources/images/logos/logo-sout-white.png')}/>

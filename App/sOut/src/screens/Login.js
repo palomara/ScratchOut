@@ -70,16 +70,14 @@ export default class Login extends Component<Props> {
 
   render() {
     return (
-      <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.background} blurRadius={8}>
+      <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container} blurRadius={8}>
         <KeyboardAvoidingView behavior="padding" style={styles.container}>
-          <StatusBar backgroundColor="#00E075"/>
+          <StatusBar translucent={true} backgroundColor={'transparent'}/>
+          <View style={styles.logoField}>
+            <Image style={styles.logo} source={require('../../resources/images/logos/logo-sout-white.png')}/>
+          </View>
           <View style={styles.form}>
-
-            <View style={styles.logoField}>
-              <Image style={styles.logo} source={require('../../resources/images/logos/logo-sout-white.png')}/>
-            </View>
-
-            <View style={styles.inputField}>
+            <View style={styles.inputFieldEmail}>
               <TextInput style={styles.input}
                 placeholder= "email ou usuario"
                 placeholderTextColor="#fff"
@@ -89,33 +87,37 @@ export default class Login extends Component<Props> {
                 onSubmitEditing={()=> this.senhaInput.focus()}
                 onChangeText={(usuario) => this.setState({usuario})}
                 autoCapitalize="none"/>
-              <Image style={styles.icon} source={require('../../resources/images/icons/icon-mail-white.png')}/>
+              <Image style={styles.icon} source={require('../../resources/images/icons/icon-mail-white.png' /*caso seja invalido'../../resources/images/icons/icon-mail-turquoise.png'*/)}/>
             </View>
 
-            <View style={styles.inputField} >
+            <View style={styles.inputFieldPass} >
               <TextInput style={styles.input}
                 placeholder= "senha" placeholderTextColor="#fff"
                 onChangeText={(senha) => this.setState({senha})}
                 secureTextEntry={true}
                 returnKeytype="go"
                 ref={(input) => this.senhaInput = input}/>
-              <Image style={styles.icon} source={require('../../resources/images/icons/icon-pass-white.png')}/>
+              <Image style={styles.icon}
+                source={require('../../resources/images/icons/icon-pass-white.png' /*caso seja invalido'../../resources/images/icons/icon-pass-turquoise.png'*/)}/>
+            </View>
+            <View style={styles.inputError}>
+              <Text style={styles.inputErrorText}>parece que você errou sua senha ou email</Text>
             </View>
 
             <View style={styles.dataField}>
-              <Text style={styles.textLink} onPress={() => console.warn("Fui tocado!")}> Não consegue entrar? </Text>
+              <Text style={styles.textLink} onPress={() => console.warn("Ir para a tela esqueci minha senha!")}> Não consegue entrar? </Text>
             </View>
 
-            <View style={styles.buttonField}>
-              <TouchableOpacity onPress={this.login}>
-                <Image style={styles.button} source={require('../../resources/images/drawables/draw-login-invalid.png')}/>
+            <View style={styles.Login}>
+              <TouchableOpacity style={styles.LoginTouch} onPress={this.login}>
+                <Text style={styles.LoginText}>Começar</Text>
               </TouchableOpacity>
             </View>
 
             <View style={styles.textLinkCadastro}>
-              <Text style={styles.textLink} onPress={() => console.warn("Fui tocado!")}>
+              <Text style={styles.textLink} onPress={() => console.warn("Ir para seção de Cadastro")}>
                 Ainda não possui uma conta?
-                <Text style={styles.textLinkBold} onPress={() => console.warn("Fui tocado!")}> Crie uma agora!</Text>
+                <Text style={styles.textLinkBold}> Crie uma agora!</Text>
               </Text>
             </View>
 
@@ -131,7 +133,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems:'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    width: width,
+    height: height
   },
 
   input: {
@@ -142,27 +146,23 @@ const styles = StyleSheet.create({
   },
 
   form:{
-    width: width * 0.88,
-  },
-
-  button:{
-    width: width * 0.88,
-    borderRadius: 600,
+    width: width * 0.9,
   },
 
   logo:{
     width: width * 0.78
   },
 
+  logoField:{
+    height: height / 3,
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+
   icon:{
     width: 20,
     height: 20,
     marginRight: width * 0.009
-  },
-
-  background:{
-    width: width,
-    height: height
   },
 
   textLink:{
@@ -179,28 +179,60 @@ const styles = StyleSheet.create({
 
   textLinkCadastro:{
     alignItems:'center',
-    marginBottom: height / 26
+    marginBottom: height / 200
   },
 
-  inputField:{
+  inputFieldEmail:{
     borderBottomWidth: 2,
     borderColor: '#fff',
-    marginBottom: 16,
     alignItems:'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    marginBottom: 16
   },
 
-  logoField:{
+  inputFieldPass:{
+    borderBottomWidth: 2,
+    borderColor: '#fff',
     alignItems:'center',
-    justifyContent: 'center',
-    marginBottom: height / 7
+    flexDirection: 'row',
+    marginBottom: 8
   },
+
+
 
   dataField:{
-    marginBottom: height / 16
+    marginBottom: height / 20
   },
 
-  buttonField:{
-    marginBottom: height / 26,
-  }
+  Login: {
+    width: width * 0.88,
+    height: height / 12.8,
+    backgroundColor: "#fff",
+    borderRadius: 40,
+    marginBottom: height / 15
+  },
+
+  LoginTouch:{
+    flex: 1,
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+
+  LoginText: {
+    fontFamily: 'Roboto',
+    fontSize: 16,
+    color: '#00ED74',
+    alignItems: 'center'
+  },
+
+  inputErrorText:{
+    fontFamily: 'Roboto',
+    fontSize: 11,
+    color: '#006F77',
+  },
+
+  inputError:{
+    marginBottom: 16
+  },
+
 })
