@@ -10,8 +10,10 @@ import {
   TouchableOpacity,
   AsyncStorage,
   ScrollView,
-  StatusBar
+  StatusBar,
 } from 'react-native';
+
+import FixedMenu from '../components/FixedMenu';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -41,32 +43,11 @@ export default class Home extends Component<Props> {
         </View>
 
         <ScrollView style={styles.mainView}>
-
+          <Text>Conteúdo da Home</Text>
         </ScrollView>
 
-        <View style={styles.fixedMenu}>
+        <FixedMenu />
 
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Indicador de Performance")}>
-            <Image source={require('../../resources/images/icons/icon-sout.png')}/>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Tarefas")}>
-            <Image source={require('../../resources/images/icons/icon-tasks.png')}/>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Criar Nova Tarefa")}>
-            <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Influenciadores")}>
-            <Image source={require('../../resources/images/icons/icon-influences.png')}/>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Perfil e Configurações")}>
-            <Image source={require('../../resources/images/icons/icon-profile.png')}/>
-          </TouchableOpacity>
-
-        </View>
       </View>
     )
   }
@@ -112,19 +93,4 @@ const styles = StyleSheet.create({
     height: height * 0.6,
     width: width,
   },
-
-  fixedMenu: {
-    height: height * 0.085,
-    width: width,
-    flexDirection: 'row',
-    alignItems:'center',
-    justifyContent: 'space-between',
-  },
-
-  fixedMenuArea: {
-    flex: 1,
-    height: height * 0.085,
-    alignItems:'center',
-    justifyContent: 'center',
-  }
 });
