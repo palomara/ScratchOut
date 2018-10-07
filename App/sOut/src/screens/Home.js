@@ -11,14 +11,25 @@ import {
   AsyncStorage,
   ScrollView,
   StatusBar,
+  Modal,
+  TouchableHighlight,
 } from 'react-native';
 
 import FixedMenu from '../components/FixedMenu';
+import StatusBarSout from '../components/StatusBarSout';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class Home extends Component<Props> {
+
+  state =  {
+    modalVisible: true,
+  };
+
+  setModalVisible(visible) {
+    this.setState({modalVisible: visible});
+  }
 
   /* Logout não ficará aqui por isso vou deixar comentado
 
@@ -33,7 +44,7 @@ export default class Home extends Component<Props> {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+        <StatusBarSout/>
         <View style={styles.fixedNav}>
           <TouchableOpacity style={styles.fixedNavArea} onPress={() => console.warn("Menu")}>
             <Image source={require('../../resources/images/icons/icon-nav_menu-green.png')}/>
@@ -43,7 +54,26 @@ export default class Home extends Component<Props> {
         </View>
 
         <ScrollView style={styles.mainView}>
-          <Text>Conteúdo da Home</Text>
+          <Modal
+            animationType="slide"
+            transparent={false}
+            visible={this.state.modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+            }}>
+            <View style={{marginTop: 22}}>
+              <View>
+                <Text>Hello World!</Text>
+
+                <TouchableHighlight
+                  onPress={() => {
+                    this.setModalVisible(!this.state.modalVisible);
+                  }}>
+                  <Text>Hide Modal</Text>
+                </TouchableHighlight>
+              </View>
+            </View>
+          </Modal>
         </ScrollView>
 
         <FixedMenu />
