@@ -6,6 +6,7 @@ import {
     Text,
     StyleSheet, Dimensions, StatusBar, Image, TouchableOpacity, ScrollView
 } from 'react-native';
+import FixedMenu from '../components/FixedMenu';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -23,24 +24,26 @@ export default class Profile extends Component {
                   <View style={styles.emptyView}></View>
               </View>
 
-            /*<ScrollView style={styles.mainView}/>*/
+              <ScrollView style={styles.mainView}>
+                  <View style={styles.editView}>
+                      <TouchableOpacity style={styles.editView} onPress={() => console.warn("Edit User")}>
+                          <Image source={require('../../resources/images/icons/icon-edit-green.png')}/>
+                      </TouchableOpacity>
 
-              <View style={styles.editView}>
-                  <TouchableOpacity style={styles.editView} onPress={() => console.warn("Edit User")}>
-                      <Image source={require('../../resources/images/icons/icon-edit-green.png')}/>
-                  </TouchableOpacity>
+                      <TouchableOpacity style={styles.editView} onPress={() => console.warn("Go to Settings")}>
+                          <Image source={require('../../resources/images/icons/icon-settings-green.png')}/>
+                      </TouchableOpacity>
 
-                  <TouchableOpacity style={styles.editView} onPress={() => console.warn("Go to Settings")}>
-                      <Image source={require('../../resources/images/icons/icon-settings-green.png')}/>
-                  </TouchableOpacity>
+                  </View>
 
-              </View>
+                  <View>
+                      <Text style={styles.title}>E-mail</Text>
+                      <Text style={styles.title}>Plano</Text>
+                      <Text style={styles.title}>Indicador de Performance</Text>
+                  </View>
+              </ScrollView>
 
-              <View>
-                  <Text style={styles.title}>E-mail</Text>
-                  <Text style={styles.title}>Plano</Text>
-                  <Text style={styles.title}>Indicador de Performance</Text>
-              </View>
+              <FixedMenu />
           </View>
       );
   }
@@ -57,7 +60,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height * 0.1,
         width: width,
-        alignItems:'center',
+        alignItems:'flex-start',
         justifyContent: 'space-between',
         backgroundColor: '#F8F8F8',
         shadowColor: '#000',
