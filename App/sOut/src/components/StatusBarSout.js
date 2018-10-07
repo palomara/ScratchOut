@@ -9,13 +9,14 @@ import {
   Dimensions,
 } from 'react-native';
 
-
+const width = Dimensions.get('screen').width;
+const height = Dimensions.get('screen').height;
 
 export default class StatusBarSout extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+        <StatusBar backgroundColor='#000' barStyle='default'/>
       </View>
     );
   }
@@ -24,7 +25,6 @@ export default class StatusBarSout extends Component {
 const styles = StyleSheet.create({
   container:{
     height: height * 0.03,
-    width: width * 0.15,
     alignItems:'center',
     justifyContent: 'center',
   },

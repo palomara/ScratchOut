@@ -23,14 +23,6 @@ const height = Dimensions.get('screen').height;
 
 export default class Home extends Component<Props> {
 
-  state =  {
-    modalVisible: true,
-  };
-
-  setModalVisible(visible) {
-    this.setState({modalVisible: visible});
-  }
-
   /* Logout não ficará aqui por isso vou deixar comentado
 
   logout = ()=>{
@@ -54,26 +46,7 @@ export default class Home extends Component<Props> {
         </View>
 
         <ScrollView style={styles.mainView}>
-          <Modal
-            animationType="slide"
-            transparent={false}
-            visible={this.state.modalVisible}
-            onRequestClose={() => {
-              Alert.alert('Modal has been closed.');
-            }}>
-            <View style={{marginTop: 22}}>
-              <View>
-                <Text>Hello World!</Text>
 
-                <TouchableHighlight
-                  onPress={() => {
-                    this.setModalVisible(!this.state.modalVisible);
-                  }}>
-                  <Text>Hide Modal</Text>
-                </TouchableHighlight>
-              </View>
-            </View>
-          </Modal>
         </ScrollView>
 
         <FixedMenu />
