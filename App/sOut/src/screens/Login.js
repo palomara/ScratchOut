@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {login} from "../components/func";
 import {
   Platform,
   StyleSheet,
@@ -24,6 +25,7 @@ export default class Login extends Component<Props> {
     this.state = {
       usuario: "",
       senha: "",
+        textoresult: "",
     }
   }
 
@@ -36,36 +38,6 @@ export default class Login extends Component<Props> {
     if(value !== null){
       this.props.navigation.navigate('Home')
     }
-  };
-
-  login = () => {
-    // posteriormente sera substituido por um link web
-    fetch('http://10.0.2.2:3000/users', {
-      method: 'POST',
-      headers: {
-        /*Accept: 'application/json'*/
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        "usuario": this.state.usuario,
-        "senha": this.state.senha,
-      }),
-    })
-
-    .then((response) => response.json())
-    .then((res) =>{
-
-      if(res.success === true){
-        console.warn(res.usuario);
-        AsyncStorage.setItem('token', '1');
-        this.props.navigation.navigate('Home')
-
-      }else{
-        alert(res.message)
-      }
-    })
-    .done()
-
   };
 
   render() {
@@ -101,7 +73,7 @@ export default class Login extends Component<Props> {
                 source={require('../../resources/images/icons/icon-pass-white.png' /*caso seja invalido'../../resources/images/icons/icon-pass-turquoise.png'*/)}/>
             </View>
             <View style={styles.inputError}>
-              <Text style={styles.inputErrorText}>parece que você errou sua senha ou email</Text>
+              <Text style={styles.inputErrorText}>{this.state.textoresult}</Text>
             </View>
 
             <View style={styles.dataField}>
@@ -109,7 +81,7 @@ export default class Login extends Component<Props> {
             </View>
 
             <View style={styles.Login}>
-              <TouchableOpacity style={styles.LoginTouch} onPress={this.login}>
+              <TouchableOpacity style={styles.LoginTouch} onPress={login()}>
                 <Text style={styles.LoginText}>Começar</Text>
               </TouchableOpacity>
             </View>
