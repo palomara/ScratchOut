@@ -30,16 +30,28 @@ export default class Profile extends Component {
                           <Image source={require('../../resources/images/icons/icon-edit-green.png')}/>
                       </TouchableOpacity>
 
+                      <TouchableOpacity style={styles.editView} onPress={() => console.warn("Edit Photo User")}>
+                          <Image source={require('../../resources/images/icons/icon-profile-green@3.png')}/>
+                      </TouchableOpacity>
+
                       <TouchableOpacity style={styles.editView} onPress={() => console.warn("Go to Settings")}>
                           <Image source={require('../../resources/images/icons/icon-settings-green.png')}/>
                       </TouchableOpacity>
-
                   </View>
 
                   <View>
-                      <Text style={styles.title}>E-mail</Text>
-                      <Text style={styles.title}>Plano</Text>
-                      <Text style={styles.title}>Indicador de Performance</Text>
+                      <Text style={styles.otherTitle}>E-MAIL</Text>
+                      <Text style={styles.contentInfoUser}>nome.sobrenome@outlook.com</Text>
+                      <Text style={styles.otherTitle}>PLANO</Text>
+                      <Text style={styles.contentInfoUser}>Premium</Text>
+                      <Text style={styles.otherTitle}>INDICADOR DE PERFORMANCE</Text>
+                      <Text style={styles.contentInfoUser}>Feliz</Text>
+                      <Text style={styles.otherTitle}>ADICIONAR</Text>
+                      <Text style={styles.contentInfoUser}>Blá</Text>
+                      <Text style={styles.otherTitle}>ADICIONAR</Text>
+                      <Text style={styles.contentInfoUser}>Blá</Text>
+                      <Text style={styles.otherTitle}>ADICIONAR</Text>
+                      <Text style={styles.contentInfoUser}>Blá</Text>
                   </View>
               </ScrollView>
 
@@ -60,7 +72,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height * 0.1,
         width: width,
-        alignItems:'flex-start',
+        alignItems:'center',
         justifyContent: 'space-between',
         backgroundColor: '#F8F8F8',
         shadowColor: '#000',
@@ -87,9 +99,29 @@ const styles = StyleSheet.create({
 
     title:{
         fontFamily: 'Roboto',
-        fontSize: 28,
+        fontSize: 20,
         color: '#00ED74',
-        alignItems: 'center'
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+
+    otherTitle:{
+        fontFamily: 'Roboto Bold',
+        fontSize: 10,
+        color: '#A5A5A5',
+        justifyContent: 'space-between',
+        alignContent: 'space-between',
+        marginTop: height * 0.03,
+        paddingBottom: height * 0.003,
+        marginLeft: width * 0.06,
+
+    },
+
+    contentInfoUser:{
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        color: '#00ED74',
+        marginLeft: width * 0.06,
     },
 
     mainView:{
@@ -100,10 +132,13 @@ const styles = StyleSheet.create({
     editView:{
         flexDirection: 'row',
         alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'center',
         backgroundColor: '#F8F8F8',
         shadowColor: '#000',
-        position: 'relative'
+        position: 'relative',
+        paddingLeft: width * 0.1,
+        paddingRight: width * 0.1,
+        marginBottom: height * 0.01,
     }
 
 });
