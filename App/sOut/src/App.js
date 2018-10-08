@@ -1,16 +1,14 @@
 import React, {Component} from 'react'
-import{
-    Text,
-    View
-} from 'react-native'
 import {createStackNavigator} from 'react-navigation'
 import Login from './screens/Login'
 import Home from './screens/Home'
 import Hall from './screens/Hall'
+import RegisterFirst from './screens/RegisterFirst'
 
 const Application = createStackNavigator({
   Hall: { screen: Hall},
   Login: {screen: Login},
+  RegisterFirst: {screen: RegisterFirst},
   Home: {screen: Home}
     },{
     headerMode: 'none'

@@ -23,16 +23,10 @@ const height = Dimensions.get('screen').height;
 
 export default class Home extends Component<Props> {
 
-  /* Logout não ficará aqui por isso vou deixar comentado
-
   logout = ()=>{
-  console.warn('Saindo');
   AsyncStorage.setItem('token', '');
-  this.props.navigation.navigate('Hall')
+  this.props.navigation.navigate('Hall')};
 
-  <TouchableOpacity  style={styles.buttonEmail} onPress={() => this.logout()}></TouchableOpacity>
-  };
-  */
   render() {
     return (
       <View style={styles.container}>
@@ -46,7 +40,9 @@ export default class Home extends Component<Props> {
         </View>
 
         <ScrollView style={styles.mainView}>
-
+          <TouchableOpacity onPress={() => this.logout()}>
+            <Text>Logout</Text>
+          </TouchableOpacity>
         </ScrollView>
 
         <FixedMenu />

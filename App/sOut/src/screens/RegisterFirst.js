@@ -1,81 +1,166 @@
-import React, {Component} from 'react';
+import React, {Component} from 'react'
 import {
-    StyleSheet,
-    Text,
-    View,
-    TextInput,
-    Dimensions,
-    ImageBackground,
-    TouchableOpacity
-} from 'react-native';
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Dimensions,
+  ImageBackground,
+  TouchableOpacity,
+  StatusBar,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native'
+import FixedNav from '../components/FixedNav'
+import RadiusButton from '../components/RadiusButton'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class RegisterFirst extends Component<Props> {
-    render () {
-        return (
-            <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.background} blurRadius={1}>
-                <View style={styles.container}>
-                    <View style={styles.form}>
+  render () {
+    return (
+      <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container} blurRadius={20}>
+        <View style={styles.statusBar}>
+          <StatusBar translucent={true} backgroundColor={'transparent'}/>
+        </View>
+        <View style={styles.container}>
 
-                        <View style={styles.questionField}>
-                            <Text style={styles.textBold}>Antes de tudo,</Text>
-                            <Text style={styles.text}>Como devemos te chamar?</Text>
-                            <View style={styles.inputField} >
-                                <TextInput style={styles.input}
-                                           placeholder= "Nome" placeholderTextColor="#FFF"
-                                           onChangeText={texto => this.setState({nome: texto})}
-                                           autoCapitalize="none"/>
-                            </View>
-                            <Text style={styles.text}> E como se identifica?</Text>
-                        </View>
-                    </View>
+          <View style={styles.fixedNav}>
+            <TouchableOpacity style={styles.fixedNavArea} onPress={() => this.props.navigation.goBack()}>
+              <Image source={require('../../resources/images/icons/icon-nav_back-white.png')}/>
+            </TouchableOpacity>
+          </View>
+
+          <KeyboardAvoidingView behavior="padding" style={styles.form}>
+            <View style={styles.form}>
+
+              <View style={styles.highlightText}>
+                <Text style={styles.highlightText}>Antes de tudo,</Text>
+              </View>
+
+              <Text style={styles.questionText}>Como devemos te chamar?</Text>
+              <View style={styles.inputField} >
+                <TextInput style={styles.input}
+                  placeholder= "nome" placeholderTextColor="#FFF"
+                  onChangeText={texto => this.setState({nome: texto})}
+                  autoCapitalize="none"/>
+              </View>
+
+              <View style={styles.questionField}>
+                <Text style={styles.questionText}>E como se identifica?</Text>
+              </View>
+
+              <View style={styles.nextField}>
+
+                <RadiusButton/>
+
+                <View style={styles.nextButton}>
+                  <TouchableOpacity style={styles.nextButtonTouch} activeOpacity={0.5}>
+                    <Image source={require('../../resources/images/icons/icon-nav_go-green.png')}/>
+                  </TouchableOpacity>
                 </View>
-            </ImageBackground>
-        );
-    }
+
+              </View>
+            </View>
+          </KeyboardAvoidingView>
+        </View>
+      </ImageBackground>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems:'center',
-        justifyContent: 'center'
-    },
-    background: {
-        width: width,
-        height: height
-    },
-    questionField: {
-        marginBottom: height / 2
-    },
-    text:{
-        fontFamily: 'Roboto Regular',
-        fontSize: 18,
-        color: '#FFFFFF',
-        margin: 20
+  /*Provisório*/
 
-    },
-    textBold: {
-        fontFamily: 'Roboto Bold',
-        fontSize: 26,
-        color: '#FFFFFF',
-        margin: 20,
-    },
-    form:{
-        width: width * 0.88,
-    },
-    input: {
-        fontFamily: 'Roboto Light',
-        fontSize: 20,
-        color: '#FFFFFF',
-        flex: 1
-    },
-    inputField:{
-        borderBottomWidth: 2,
-        borderColor: '#FFFFFF',
-        marginBottom: 16,
-        flexDirection: 'row'
-    },
+  //Reutilizar o componente FixedNav.js
+  fixedNav: {
+    flexDirection: 'row',
+    height: height * 0.1,
+    width: width,
+    alignItems:'center',
+    justifyContent: 'space-between',
+  },
+
+  //Reutilizar o componente FixedNav.js
+  fixedNavArea: {
+    height: height * 0.08,
+    width: width * 0.15,
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+
+  //Reutilizar o componente StatusBarSout.js
+  statusBar:{
+    height: height * 0.03,
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+
+  /*Provisório*/
+
+  container: {
+    flex: 1,
+    alignItems:'center',
+    width: width,
+    height: height,
+  },
+
+  form:{
+    width: width * 0.88,
+  },
+
+  highlightText: {
+    height: height / 16,
+    fontFamily: 'Roboto Bold',
+    fontSize: 26,
+    color: '#FFFFFF',
+  },
+
+  questionField: {
+    height: height / 14,
+    justifyContent: 'flex-end',
+  },
+
+  questionText:{
+    fontFamily: 'Roboto Regular',
+    fontSize: 16,
+    color: '#FFFFFF',
+  },
+
+  inputField:{
+    height: height / 13,
+    justifyContent: 'flex-end',
+    borderBottomWidth: 2,
+    borderColor: '#FFF',
+  },
+
+  input: {
+    fontFamily: 'Roboto Light',
+    fontSize: 22,
+    color: '#FFF',
+  },
+
+  nextField:{
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    flexDirection: 'row',
+  },
+
+  nextButton:{
+    height: 70,
+    width: 70,
+    alignItems:'center',
+    justifyContent: 'center',
+    borderRadius: 40,
+    backgroundColor: "#fff",
+  },
+
+  nextButtonTouch:{
+
+  },
+
+  radiusField:{
+
+  },
 })

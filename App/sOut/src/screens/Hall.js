@@ -8,10 +8,11 @@ import {
     Dimensions,
     StatusBar,
     TouchableOpacity,
-    AsyncStorage
+    AsyncStorage,
 } from 'react-native';
 
 import { LoginManager } from 'react-native-fbsdk'
+import Carousel from '../components/Carousel'
 
 
 /*var FBLoginButton = require('../components/FBLoginButton');
@@ -23,11 +24,8 @@ import { LoginManager } from 'react-native-fbsdk'
   </View>
 */
 
-
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
-
-
 
 export default class Hall extends Component<Props> {
 
@@ -60,7 +58,7 @@ export default class Hall extends Component<Props> {
 
   render () {
     return (
-      <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container}>
+      <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container} blurRadius={4}>
         <StatusBar translucent={true} backgroundColor={'transparent'}/>
         <View style={styles.emptyView}></View>
         <View style={styles.logoField}>
@@ -71,11 +69,7 @@ export default class Hall extends Component<Props> {
           <Text style={styles.textInfo}>Aumente sua produtividade!</Text>
         </View>
 
-        <View style={styles.dots}>
-          <Image source={require('../../resources/images/drawables/draw-dot.png')}/>
-          <Image source={require('../../resources/images/drawables/draw-dot.png')}/>
-          <Image source={require('../../resources/images/drawables/draw-dot.png')}/>
-        </View>
+        <Carousel />
 
         <View style={styles.withSocial}>
           <TouchableOpacity style={styles.withSocialGoogle} onPress={() => console.warn("Login com Google")}>
@@ -85,12 +79,11 @@ export default class Hall extends Component<Props> {
             <Text style={styles.withSocialGoogleText}>Entre com Google</Text>
             <View style={styles.emptyView}></View>
           </TouchableOpacity>
-
-          <TouchableOpacity onPress={this.handleFacebookLogin}>
-            <View style={styles.withSocialFacebook}>
+          <View style={styles.withSocialFacebook}>
+            <TouchableOpacity onPress={this.handleFacebookLogin}>
               <Image style={styles.SocialFacebook} source={require('../../resources/images/drawables/draw-f_facebook.png')}/>
-            </View>
-          </TouchableOpacity>
+            </TouchableOpacity>
+          </View>
         </View>
 
         <View>
@@ -105,17 +98,15 @@ export default class Hall extends Component<Props> {
 
         <View style={styles.fieldNewAccount}>
           <Text style={styles.textNewAccount}
-            onPress={() => console.warn("Fui tocado!")}>
+            onPress={() => this.props.navigation.navigate('RegisterFirst')}>
             Ainda não possui uma conta?
-            <Text style={styles.textNewAccountBold}
-              onPress={() => console.warn("Fui tocado!")}> Crie uma agora!
-            </Text>
+            <Text style={styles.textNewAccountBold}> Crie uma agora!</Text>
           </Text>
         </View>
 
         <View style={styles.fieldTermos}>
           <Text style={styles.textTermos} onPress={()=>console.warn("Link Para os Termos de Uso")}>Ao continuar você aceita os nossos
-            <Text> <Text style={styles.textTermosBold}> Termos de Uso</Text></Text>
+            <Text> <Text style={styles.textTermosBold}>Termos de Uso</Text></Text>
           </Text>
         </View>
 
@@ -131,20 +122,14 @@ const styles = StyleSheet.create({
     alignItems:'center',
     justifyContent: 'space-between',
     width: width,
-    height: height
-  },
-
-  dots:{
-    width: width * 0.08,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    height: height,
   },
 
   logoField:{
     alignItems:'center',
     justifyContent: 'center',
     width: width,
-    height: height / 3
+    height: height / 2.5,
   },
 
   logo:{
@@ -161,26 +146,26 @@ const styles = StyleSheet.create({
   textNewAccount:{
     fontFamily: 'Roboto',
     fontSize: 14,
-    color: '#fff'
+    color: '#fff',
   },
 
   textNewAccountBold:{
     fontFamily: 'Roboto Bold',
     fontSize: 14,
-    color: '#fff'
+    color: '#fff',
   },
 
   text:{
     fontFamily: 'Roboto',
     fontSize: 14,
-    color: '#fff'
+    color: '#fff',
   },
 
   textInfo:{
     fontFamily: 'Roboto Light',
     fontSize: 18,
     color: '#fff',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   withEmail: {
@@ -190,7 +175,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: "#fff",
     borderRadius: 40,
-    marginBottom: height / 60
+    marginBottom: height / 60,
   },
 
   withEmailTouch:{
@@ -230,7 +215,7 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto',
     fontSize: 16,
     color: '#fff',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   SocialGoogle:{
@@ -248,8 +233,8 @@ const styles = StyleSheet.create({
   withSocialFacebook:{
     backgroundColor: "#3B5999",
     borderRadius: 40,
-    height: 80,
-    width: 80,
+    height: 70,
+    width: 70,
     alignItems:'center',
     justifyContent: 'center',
   },
@@ -263,14 +248,13 @@ const styles = StyleSheet.create({
     width: width,
     height: height / 20,
     alignItems:'center',
-    justifyContent: 'center',
   },
 
   textTermos:{
     fontFamily: 'Roboto',
     fontSize: 11,
     color: '#fff',
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   textTermosBold:{
@@ -278,6 +262,6 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: '#fff',
     alignItems: 'center',
-    textDecorationLine:'underline'
+    textDecorationLine:'underline',
   }
 })
