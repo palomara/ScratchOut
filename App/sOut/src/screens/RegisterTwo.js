@@ -17,10 +17,10 @@ import RadiusButton from '../components/RadiusButton'
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
-export default class RegisterFirst extends Component<Props> {
+export default class RegisterTwo extends Component<Props> {
   render () {
     return (
-      <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container} blurRadius={20}>
+      <ImageBackground source={require('../../resources/images/turquoise-galaxy.png')} style={styles.container} blurRadius={2}>
         <View style={styles.statusBar}>
           <StatusBar translucent={true} backgroundColor={'transparent'}/>
         </View>
@@ -36,27 +36,25 @@ export default class RegisterFirst extends Component<Props> {
             <View style={styles.form}>
 
               <View style={styles.highlightText}>
-                <Text style={styles.highlightText}>Antes de tudo,</Text>
+                <Text style={styles.highlightText}>Bem-Vindo, NOMEDOUSER!</Text>
               </View>
 
-              <Text style={styles.questionText}>Como devemos te chamar?</Text>
+              <Text style={styles.questionText}>Precisamos do seu e-mail, ele será sua credencial!</Text>
               <View style={styles.inputField} >
                 <TextInput style={styles.input}
-                  placeholder= "nome" placeholderTextColor="#FFF"
+                  placeholder= "email" placeholderTextColor="#FFF"
                   onChangeText={texto => this.setState({nome: texto})}
                   autoCapitalize="none"/>
               </View>
 
               <View style={styles.questionField}>
-                <Text style={styles.questionText}>E como se identifica?</Text>
+                <Text style={styles.questionText}></Text>
               </View>
 
               <View style={styles.nextField}>
-
-                <RadiusButton/>
-
                 <View style={styles.nextButton}>
-                  <TouchableOpacity style={styles.nextButtonTouch} activeOpacity={0.5}>
+                  <TouchableOpacity style={styles.nextButtonTouch} activeOpacity={0.5}
+                    onPress={() => this.props.navigation.navigate('RegisterOne')}>
                     <Image source={require('../../resources/images/icons/icon-nav_go-green.png')}/>
                   </TouchableOpacity>
                 </View>
@@ -143,8 +141,9 @@ const styles = StyleSheet.create({
 
   nextField:{
     alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     flexDirection: 'row',
+    marginTop: 14,
   },
 
   nextButton:{
@@ -157,10 +156,9 @@ const styles = StyleSheet.create({
   },
 
   nextButtonTouch:{
-
-  },
-
-  radiusField:{
-
+    height: 70,
+    width: 70,
+    alignItems:'center',
+    justifyContent: 'center',
   },
 })

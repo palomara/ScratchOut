@@ -25,7 +25,7 @@ export default class Login extends Component<Props> {
     this.state = {
       usuario: "",
       senha: "",
-        textoresult: "",
+      textoresult: "",
     }
   }
 
@@ -59,7 +59,8 @@ export default class Login extends Component<Props> {
                 onSubmitEditing={()=> this.senhaInput.focus()}
                 onChangeText={(usuario) => this.setState({usuario})}
                 autoCapitalize="none"/>
-              <Image style={styles.icon} source={require('../../resources/images/icons/icon-mail-white.png' /*caso seja invalido'../../resources/images/icons/icon-mail-turquoise.png'*/)}/>
+              <Image style={styles.icon}
+                source={require('../../resources/images/icons/icon-mail-white.png')}/>
             </View>
 
             <View style={styles.inputFieldPass} >
@@ -86,10 +87,10 @@ export default class Login extends Component<Props> {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.textLinkCadastro}>
-              <Text style={styles.textLink} onPress={() => console.warn("Ir para seção de Cadastro")}>
+            <View style={styles.fieldNewAccount}>
+              <Text style={styles.textNewAccount} onPress={() => this.props.navigation.navigate('RegisterOne')}>
                 Ainda não possui uma conta?
-                <Text style={styles.textLinkBold}> Crie uma agora!</Text>
+                <Text style={styles.textNewAccountBold}> Crie uma agora!</Text>
               </Text>
             </View>
 
@@ -101,6 +102,24 @@ export default class Login extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
+
+
+  textNewAccount:{
+    fontFamily: 'Roboto',
+    fontSize: 14,
+    color: '#fff'
+  },
+
+  textNewAccountBold:{
+    fontFamily: 'Roboto Bold',
+    fontSize: 14,
+    color: '#fff'
+  },
+
+  fieldNewAccount:{
+    alignItems:'center',
+    marginBottom: height / 200
+  },
 
   container: {
     flex: 1,
@@ -135,23 +154,6 @@ const styles = StyleSheet.create({
     width: 20,
     height: 20,
     marginRight: width * 0.009
-  },
-
-  textLink:{
-    fontFamily: 'Roboto',
-    fontSize: 14,
-    color: '#fff'
-  },
-
-  textLinkBold:{
-    fontFamily: 'Roboto Bold',
-    fontSize: 14,
-    color: '#fff'
-  },
-
-  textLinkCadastro:{
-    alignItems:'center',
-    marginBottom: height / 200
   },
 
   inputFieldEmail:{

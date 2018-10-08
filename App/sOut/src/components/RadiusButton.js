@@ -3,12 +3,14 @@
 import React, { Component } from 'react';
 import {
   View,
-  Text,
   StyleSheet,
   ToastAndroid,
+  Dimensions,
 } from 'react-native';
 import RadioForm, {RadioButton, RadioButtonInput, RadioButtonLabel} from 'react-native-simple-radio-button';
 
+const width = Dimensions.get('screen').width;
+const height = Dimensions.get('screen').height;
 
 var genre = [
   {label: 'Homem', value: 0 },
@@ -22,17 +24,11 @@ export default class RadiusButtons extends Component {
     return (
       <View style={styles.radiusField}>
         <RadioForm
-          radio_props={genre}
-          initial={-1}
-          onPress={(value) => console.warn()}
-          buttonSize={30}
-          buttonOuterSize={30}
-          buttonColor={'#fff'}
-          borderWidth={0.5}
-          selectedButtonColor={'#fff'}
-          selectedLabelColor={'#fff'}
+          radioItems={genre}
+          onPress={(value) => ToastAndroid.show(value == 0  ? 'Homem' : 'Mulher' , ToastAndroid.SHORT)}
+          buttonSize={height/32}
+          buttonOuterSize={height/32}
           labelStyle={styles.radiusButtons}
-          animation={false}
         />
       </View>
     );
@@ -50,7 +46,6 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto Light',
     fontSize: 20,
     color: "#fff",
-
-  }
+  },
 
 });

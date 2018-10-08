@@ -13,16 +13,7 @@ import {
 
 import { LoginManager } from 'react-native-fbsdk'
 import Carousel from '../components/Carousel'
-
-
-/*var FBLoginButton = require('../components/FBLoginButton');
-
-  Dentro do método Render()
-
-  <View style={styles.buttonField}>
-    <FBLoginButton style={styles.buttonFbG} />
-  </View>
-*/
+import NewAccountButton from '../components/NewAccountButton'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -97,15 +88,14 @@ export default class Hall extends Component<Props> {
         </View>
 
         <View style={styles.fieldNewAccount}>
-          <Text style={styles.textNewAccount}
-            onPress={() => this.props.navigation.navigate('RegisterFirst')}>
+          <Text style={styles.textNewAccount} onPress={() => this.props.navigation.navigate('RegisterOne')}>
             Ainda não possui uma conta?
             <Text style={styles.textNewAccountBold}> Crie uma agora!</Text>
           </Text>
         </View>
 
         <View style={styles.fieldTermos}>
-          <Text style={styles.textTermos} onPress={()=>console.warn("Link Para os Termos de Uso")}>Ao continuar você aceita os nossos
+          <Text style={styles.textTermos} onPress={() => console.warn("Link Para os Termos de Uso")}>Ao continuar você aceita os nossos
             <Text> <Text style={styles.textTermosBold}>Termos de Uso</Text></Text>
           </Text>
         </View>

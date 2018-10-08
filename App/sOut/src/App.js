@@ -3,22 +3,24 @@ import {createStackNavigator} from 'react-navigation'
 import Login from './screens/Login'
 import Home from './screens/Home'
 import Hall from './screens/Hall'
-import RegisterFirst from './screens/RegisterFirst'
+import RegisterOne from './screens/RegisterOne'
+import RegisterTwo from './screens/RegisterTwo'
 
-const Application = createStackNavigator({
+const Application = createStackNavigator(
+  {
   Hall: { screen: Hall},
   Login: {screen: Login},
-  RegisterFirst: {screen: RegisterFirst},
+  RegisterOne: {screen: RegisterOne},
+  RegisterTwo: {screen: RegisterTwo},
   Home: {screen: Home}
-    },{
-    headerMode: 'none'
-});
-
+  },
+  {headerMode: 'none'}
+);
 
 export default class App extends Component{
-    render(){
-        return(
-            <Application/>
-        );
-    }
+  render(){
+    return(
+      <Application/>
+    );
+  }
 }
