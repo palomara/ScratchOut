@@ -14,11 +14,23 @@ import {
   StatusBar
 } from 'react-native';
 
+import Modal from "react-native-modal";
+
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
+
+
 export default class FixedMenu extends Component {
-  render() {
+    state = {
+        isModalVisible: false
+    };
+
+    _toggleModal = () =>
+        this.setState({ isModalVisible: !this.state.isModalVisible });
+
+
+    render() {
     return (
         <View style={styles.fixedMenu}>
 
@@ -30,7 +42,7 @@ export default class FixedMenu extends Component {
             <Image source={require('../../resources/images/icons/icon-tasks.png')}/>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Criar Nova Tarefa")}>
+          <TouchableOpacity style={styles.fixedMenuArea} onPress={this._toggleModal}>
             <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
           </TouchableOpacity>
 
@@ -41,6 +53,15 @@ export default class FixedMenu extends Component {
           <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Perfil e Configurações")}>
             <Image source={require('../../resources/images/icons/icon-profile.png')}/>
           </TouchableOpacity>
+
+            <Modal isVisible={this.state.isModalVisible} style={styles.modalContent}>
+                <View style={{ flex: 1 }}>
+                    <Text>Conteudo</Text>
+                    <TouchableOpacity onPress={this._toggleModal}>
+                        <Text>Fechar</Text>
+                    </TouchableOpacity>
+                </View>
+            </Modal>
 
         </View>
     );
@@ -62,5 +83,15 @@ const styles = StyleSheet.create({
     height: height * 0.085,
     alignItems:'center',
     justifyContent: 'center',
-  }
+  },
+
+    modalContent: {
+        backgroundColor: 'white',
+        padding: 22,
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 4,
+        borderColor: 'rgba(0, 0, 0, 0.1)'
+    }
+
 });
