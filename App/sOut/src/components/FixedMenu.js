@@ -20,8 +20,6 @@ import {login} from "./func";
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
-
-
 export default class FixedMenu extends Component {
     state = {
         isModalVisible: false
@@ -59,19 +57,17 @@ export default class FixedMenu extends Component {
                 <View style={styles.modalContent}>
                     <Text style={styles.title}>Nova tarefa</Text>
                     <Text style={styles.taskTitle}>Título</Text>
-                    <View style={styles.inputFieldPass} >
-                        <TextInput style={styles.input} />
+                    <View style={styles.newTaskArea}>
+                        <View style={styles.inputFieldPass} >
+                            <TextInput style={styles.input} />
+                        </View>
                         <TouchableOpacity style={styles.addTaskIcon}>
                             <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
                         </TouchableOpacity>
                     </View>
 
-                    <TouchableOpacity onPress={this._toggleModal}>
-                        <Text>Fechar</Text>
-                    </TouchableOpacity>
-
                     <View style={styles.Create}>
-                        <TouchableOpacity style={styles.createTouch}>
+                        <TouchableOpacity style={styles.createTouch} onPress={this._toggleModal}>
                             <Text style={styles.createText}>Criar</Text>
                         </TouchableOpacity>
                     </View>
@@ -135,13 +131,22 @@ const styles = StyleSheet.create({
         marginRight: width * 0.1
     },
     inputFieldPass:{
+        flex: 1,
         borderBottomWidth: 2,
         borderColor: '#00ED74',
         alignItems:'center',
         flexDirection: 'row',
         marginBottom: 8,
-
+        height: 40,
     },
+
+    newTaskArea:{
+        flexDirection: 'row',
+        height: 30,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+    },
+
     Create : {
       width: width * 0.88,
         height: height / 12.8,

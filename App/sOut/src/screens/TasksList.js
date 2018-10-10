@@ -22,8 +22,8 @@ export default class TasksList extends Component {
               </TouchableOpacity>
               <Text style={styles.title}>Tarefas</Text>
               <View style={styles.emptyView}></View>
-
           </View>
+          <View style={styles.flatList}></View>
           <FixedMenu />
       </View>
     );
@@ -70,4 +70,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+
+    flatList:{
+      flex: 1,
+    }
 });
