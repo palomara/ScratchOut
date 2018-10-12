@@ -18,6 +18,7 @@ import {
 import FixedMenu from '../components/FixedMenu';
 import StatusBarSout from '../components/StatusBarSout';
 
+
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 

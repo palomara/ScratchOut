@@ -13,6 +13,7 @@ import {
     KeyboardAvoidingView,
     AsyncStorage
 } from 'react-native';
+import {login} from '../components/data'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -25,6 +26,7 @@ export default class Login extends Component<Props> {
             usuario: "",
             senha: "",
             textoresult: "",
+            buttomstyle: false
         }
     }
 
@@ -41,7 +43,32 @@ export default class Login extends Component<Props> {
 
 
 
+
     render() {
+
+        let iconForm = null;
+        if(this.state.textoresult !== ''){
+          iconForm =  <Image style={styles.icon}
+                   source={require('../../resources/images/icons/icon-pass-turquoise.png')}/>
+        } else {
+            iconForm =  <Image style={styles.icon}
+                               source={require('../../resources/images/icons/icon-pass-white.png')}/>
+        }
+        let onButtonStyle = null;
+        if(this.state.usuario !== ''){
+            onButtonStyle = <TouchableOpacity style={styles.LoginTouch}
+                                              onPress={() => this.props.navigation.navigate('Home')}>
+                <Text style={styles.LoginTextIn}>Começar</Text>
+            </TouchableOpacity>
+        }else{
+            onButtonStyle = <TouchableOpacity style={styles.LoginTouch}
+                                              onPress={() => alert('Preencha os dados')}>
+                <Text style={styles.LoginText}>Começar</Text>
+            </TouchableOpacity>
+        }
+
+
+
         return (
             <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container}
                              blurRadius={8}>
@@ -73,8 +100,7 @@ export default class Login extends Component<Props> {
                                        secureTextEntry={true}
                                        returnKeytype="go"
                                        ref={(input) => this.senhaInput = input}/>
-                            <Image style={styles.icon}
-                                   source={require('../../resources/images/icons/icon-pass-white.png' /*caso seja invalido'../../resources/images/icons/icon-pass-turquoise.png'*/)}/>
+                            {iconForm}
                         </View>
                         <View style={styles.inputError}>
                             <Text style={styles.inputErrorText}>{this.state.textoresult}</Text>
@@ -87,10 +113,7 @@ export default class Login extends Component<Props> {
                         </View>
 
                         <View style={styles.Login}>
-                            <TouchableOpacity style={styles.LoginTouch}
-                                              onPress={() => this.props.navigation.navigate('Home')}>
-                                <Text style={styles.LoginText}>Começar</Text>
-                            </TouchableOpacity>
+                            {onButtonStyle}
                         </View>
 
                         <View style={styles.fieldNewAccount}>
@@ -105,7 +128,7 @@ export default class Login extends Component<Props> {
                 </KeyboardAvoidingView>
             </ImageBackground>
         );
-    }
+}
 }
 
 const styles = StyleSheet.create({
@@ -198,6 +221,12 @@ const styles = StyleSheet.create({
     },
 
     LoginText: {
+        fontFamily: 'Roboto',
+        fontSize: 16,
+        color: '#D4D4D4',
+        alignItems: 'center'
+    },
+    LoginTextIn: {
         fontFamily: 'Roboto',
         fontSize: 16,
         color: '#00ED74',

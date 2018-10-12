@@ -1,6 +1,6 @@
 import {AsyncStorage} from "react-native";
 
-const login = () => {
+export const login = (usuario, senha) => {
     // posteriormente sera substituido por um link web
     fetch('http://10.0.2.2:3000/users', {
         method: 'POST',
@@ -9,8 +9,8 @@ const login = () => {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            "usuario": this.state.usuario,
-            "senha": this.state.senha,
+            "usuario": usuario,
+            "senha": senha,
         }),
     })
 
@@ -29,4 +29,3 @@ const login = () => {
         .done()
 
 };
-export default  login();
