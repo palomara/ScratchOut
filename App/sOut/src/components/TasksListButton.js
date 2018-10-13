@@ -1,16 +1,26 @@
 import React from 'react';
-import {Image, TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity, StyleSheet, Dimensions} from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 class TasksListButton extends React.Component {
   render() {
-    return <TouchableOpacity onPress={() => { this.props.navigation.navigate('TasksList')}}>
-      <Image source={require('../../resources/images/icons/icon-tasks.png')}/>
-    </TouchableOpacity>;
+    return (
+      <TouchableOpacity style={styles.button} onPress={() => { this.props.navigation.navigate('TasksList')}}>
+        <Image source={require('../../resources/images/icons/icon-tasks.png')}/>
+      </TouchableOpacity>
+    );
   }
 }
-
-
-// withNavigation returns a component that wraps MyBackButton and passes in the
-// navigation prop
 export default withNavigation(TasksListButton);
+
+const width = Dimensions.get('screen').width;
+const height = Dimensions.get('screen').height;
+
+const styles = StyleSheet.create({
+  button: {
+    flex: 1,
+    height: height * 0.085,
+    alignItems:'center',
+    justifyContent: 'center',
+  },
+});

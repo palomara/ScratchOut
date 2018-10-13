@@ -25,7 +25,7 @@ export default class Login extends Component<Props> {
     this.state = {
       usuario: "",
       senha: "",
-      textoresult: "",
+      textoResult: "",
       buttomstyle: false
     }
   }
@@ -46,23 +46,29 @@ export default class Login extends Component<Props> {
 
   render() {
 
-    let iconForm = null;
-    if(this.state.textoresult !== ''){
-      iconForm =  <Image style={styles.icon}
-        source={require('../../resources/images/icons/icon-pass-turquoise.png')}/>
+    let iconErrorPass = null;
+    if(this.state.textoResult !== ''){
+      iconErrorPass =  <Image style={styles.icon} source={require('../../resources/images/icons/icon-pass-turquoise.png')}/>
     } else {
-      iconForm =  <Image style={styles.icon}
-        source={require('../../resources/images/icons/icon-pass-white.png')}/>
+      iconErrorPass =  <Image style={styles.icon} source={require('../../resources/images/icons/icon-pass-white.png')}/>
     }
+
+    let iconErrorEmail = null;
+    if(this.state.textoResult !== ''){
+      iconErrorEmail =  <Image style={styles.icon} source={require('../../resources/images/icons/icon-mail-turquoise.png')}/>
+    } else {
+      iconErrorEmail =  <Image style={styles.icon} source={require('../../resources/images/icons/icon-mail-white.png')}/>
+    }
+
     let onButtonStyle = null;
-    if(this.state.usuario !== ''){
+    if(this.state.usuario !== '' && this.state.senha !== ''){
       onButtonStyle = <TouchableOpacity style={styles.LoginTouch}
         onPress={() => this.props.navigation.navigate('Home')}>
         <Text style={styles.LoginTextIn}>Começar</Text>
       </TouchableOpacity>
     }else{
       onButtonStyle = <TouchableOpacity style={styles.LoginTouch}
-        onPress={() => alert('Preencha os dados')}>
+        onPress={() => this.setState({textoResult: "parece que você esqueceu de preencher alguns campos"})}>
         <Text style={styles.LoginText}>Começar</Text>
       </TouchableOpacity>
     }
@@ -80,7 +86,7 @@ export default class Login extends Component<Props> {
           </View>
           <View style={styles.form}>
             <View style={styles.inputFieldEmail}>
-              <TextInput style={styles.input}
+              <TextInput style={styles.inputText}
                 placeholder="email ou usuario"
                 placeholderTextColor="#fff"
                 returnKeyType="next"
@@ -89,27 +95,25 @@ export default class Login extends Component<Props> {
                 onSubmitEditing={() => this.senhaInput.focus()}
                 onChangeText={(usuario) => this.setState({usuario})}
                 autoCapitalize="none"/>
-              <Image style={styles.icon}
-                source={require('../../resources/images/icons/icon-mail-white.png')}/>
+              {iconErrorEmail}
             </View>
 
             <View style={styles.inputFieldPass}>
-              <TextInput style={styles.input}
+              <TextInput style={styles.inputText}
                 placeholder="senha" placeholderTextColor="#fff"
                 onChangeText={(senha) => this.setState({senha})}
                 secureTextEntry={true}
                 returnKeytype="go"
                 ref={(input) => this.senhaInput = input}/>
-              {iconForm}
+              {iconErrorPass}
             </View>
             <View style={styles.inputError}>
-              <Text style={styles.inputErrorText}>{this.state.textoresult}</Text>
+              <Text style={styles.inputErrorText}>{this.state.textoResult}</Text>
             </View>
 
-            <View style={styles.dataField}>
-              <Text style={styles.textLink}
-                onPress={() => console.warn("Ir para a tela esqueci minha senha!")}> Não consegue
-                entrar? </Text>
+            <View style={styles.forgetPass}>
+              <Text style={styles.forgetPassText}
+                onPress={() => console.warn("Ir para a tela esqueci minha senha!")}> Não consegue entrar? </Text>
             </View>
 
             <View style={styles.Login}>
@@ -158,7 +162,7 @@ const styles = StyleSheet.create({
     height: height
   },
 
-  input: {
+  inputText: {
     fontFamily: 'Roboto Light',
     fontSize: 20,
     color: '#fff',
@@ -202,7 +206,7 @@ const styles = StyleSheet.create({
   },
 
 
-  dataField: {
+  forgetPass: {
     marginBottom: height / 20
   },
 
@@ -240,6 +244,8 @@ const styles = StyleSheet.create({
   },
 
   inputError: {
-    marginBottom: 16
+    height: height/50,
+    marginBottom: height/22,
+    justifyContent: 'center',
   },
 });
