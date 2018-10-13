@@ -3,11 +3,11 @@ import {Image, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 class MyInfluenceButtom extends React.Component {
-    render() {
-        return <TouchableOpacity onPress={() => { this.props.navigation.navigate('Influences')}}>
-            <Image source={require('../../resources/images/icons/icon-influences.png')}/>
-        </TouchableOpacity>;
-    }
+  render() {
+    return <TouchableOpacity onPress={() => { this.props.navigation.navigate('Influences')}}>
+      <Image source={require('../../resources/images/icons/icon-influences.png')}/>
+    </TouchableOpacity>;
+  }
 }
 
 

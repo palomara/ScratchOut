@@ -3,11 +3,11 @@ import {Image, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 class MyProfileButtom extends React.Component {
-    render() {
-        return <TouchableOpacity onPress={() => { this.props.navigation.navigate('Profile')}}>
-            <Image source={require('../../resources/images/icons/icon-profile.png')}/>
-        </TouchableOpacity>;
-    }
+  render() {
+    return <TouchableOpacity onPress={() => { this.props.navigation.navigate('Profile')}}>
+      <Image source={require('../../resources/images/icons/icon-profile.png')}/>
+    </TouchableOpacity>;
+  }
 }
 
 

@@ -3,11 +3,11 @@ import {Image, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 class AddTaskButton extends React.Component {
-    render() {
-        return <TouchableOpacity onPress={() => { this.props.navigation.navigate('AddTask')}}>
-            <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
-        </TouchableOpacity>;
-    }
+  render() {
+    return <TouchableOpacity onPress={() => { this.props.navigation.navigate('AddTask')}}>
+      <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
+    </TouchableOpacity>;
+  }
 
 }
 
