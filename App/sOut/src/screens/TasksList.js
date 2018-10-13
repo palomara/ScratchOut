@@ -2,109 +2,31 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    StyleSheet, StatusBar, TouchableOpacity, Image, Dimensions, FlatList,  AsyncStorage, Platform
+    StyleSheet, StatusBar, TouchableOpacity, Image, Dimensions,
 } from 'react-native';
 
-import Task from '../components/Task';
-import AddTask from './AddTask';
+
 import FixedMenu from "../components/FixedMenu";
-import MyBackButton from '../components/MyBackButton'
+import MyBackButton from '../components/MyBackButtom'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class TasksList extends Component {
-
-
-    state = {
-        tasks: [],
-        visibleTasks: [],
-        showDoneTasks: true,
-        showAddTask: false,
+    render() {
+        return (
+            <View style={styles.container}>
+                <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+                <View style={styles.fixedNav}>
+                    <MyBackButton style={styles.fixedNavArea}/>
+                    <Text style={styles.title}>Tarefas</Text>
+                    <View style={styles.emptyView}></View>
+                </View>
+                <View style={styles.flatList}></View>
+                <FixedMenu/>
+            </View>
+        );
     }
-
-    addTask = task => {
-        const tasks = [...this.state.tasks]
-        tasks.push({
-            id: Math.random(),
-            title: task.title,
-            estimateAt: task.date,
-            doneAt: null
-        })
-
-        this.setState({ tasks, showAddTask: false }
-            , this.filterTasks)
-    }
-
-    deleteTask = id => {
-        const tasks = this.state.tasks.filter(task => task.id !== id)
-        this.setState({ tasks }, this.filterTasks)
-    }
-
-    filterTasks = () => {
-        let visibleTasks = null
-        if (this.state.showDoneTasks) {
-            visibleTasks = [...this.state.tasks]
-        } else {
-            const pending = task => task.doneAt === null
-            visibleTasks = this.state.tasks.filter(pending)
-        }
-        this.setState({ visibleTasks })
-        AsyncStorage.setItem('tasks', JSON.stringify(this.state.tasks))
-    }
-
-    toggleFilter = () => {
-        this.setState({ showDoneTasks: !this.state.showDoneTasks }
-            , this.filterTasks)
-    }
-
-    componentDidMount = async () => {
-        const data = await AsyncStorage.getItem('tasks')
-        const tasks = JSON.parse(data) || []
-        this.setState({ tasks }, this.filterTasks)
-    }
-
-    toggleTask = id => {
-        const tasks = this.state.tasks.map(task => {
-            if (task.id === id) {
-                task = {...task}
-                task.doneAt = task.doneAt ? null : new Date()
-            }
-            return task
-        })
-        this.setState({ tasks }, this.filterTasks)
-    }
-
-  render() {
-    return (
-      <View style={styles.container}>
-          <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
-          <View style={styles.fixedNav}>
-              <TouchableOpacity style={styles.fixedNavArea} onPress={() => console.warn("Back to Home")}>
-                  <Image source={require('../../resources/images/icons/icon-nav_back-green.png')}/>
-              </TouchableOpacity>
-              <Text style={styles.title}>Tarefas</Text>
-              <View style={styles.emptyView}></View>
-          </View>
-          <View style={styles.flatList}>
-              <AddTask isVisible={this.state.showAddTask}
-                       onSave={this.addTask}
-                       onCancel={() => this.setState({ showAddTask: false })} />
-              <FlatList data={this.state.visibleTasks}
-                        keyExtractor={item => `${item.id}`}
-                        renderItem={({ item }) =>
-                            <Task {...item} onToggleTask={this.toggleTask}
-                                  onDelete={this.deleteTask} />} />
-          </View>
-          <View>
-              <TouchableOpacity onPress={() => { this.setState({ showAddTask: true }) }}>
-                  <Text>MODAL</Text>
-              </TouchableOpacity>
-          </View>
-          <FixedMenu  />
-      </View>
-    );
-  }
 }
 
 const styles = StyleSheet.create({

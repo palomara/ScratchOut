@@ -13,7 +13,6 @@ import Influences from './screens/Influences'
 import Profile from './screens/Profile'
 import TaskList from './screens/TasksList'
 
-
 const LoginStack = createStackNavigator({
         Hall: {screen: Hall},
         Login: {screen: Login},

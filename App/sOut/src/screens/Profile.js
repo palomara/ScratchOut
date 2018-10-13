@@ -12,7 +12,7 @@ import {
     ScrollView,
 } from 'react-native';
 import FixedMenu from '../components/FixedMenu';
-import MyBackButton from '../components/MyBackButton'
+import MyBackButton from '../components/MyBackButtom'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
