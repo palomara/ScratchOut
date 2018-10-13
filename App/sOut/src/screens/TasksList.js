@@ -7,7 +7,7 @@ import {
 
 
 import FixedMenu from "../components/FixedMenu";
-import MyBackButton from '../components/MyBackButtom'
+import MyBackButton from '../components/MyBackButton'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;

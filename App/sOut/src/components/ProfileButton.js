@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation';
 
-class MyProfileButtom extends React.Component {
+class ProfileButton extends React.Component {
   render() {
     return <TouchableOpacity onPress={() => { this.props.navigation.navigate('Profile')}}>
       <Image source={require('../../resources/images/icons/icon-profile.png')}/>
@@ -13,4 +13,4 @@ class MyProfileButtom extends React.Component {
 
 // withNavigation returns a component that wraps MyBackButton and passes in the
 // navigation prop
-export default withNavigation(MyProfileButtom);
+export default withNavigation(ProfileButton);
