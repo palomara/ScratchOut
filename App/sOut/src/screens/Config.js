@@ -11,6 +11,7 @@ export default class Config extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <text> teste config</text>
       </View>
     );
   }

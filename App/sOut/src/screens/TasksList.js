@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import {
     View,
     Text,
@@ -8,11 +8,13 @@ import {
 import Task from '../components/Task';
 import AddTask from './AddTask';
 import FixedMenu from "../components/FixedMenu";
+import MyBackButton from '../components/MyBackButtom'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class TasksList extends Component {
+
 
     state = {
         tasks: [],
@@ -106,18 +108,18 @@ export default class TasksList extends Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
+    container: {
+        flex: 1,
+    },
     fixedNav: {
         flexDirection: 'row',
         height: height * 0.1,
         width: width,
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: '#F8F8F8',
         shadowColor: '#000',
-        shadowOffset: { width: 0, height: 3 },
+        shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.2,
         marginBottom: 20,
         elevation: 3,
@@ -127,18 +129,18 @@ const styles = StyleSheet.create({
     fixedNavArea: {
         height: height * 0.08,
         width: width * 0.15,
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
     },
 
-    emptyView:{
+    emptyView: {
         height: height * 0.08,
         width: width * 0.15,
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
     },
 
-    title:{
+    title: {
         fontFamily: 'Roboto',
         fontSize: 20,
         color: '#00ED74',
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
 
-    flatList:{
-      flex: 1,
+    flatList: {
+        flex: 1,
     }
 });

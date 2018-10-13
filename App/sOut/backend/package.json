@@ -1,0 +1,28 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "1.18.3",
+    "consign": "0.1.6",
+    "cors": "2.8.4",
+    "express": "4.16.4",
+    "jwt-simple": "0.5.5",
+    "knex": "0.15.2",
+    "moment": "2.22.2",
+    "mysql": "2.16.0",
+    "passport": "0.4.0",
+    "passport-jwt": "4.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "1.18.4"
+  }
+}
