@@ -23,7 +23,7 @@ export default props => {
         check = <View style={styles.pending} />
     }
 
-    const descStyle = props.doneAt !== null ?
+    const titleStyle = props.doneAt !== null ?
         { textDecorationLine: 'line-through' } : {}
 
 
@@ -51,8 +51,8 @@ export default props => {
                     <View style={styles.checkContainer}>{check}</View>
                 </TouchableWithoutFeedback>
                 <View>
-                    <Text style={[styles.description, descStyle]}>
-                        {props.desc}
+                    <Text style={[styles.title, titleStyle]}>
+                        {props.title}
                     </Text>
                     <Text style={styles.date}>
                         {moment(props.estimateAt).locale('pt-br').format('ddd, D [de] MMMM [de] YYYY')}
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
-    description: {
+    title: {
         fontSize: 15,
     },
     date: {

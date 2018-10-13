@@ -17,13 +17,13 @@ import moment from 'moment'
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
-const initialState = { desc: '', date: new Date() }
+const initialState = { title: '', date: new Date() }
 
 export default class AddTask extends Component {
     state = { ...initialState }
 
     save = () => {
-        if (!this.state.desc.trim()) {
+        if (!this.state.title.trim()) {
             Alert.alert('Dados incompletos', 'Insira o título e o prazo da tarefa.')
             return
         }
@@ -69,12 +69,12 @@ export default class AddTask extends Component {
                     <View></View>
                 </TouchableWithoutFeedback>
                 <View style={styles.modalContent}>
-                    <Text style={styles.title}>Nova tarefa</Text>
+                    <Text style={styles.titleModal}>Nova tarefa</Text>
                     <Text style={styles.taskTitle}>Título</Text>
                     <View style={styles.newTaskArea}>
                         <View style={styles.inputFieldPass} >
-                            <TextInput style={styles.input} onChangeText={desc => this.setState({ desc })}
-                                       value={this.state.desc} />
+                            <TextInput style={styles.input} onChangeText={title => this.setState({ title })}
+                                       value={this.state.title} />
                         </View>
 
                         <TouchableOpacity style={styles.addTaskIcon}>
@@ -108,7 +108,7 @@ var styles = StyleSheet.create({
         borderColor: 'rgba(0, 0, 0, 0.1)'
     },
 
-    title:{
+    titleModal:{
         fontFamily: 'Roboto',
         fontSize: 20,
         color: '#00ED74',

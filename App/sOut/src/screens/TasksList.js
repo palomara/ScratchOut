@@ -8,7 +8,7 @@ import {
 import Task from '../components/Task';
 import AddTask from './AddTask';
 import FixedMenu from "../components/FixedMenu";
-import MyBackButton from '../components/MyBackButtom'
+import MyBackButton from '../components/MyBackButton'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -27,7 +27,7 @@ export default class TasksList extends Component {
         const tasks = [...this.state.tasks]
         tasks.push({
             id: Math.random(),
-            desc: task.desc,
+            title: task.title,
             estimateAt: task.date,
             doneAt: null
         })

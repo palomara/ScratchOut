@@ -10,10 +10,10 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native';
-import MyInfluenceButtom from './Influencesbuttom'
-import MyTaskListButtom from './Tasklistbuttom'
-import MyProfileButtom from './Profilebuttom'
-import MyPerformceButtom from './PerformceButton'
+import MyInfluenceButtom from './InfluencesButton'
+import MyTaskListButtom from './TasksListButton'
+import MyProfileButtom from './ProfileButton'
+import MyPerformceButtom from './PerformanceButton'
 
 import AddTask from '../screens/AddTask'
 import Task from './Task'
