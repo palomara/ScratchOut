@@ -2,16 +2,77 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet, StatusBar, TouchableOpacity, Image, Dimensions,
+    StyleSheet, StatusBar, TouchableOpacity, Image, Dimensions, FlatList,  AsyncStorage, Platform
 } from 'react-native';
 
-
+import Task from '../components/Task';
+import AddTask from './AddTask';
 import FixedMenu from "../components/FixedMenu";
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class TasksList extends Component {
+
+    state = {
+        tasks: [],
+        visibleTasks: [],
+        showDoneTasks: true,
+        showAddTask: false,
+    }
+
+    addTask = task => {
+        const tasks = [...this.state.tasks]
+        tasks.push({
+            id: Math.random(),
+            desc: task.desc,
+            estimateAt: task.date,
+            doneAt: null
+        })
+
+        this.setState({ tasks, showAddTask: false }
+            , this.filterTasks)
+    }
+
+    deleteTask = id => {
+        const tasks = this.state.tasks.filter(task => task.id !== id)
+        this.setState({ tasks }, this.filterTasks)
+    }
+
+    filterTasks = () => {
+        let visibleTasks = null
+        if (this.state.showDoneTasks) {
+            visibleTasks = [...this.state.tasks]
+        } else {
+            const pending = task => task.doneAt === null
+            visibleTasks = this.state.tasks.filter(pending)
+        }
+        this.setState({ visibleTasks })
+        AsyncStorage.setItem('tasks', JSON.stringify(this.state.tasks))
+    }
+
+    toggleFilter = () => {
+        this.setState({ showDoneTasks: !this.state.showDoneTasks }
+            , this.filterTasks)
+    }
+
+    componentDidMount = async () => {
+        const data = await AsyncStorage.getItem('tasks')
+        const tasks = JSON.parse(data) || []
+        this.setState({ tasks }, this.filterTasks)
+    }
+
+    toggleTask = id => {
+        const tasks = this.state.tasks.map(task => {
+            if (task.id === id) {
+                task = {...task}
+                task.doneAt = task.doneAt ? null : new Date()
+            }
+            return task
+        })
+        this.setState({ tasks }, this.filterTasks)
+    }
+
   render() {
     return (
       <View style={styles.container}>
@@ -23,8 +84,22 @@ export default class TasksList extends Component {
               <Text style={styles.title}>Tarefas</Text>
               <View style={styles.emptyView}></View>
           </View>
-          <View style={styles.flatList}></View>
-          <FixedMenu />
+          <View style={styles.flatList}>
+              <AddTask isVisible={this.state.showAddTask}
+                       onSave={this.addTask}
+                       onCancel={() => this.setState({ showAddTask: false })} />
+              <FlatList data={this.state.visibleTasks}
+                        keyExtractor={item => `${item.id}`}
+                        renderItem={({ item }) =>
+                            <Task {...item} onToggleTask={this.toggleTask}
+                                  onDelete={this.deleteTask} />} />
+          </View>
+          <View>
+              <TouchableOpacity onPress={() => { this.setState({ showAddTask: true }) }}>
+                  <Text>MODAL</Text>
+              </TouchableOpacity>
+          </View>
+          <FixedMenu  />
       </View>
     );
   }

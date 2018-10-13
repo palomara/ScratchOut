@@ -8,6 +8,7 @@ import Profile from './src/screens/Profile';
 import Hall from './src/screens/Hall';
 import RegisterOne from "./src/screens/RegisterOne";
 import RegisterTwo from "./src/screens/RegisterTwo";
+import TasksList from "./src/screens/TasksList";
 import App from './src/App'
 
 import {name as appName} from './app.json';
@@ -19,3 +20,5 @@ import {name as appName} from './app.json';
 //AppRegistry.registerComponent(appName, () => Profile);
 //AppRegistry.registerComponent(appName, () => RegisterOne);
 //AppRegistry.registerComponent(appName, () => RegisterTwo);
+AppRegistry.registerComponent(appName, () => TasksList);
+
