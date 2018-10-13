@@ -1,5 +1,3 @@
-/** @format */
-
 import {AppRegistry} from 'react-native';
 
 import Home from './src/screens/Home';
@@ -12,8 +10,13 @@ import App from './src/App'
 
 import {name as appName} from './app.json';
 
+<<<<<<< HEAD
 //AppRegistry.registerComponent(appName, () => App);
 AppRegistry.registerComponent(appName, () => Home);
+=======
+AppRegistry.registerComponent(appName, () => App);
+//AppRegistry.registerComponent(appName, () => Home);
+>>>>>>> c0fa4bc8289f50f0d3782f39b8aa0da969478a58
 //AppRegistry.registerComponent(appName, () => Login);
 //AppRegistry.registerComponent(appName, () => Hall);
 //AppRegistry.registerComponent(appName, () => Profile);

@@ -13,9 +13,13 @@ import {
     ScrollView,
     StatusBar, TextInput
 } from 'react-native';
+import MyInfluenceButtom from './Influencesbuttom'
+import MyTaskListButtom from './Tasklistbuttom'
+import MyProfileButtom from './Profilebuttom'
+import MyPerformceButtom from './PerformceButton'
 
 import Modal from "react-native-modal";
-import {login} from "./func";
+import {login} from "./data";
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -33,25 +37,17 @@ export default class FixedMenu extends Component {
     return (
         <View style={styles.fixedMenu}>
 
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Indicador de Performance")}>
-            <Image source={require('../../resources/images/icons/icon-sout.png')}/>
-          </TouchableOpacity>
+          <MyPerformceButtom style={styles.fixedMenu}/>
 
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Tarefas")}>
-            <Image source={require('../../resources/images/icons/icon-tasks.png')}/>
-          </TouchableOpacity>
+          <MyTaskListButtom style={styles.fixedMenu}/>
 
           <TouchableOpacity style={styles.fixedMenuArea} onPress={this._toggleModal}>
             <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Influenciadores")}>
-            <Image source={require('../../resources/images/icons/icon-influences.png')}/>
-          </TouchableOpacity>
+           <MyInfluenceButtom style={styles.fixedMenuArea}/>
 
-          <TouchableOpacity style={styles.fixedMenuArea} onPress={()=>console.warn("Perfil e Configurações")}>
-            <Image source={require('../../resources/images/icons/icon-profile.png')}/>
-          </TouchableOpacity>
+          <MyProfileButtom style={styles.fixedMenu}/>
 
             <Modal isVisible={this.state.isModalVisible}>
                 <View style={styles.modalContent}>
