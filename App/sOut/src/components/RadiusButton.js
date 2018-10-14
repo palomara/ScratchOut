@@ -29,7 +29,7 @@ export default class RadiusButtons extends Component {
           buttonSize={height/32}
           buttonOuterSize={height/32}
           labelStyle={styles.radiusButtons}
-          />
+        />
       </View>
     );
   }
