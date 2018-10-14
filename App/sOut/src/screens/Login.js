@@ -133,7 +133,7 @@ export default class Login extends Component<Props> {
 
                         <View style={styles.fieldNewAccount}>
                             <Text style={styles.textNewAccount}
-                                  onPress={() => this.props.navigation.navigate('RegisterOne')}>
+                                  onPress={() => this.props.navigation.navigate('Register')}>
                                 Ainda não possui uma conta?
                                 <Text style={styles.textNewAccountBold}> Crie uma agora!</Text>
                             </Text>

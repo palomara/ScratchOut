@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import {
-  ImageBackground,
-  View,
-  Image,
-  Text,
-  StyleSheet,
-  Dimensions,
-  StatusBar,
-  TouchableOpacity,
-  AsyncStorage,
+    ImageBackground,
+    View,
+    Image,
+    Text,
+    StyleSheet,
+    Dimensions,
+    StatusBar,
+    TouchableOpacity,
+    AsyncStorage,
+    Linking
 } from 'react-native';
 
 import { LoginManager } from 'react-native-fbsdk'
 import Carousel from '../components/Carousel'
-import NewAccountButton from '../components/NewAccountButton'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -32,20 +32,20 @@ export default class Hall extends Component<Props> {
     }
   };
 
-  handleFacebookLogin () {
-    LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(
-      function (result) {
-        if (result.isCancelled) {
-          console.log('Login cancelled')
-        } else {
-          console.log('Login success with permissions: ' + result.grantedPermissions.toString())
-        }
-      },
-      function (error) {
-        console.log('Login fail with error: ' + error)
-      }
-    )
-  }
+    handleFacebookLogin () {
+        LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(
+            function (result) {
+                if (result.isCancelled) {
+                    console.log('Login cancelled')
+                } else {
+                    console.log('Login success with permissions: ' + result.grantedPermissions.toString())
+                }
+            },
+            function (error) {
+                console.log('Login fail with error: ' + error)
+            }
+        )
+    }
 
   render () {
     return (
@@ -88,14 +88,14 @@ export default class Hall extends Component<Props> {
         </View>
 
         <View style={styles.fieldNewAccount}>
-          <Text style={styles.textNewAccount} onPress={() => this.props.navigation.navigate('RegisterOne')}>
+          <Text style={styles.textNewAccount} onPress={() => this.props.navigation.navigate('Register')}>
             Ainda não possui uma conta?
             <Text style={styles.textNewAccountBold}> Crie uma agora!</Text>
           </Text>
         </View>
 
         <View style={styles.fieldTermos}>
-          <Text style={styles.textTermos} onPress={() => console.warn("Link Para os Termos de Uso")}>Ao continuar você aceita os nossos
+          <Text style={styles.textTermos} onPress={()=>{ Linking.openURL('https://google.com')}}>Ao continuar você aceita os nossos
             <Text> <Text style={styles.textTermosBold}>Termos de Uso</Text></Text>
           </Text>
         </View>

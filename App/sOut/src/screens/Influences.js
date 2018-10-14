@@ -11,22 +11,22 @@ export default class Influences extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View>
+          <View>
 
-        </View>
-        <Text> teste influences</Text>
-        <View>
+          </View>
+          <Text> teste influences</Text>
+          <View>
 
-        </View>
-        <Text> teste influences</Text>
-        <View>
+          </View>
+          <Text> teste influences</Text>
+          <View>
 
-        </View>
-        <Text> teste influences</Text>
-        <View>
+          </View>
+          <Text> teste influences</Text>
+          <View>
 
-        </View>
-        <Text> teste influences</Text>
+          </View>
+          <Text> teste influences</Text>
       </View>
     );
   }
