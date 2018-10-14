@@ -71,6 +71,9 @@ export default class TasksList extends Component {
     render() {
         return (
             <View style={styles.container}>
+                <AddTask isVisible={this.state.showAddTask}
+                         onSave={this.addTask}
+                         onCancel={() => this.setState({ showAddTask: false })} />
                 <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
                 <View style={styles.fixedNav}>
                     <MyBackButton style={styles.fixedNavArea}/>
@@ -78,9 +81,6 @@ export default class TasksList extends Component {
                     <View style={styles.emptyView}></View>
                 </View>
                 <View style={styles.flatList}>
-                    <AddTask isVisible={this.state.showAddTask}
-                             onSave={this.addTask}
-                             onCancel={() => this.setState({ showAddTask: false })} />
                     <FlatList data={this.state.visibleTasks}
                               keyExtractor={item => `${item.id}`}
                               renderItem={({ item }) =>
