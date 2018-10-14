@@ -13,13 +13,12 @@ import {
     ScrollView,
     StatusBar, TextInput
 } from 'react-native';
-import MyInfluenceButtom from './Influencesbuttom'
-import MyTaskListButtom from './Tasklistbuttom'
-import MyProfileButtom from './Profilebuttom'
-import MyPerformceButtom from './PerformceButton'
+import MyInfluenceButton from './InfluencesButton'
+import MyTaskListButton from './TasksListButton'
+import MyProfileButton from './ProfileButton'
+import MyPerformceButton from './PerformanceButton'
 
 import Modal from "react-native-modal";
-import {login} from "./data";
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -37,17 +36,17 @@ export default class FixedMenu extends Component {
     return (
         <View style={styles.fixedMenu}>
 
-          <MyPerformceButtom style={styles.fixedMenu}/>
+          <MyPerformceButton style={styles.fixedMenu}/>
 
-          <MyTaskListButtom style={styles.fixedMenu}/>
+          <MyTaskListButton style={styles.fixedMenu}/>
 
           <TouchableOpacity style={styles.fixedMenuArea} onPress={this._toggleModal}>
             <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
           </TouchableOpacity>
 
-           <MyInfluenceButtom style={styles.fixedMenuArea}/>
+           <MyInfluenceButton style={styles.fixedMenuArea}/>
 
-          <MyProfileButtom style={styles.fixedMenu}/>
+          <MyProfileButton style={styles.fixedMenu}/>
 
             <Modal isVisible={this.state.isModalVisible}>
                 <View style={styles.modalContent}>

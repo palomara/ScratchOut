@@ -4,15 +4,14 @@ import {
 } from 'react-navigation'
 import Hall from './screens/Hall'
 import Login from './screens/Login'
-import RegisterOne from './screens/RegisterOne'
-import RegisterTwo from './screens/RegisterTwo'
+import Register from './screens/Register'
 
 import Home from './screens/Home'
 import Config from './screens/Config'
 import Influences from './screens/Influences'
 import Profile from './screens/Profile'
 import TaskList from './screens/TasksList'
-import Register from './screens/Register'
+
 
 const LoginStack = createStackNavigator({
         Hall: {screen: Hall},

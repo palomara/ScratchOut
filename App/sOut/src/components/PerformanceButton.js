@@ -2,7 +2,7 @@ import React from 'react';
 import {Image, TouchableOpacity} from 'react-native';
 import { withNavigation } from 'react-navigation';
 
-class MyPerformceButtom extends React.Component {
+class MyPerformceButton extends React.Component {
     // não esquecer de alterar o performece no navigate props
     render() {
         return <TouchableOpacity onPress={() => { this.props.navigation.navigate('Influences')}}>
@@ -14,4 +14,4 @@ class MyPerformceButtom extends React.Component {
 
 // withNavigation returns a component that wraps MyBackButton and passes in the
 // navigation prop
-export default withNavigation(MyPerformceButtom);
+export default withNavigation(MyPerformceButton);
