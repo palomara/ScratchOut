@@ -16,38 +16,74 @@ const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class CreateTaskButton extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: "",
+      textResult: "",
+    }
+  }
   state = {
-    isModalVisible: false
+    isModalVisible: false,
+    textResult: "",
+    title: "",
   };
 
   _toggleModal = () =>
-  this.setState({ isModalVisible: !this.state.isModalVisible });
+  this.setState({ isModalVisible: !this.state.isModalVisible, textResult: "", title: ""});
 
   render() {
+
+    if(this.state.title !== ''){
+      createButton = <View style={styles.createButton}>
+        <TouchableOpacity style={styles.createButtonTouch} onPress={this._toggleModal}>
+          <Text style={styles.createButtonText}>Criar</Text>
+        </TouchableOpacity>
+      </View>
+    }else{
+      createButton = <View style={styles.createButton}>
+        <TouchableOpacity style={styles.createButtonTouch}
+          onPress={() => this.setState({textResult: "insira um título"})}>
+          <Text style={styles.createButtonText}>Criar</Text>
+        </TouchableOpacity>
+      </View>
+    }
+
     return (
       <View style={styles.container}>
         <TouchableOpacity style={styles.button} onPress={this._toggleModal}>
           <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
         </TouchableOpacity>
 
-        <Modal isVisible={this.state.isModalVisible}>
+        <Modal isVisible={this.state.isModalVisible} onRequestClose={this._toggleModal}>
           <View style={styles.modalContent}>
-            <Text style={styles.title}>Nova tarefa</Text>
-            <Text style={styles.taskTitle}>Título</Text>
-            <View style={styles.newTaskArea}>
-              <View style={styles.inputFieldPass} >
-                <TextInput style={styles.inputText} />
-              </View>
-              <TouchableOpacity style={styles.addTaskIcon}>
-                <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
+
+            <View style={styles.modalHeader}>
+              <View style={styles.closeView}></View>
+              <Text style={styles.modalHeaderText}>Nova tarefa</Text>
+              <TouchableOpacity style={styles.closeView} onPress={this._toggleModal}>
+                <Image source={require('../../resources/images/icons/icon-nav_close-grey.png')}/>
               </TouchableOpacity>
             </View>
 
-            <View style={styles.createButton}>
-              <TouchableOpacity style={styles.createButtonTouch} onPress={this._toggleModal}>
-                <Text style={styles.createButtonText}>Criar</Text>
-              </TouchableOpacity>
+            <View style={styles.newTask}>
+              <Text style={styles.newTaskTitle}>TÍTULO</Text>
+              <View style={styles.newTaskInputField}>
+                <View style={styles.inputTitleBorder} >
+                    <TextInput
+                      style={styles.inputTitleText}
+                      onChangeText={(title) => this.setState({title})}
+                      />
+                </View>
+              </View>
             </View>
+
+            <View style={styles.modalText}>
+              <Text style={styles.modalText}>{this.state.textResult}</Text>
+            </View>
+
+            {createButton}
 
           </View>
         </Modal>
@@ -57,12 +93,6 @@ export default class CreateTaskButton extends Component {
 }
 
 const styles = StyleSheet.create({
-  container:{
-    flex:1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
   button: {
     flex: 1,
     height: height * 0.085,
@@ -70,62 +100,88 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  modalContent: {
-    backgroundColor: 'white',
-    padding: 20,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    borderRadius: 30,
-    borderColor: 'rgba(0, 0, 0, 0.1)'
-  },
-
-  title:{
-    fontFamily: 'Roboto',
-    fontSize: 20,
-    color: '#00ED74',
+  closeView: {
+    height: height / 14,
+    width: height / 14,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  taskTitle: {
-    marginTop: 10,
-    marginRight: 280,
-    fontSize: 16,
-    alignItems: 'center'
+
+  modalContent: {
+    backgroundColor: '#fff',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    borderRadius: 30,
+    padding: height / 150,
   },
-  inputText: {
-    fontFamily: 'Roboto Light',
-    fontSize: 20,
-    color: '#00ED74',
-    flex: 1
-  },
-  addTaskIcon: {
-    width: 20,
-    height: 20,
-    marginRight: width * 0.1
-  },
-  inputFieldPass:{
-    flex: 1,
-    borderBottomWidth: 2,
-    borderColor: '#00ED74',
-    alignItems:'center',
+  modalHeader:{
     flexDirection: 'row',
-    marginBottom: 8,
-    height: 40,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    height: height / 14,
+    width: width * 0.88,
   },
 
-  newTaskArea:{
+  modalHeaderText:{
+    fontFamily: 'Roboto',
+    fontSize: 18,
+    color: '#00ED74',
+  },
+
+  modalText:{
+    fontFamily: 'Roboto',
+    fontSize: 9,
+    color: '#FF103E',
+    height: height / 36,
+    width: width * 0.80,
+  },
+
+  newTask:{
+    width: width * 0.80,
+  },
+
+  newTaskTitle: {
+    fontSize: 8,
+    fontFamily: 'Roboto Bold',
+    justifyContent: 'center',
+  },
+
+  newTaskInputField:{
     flexDirection: 'row',
-    height: 30,
+    height: height / 14,
     alignItems: 'center',
     justifyContent: 'space-between',
   },
+
+  inputTitleBorder:{
+    flex: 1,
+    flexDirection: 'row',
+    borderBottomWidth: 1,
+    borderColor: '#00ED74',
+    marginBottom: 10,
+  },
+  inputTitleText: {
+    flex: 1,
+    fontFamily: 'Roboto Light',
+    fontSize: 20,
+    color: '#00ED74',
+    height: height / 14,
+  },
+
+  addMoreIcon: {
+    width: width * 0.08,
+    height: width * 0.08,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+
 
   createButton : {
     width: width * 0.88,
     height: height / 12.8,
     backgroundColor: "#00ED74",
     borderRadius: 40,
-    marginTop: height / 50
   },
 
   createButtonTouch: {
@@ -140,4 +196,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     alignItems: 'center'
   },
+
+
 });

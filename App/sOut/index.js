@@ -6,6 +6,7 @@ import Profile from './src/screens/Profile';
 import Hall from './src/screens/Hall';
 import RegisterOne from "./src/screens/RegisterOne";
 import RegisterTwo from "./src/screens/RegisterTwo";
+import CreateTaskButton from "./src/components/CreateTaskButton";
 import App from './src/App'
 
 import {name as appName} from './app.json';
@@ -17,3 +18,4 @@ AppRegistry.registerComponent(appName, () => App);
 //AppRegistry.registerComponent(appName, () => Profile);
 //AppRegistry.registerComponent(appName, () => RegisterOne);
 //AppRegistry.registerComponent(appName, () => RegisterTwo);
+//AppRegistry.registerComponent(appName, () => CreateTaskButton);
