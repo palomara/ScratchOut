@@ -4,7 +4,8 @@ import {
     Text,
     View,
     TouchableWithoutFeedback,
-    TouchableOpacity
+    TouchableOpacity,
+    Image
 } from 'react-native'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/FontAwesome'
