@@ -63,14 +63,15 @@ export default class AddTask extends Component {
         }
 
         return (
-            <Modal onRequestClose={() => {}}
-                   visible={this.props.isVisible}>
+            <Modal onRequestClose={this.props.onCancel}
+                   visible={this.props.isVisible}
+                   animationType='slide' transparent={true}>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}>
-                    <View></View>
+                    <View style={styles.offset}></View>
                 </TouchableWithoutFeedback>
                 <View style={styles.modalContent}>
                     <Text style={styles.titleModal}>Nova tarefa</Text>
-                    <Text style={styles.taskTitle}>Título</Text>
+                    <Text style={styles.taskTitle}>TÍTULO</Text>
                     <View style={styles.newTaskArea}>
                         <View style={styles.inputFieldPass} >
                             <TextInput style={styles.input} onChangeText={title => this.setState({ title })}
@@ -91,7 +92,7 @@ export default class AddTask extends Component {
                     </View>
                 </View>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}>
-                    <View></View>
+                    <View style={styles.offset}></View>
                 </TouchableWithoutFeedback>
             </Modal>
         )
@@ -107,6 +108,10 @@ var styles = StyleSheet.create({
         borderRadius: 30,
         borderColor: 'rgba(0, 0, 0, 0.1)'
     },
+    offset: {
+        flex: 1,
+        backgroundColor: 'rgba(0,0,0,0.7)',
+    },
 
     titleModal:{
         fontFamily: 'Roboto',
@@ -118,8 +123,10 @@ var styles = StyleSheet.create({
     taskTitle: {
         marginTop: 10,
         marginRight: 280,
-        fontSize: 16,
-        alignItems: 'center'
+        alignItems: 'center',
+        fontSize: 11,
+        fontFamily: 'Roboto Bold',
+        justifyContent: 'center',
     },
     input: {
         fontFamily: 'Roboto Light',
@@ -169,6 +176,8 @@ var styles = StyleSheet.create({
     },
 
     date: {
+        fontFamily: 'Roboto',
+        color: "#00ED74",
         fontSize: 20,
         marginLeft: 10,
         marginTop: 10,

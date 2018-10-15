@@ -2,14 +2,16 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    StyleSheet, StatusBar, TouchableOpacity, Image, Dimensions, FlatList,  AsyncStorage, Platform
+    StyleSheet, StatusBar, TouchableOpacity, Image, Dimensions, FlatList, AsyncStorage, Platform, ScrollView
 } from 'react-native';
+import ActionButton from 'react-native-action-button'
+import Icon from 'react-native-vector-icons/Ionicons';
 
 
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
 import Task from '../components/Task';
-import AddTask from './AddTask';
+import AddTask from './AddTask'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -80,17 +82,19 @@ export default class TasksList extends Component {
                     <Text style={styles.title}>Tarefas</Text>
                     <View style={styles.emptyView}></View>
                 </View>
-                <View style={styles.flatList}>
-                    <FlatList data={this.state.visibleTasks}
-                              keyExtractor={item => `${item.id}`}
-                              renderItem={({ item }) =>
-                                  <Task {...item} onToggleTask={this.toggleTask}
-                                        onDelete={this.deleteTask} />} />
-                </View>
+                <ScrollView style={styles.mainView}>
+                    <View style={styles.flatList}>
+                        <FlatList data={this.state.visibleTasks}
+                                  keyExtractor={item => `${item.id}`}
+                                  renderItem={({ item }) =>
+                                      <Task {...item} onToggleTask={this.toggleTask}
+                                            onDelete={this.deleteTask} />} />
+                    </View>
+
+                </ScrollView>
+                <ActionButton buttonColor={'#00ED74'}  style={styles.actionBtn}
+                              onPress={() => { this.setState({ showAddTask: true }) }} />
                 <View>
-                    <TouchableOpacity onPress={() => { this.setState({ showAddTask: true }) }}>
-                        <Text>MODAL</Text>
-                    </TouchableOpacity>
                 </View>
                 <FixedMenu/>
             </View>
@@ -116,7 +120,11 @@ const styles = StyleSheet.create({
         elevation: 3,
         position: 'relative'
     },
-
+    actionBtn: {
+        position: 'absolute',
+        bottom: 50,
+        right: 150,
+    },
     fixedNavArea: {
         height: height * 0.08,
         width: width * 0.15,
@@ -141,5 +149,6 @@ const styles = StyleSheet.create({
 
     flatList: {
         flex: 1,
-    }
+    },
+
 });
