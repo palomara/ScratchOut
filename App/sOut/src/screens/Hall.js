@@ -15,6 +15,9 @@ import {
 import { LoginManager } from 'react-native-fbsdk'
 import Carousel from '../components/Carousel'
 
+import Icon from 'react-native-vector-icons/FontAwesome';
+
+
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
@@ -72,7 +75,7 @@ export default class Hall extends Component<Props> {
           </TouchableOpacity>
           <View style={styles.withSocialFacebook}>
             <TouchableOpacity onPress={this.handleFacebookLogin}>
-              <Image style={styles.SocialFacebook} source={require('../../resources/images/drawables/draw-f_facebook.png')}/>
+              <Icon name="facebook-f" size={30} color="#fff" />
             </TouchableOpacity>
           </View>
         </View>
