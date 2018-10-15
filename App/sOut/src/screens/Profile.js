@@ -10,7 +10,10 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
+    TouchableHighlight,
 } from 'react-native';
+
+import ImagePicker from 'react-native-image-picker'
 import FixedMenu from '../components/FixedMenu';
 import MyBackButton from '../components/MyBackButton'
 
@@ -18,6 +21,43 @@ const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class Profile extends Component {
+    constructor(props){
+        super(props);
+        this.state = {
+            imagePath: '',
+            imageHeight: '',
+            imageWidth: ''
+        }
+    }
+
+    openImagePicker(){
+        const options ={
+            title: 'Selecione a Foto de Perfil',
+            storageOptions: {
+                skipBackup: true,
+                path: 'Images'
+            }
+        }
+        ImagePicker.showImagePicker(options, (response) => {
+            if(response.didCancel){
+                console.log('User cancelled image picker')
+            }
+            else if (response.error){
+                console.log('Error' + response.error)
+            }
+            else if(response.customButton){
+                console.log('User tapped custom button'+response.customButton)
+            }
+            else{
+                this.setState({
+                    imagePath: response.uri,
+                    imageHeight: response.height,
+                    imageWidth: response.width
+                })
+            }
+        })
+    }
+
     render() {
         return (
             <View style={styles.container}>
@@ -34,9 +74,12 @@ export default class Profile extends Component {
                             <Image source={require('../../resources/images/icons/icon-edit-green.png')}/>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.editView} onPress={() => console.warn("Edit Photo User")}>
-                            <Image source={require('../../resources/images/icons/icon-profile-green@3.png')}/>
-                        </TouchableOpacity>
+                        <View>
+                            {this.state.imagePath ? <Image style={{width: this.state.imageWidth, height: this.state.imageHeight}} source={{uri: this.state.imagePath}} /> : null }
+                            <TouchableHighlight style={styles.editView} onPress={this.openImagePicker.bind(this)}>
+                                <Image source={require('../../resources/images/icons/icon-profile-green@3.png')}/>
+                            </TouchableHighlight>
+                        </View>
 
                         <TouchableOpacity style={styles.editView} onPress={() => console.warn("Go to Settings")}>
                             <Image source={require('../../resources/images/icons/icon-settings-green.png')}/>
