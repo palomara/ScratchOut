@@ -18,6 +18,7 @@ import {
 import FixedMenu from '../components/FixedMenu';
 import StatusBarSout from '../components/StatusBarSout';
 
+import {PieChart} from 'react-native-svg-charts'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -53,6 +54,76 @@ export default class Home extends Component<Props> {
         )
     }
 }
+
+class graphicOne extends React.PureComponent {
+    render (){
+        const data = [
+            {
+                key: 1,
+                amount: 50,
+                svg: {fill: '#00cc77'},
+            },
+            {
+                key: 2,
+                amount: 50,
+                svg: {fill: '#00cca6'},
+            },
+            {
+                key: 3,
+                amount: 10,
+                svg: {fill: '#00c1cc'},
+            },
+            {
+                key: 4,
+                amount: 70,
+                svg: {fill: '#00a6cc'},
+            },
+            {
+                key: 5,
+                amount: 95,
+                svg: {fill: '#008bcc'},
+            },
+        ]
+
+        const Labels = ({slices, height, width}) => {
+            return slices.map((slice, index) => {
+                const {labelCentroid, pieCentroid, data} = slice;
+                return (
+                    <Text
+                        key={index}
+                        x={pieCentroid[0]}
+                        y={pieCentroid[1]}
+                        fill={'white'}
+                        textAnchor={'middle'}
+                        alignmentBaseline={'middle'}
+                        fontSize={18}
+                        stroke={'black'}
+                        strokeWidth={0.2}
+                        >
+                        {data.amount}
+                    </Text>
+                )
+            })
+        }
+
+        return (
+            <PieChart
+                style={{height: 200}}
+                valueAccessor={({item}) => item.amount}
+                data={data}
+                spacing={0}
+                outerRadius={'95%'}
+            >
+                <Labels/>
+
+            </PieChart>
+        )
+    }
+}
+
+export {
+    graphicOne,
+};
 
 const styles = StyleSheet.create({
     container: {
