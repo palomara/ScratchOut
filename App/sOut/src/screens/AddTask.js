@@ -78,9 +78,6 @@ export default class AddTask extends Component {
                                        value={this.state.title} />
                         </View>
 
-                        <TouchableOpacity style={styles.addTaskIcon}>
-                            <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
-                        </TouchableOpacity>
                     </View>
                     <View>
                         {datePicker}

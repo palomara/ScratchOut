@@ -34,8 +34,8 @@ const HomehallStack = createStackNavigator({
 const Application = createStackNavigator(
     {
         TasksList: {screen: TaskList},
+        Home: HomehallStack,
         Hall: LoginStack,
-        Home: HomehallStack
 
     }, {headerMode: 'none'}
 );
