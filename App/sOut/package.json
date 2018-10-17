@@ -7,7 +7,10 @@
     "test": "jest"
   },
   "dependencies": {
+    "art": "^0.10.3",
     "axios": "^0.18.0",
+    "d3": "^5.7.0",
+    "d3-shape": "^1.2.2",
     "moment": "^2.22.2",
     "react": "16.5.0",
     "react-native": "0.57.1",

@@ -11,15 +11,18 @@ import {
 } from 'react-native'
 import moment from 'moment'
 import 'moment/locale/pt-br'
+import Icon from "react-native-vector-icons/FontAwesome";
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 const initialState = { humor: '', date: new Date() }
 
+
 export default class Humor extends Component {
 
     state = { ...initialState }
+
 
     constructor (props) {
         super(props);
@@ -49,6 +52,8 @@ export default class Humor extends Component {
     onHorrivel =  () => {
         console.warn(this.state.humor)
     }
+
+
 
     render () {
         return (
