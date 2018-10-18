@@ -2,16 +2,27 @@ import React, {Component} from 'react';
 import {
     View,
     Text,
-    StyleSheet, StatusBar, TouchableOpacity, Image, Dimensions, FlatList, AsyncStorage, Platform, ScrollView
+    StyleSheet,
+    StatusBar,
+    TouchableOpacity,
+    Image,
+    Dimensions,
+    FlatList,
+    Platform,
+    ScrollView
 } from 'react-native';
 import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons';
-
-
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
 import Task from '../components/Task';
 import AddTask from './AddTask'
+
+
+import moment from 'moment'
+import 'moment/locale/pt-br'
+import {server, showError} from "../components/common";
+import axios from 'axios'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -23,52 +34,61 @@ export default class TasksList extends Component {
         visibleTasks: [],
         showDoneTasks: true,
         showAddTask: false,
-    }
-    addTask = task => {
-        const tasks = [...this.state.tasks]
-        tasks.push({
-            id: Math.random(),
-            title: task.title,
-            estimateAt: task.date,
-            doneAt: null
-        })
-        this.setState({ tasks, showAddTask: false }
-            , this.filterTasks)
-    }
-    deleteTask = id => {
-        const tasks = this.state.tasks.filter(task => task.id !== id)
-        this.setState({ tasks }, this.filterTasks)
-    }
+    };
+    addTask = async task => {
+        try {
+           await axios.post(`${server}/tasks`, {
+               title: task.title,
+               estimateAt: "2018-10-10 23:59"
+           });
+           this.setState({showAddTask: false}, this.loadTask)
+       }catch (err) {
+           showError(err)
+       }
+    };
+    deleteTask =  async id => {
+        try {
+            await axios.delete(`${server}/tasks/${id}`);
+            await this.loadTask()
+        }catch (err) {
+            showError(err)
+        }
+    };
     filterTasks = () => {
-        let visibleTasks = null
+        let visibleTasks = null;
         if (this.state.showDoneTasks) {
             visibleTasks = [...this.state.tasks]
         } else {
-            const pending = task => task.doneAt === null
+            const pending = task => task.doneAt === null;
             visibleTasks = this.state.tasks.filter(pending)
         }
         this.setState({ visibleTasks })
-        AsyncStorage.setItem('tasks', JSON.stringify(this.state.tasks))
-    }
+    };
     toggleFilter = () => {
         this.setState({ showDoneTasks: !this.state.showDoneTasks }
             , this.filterTasks)
-    }
+    };
     componentDidMount = async () => {
-        const data = await AsyncStorage.getItem('tasks')
-        const tasks = JSON.parse(data) || []
-        this.setState({ tasks }, this.filterTasks)
-    }
-    toggleTask = id => {
-        const tasks = this.state.tasks.map(task => {
-            if (task.id === id) {
-                task = {...task}
-                task.doneAt = task.doneAt ? null : new Date()
-            }
-            return task
-        })
-        this.setState({ tasks }, this.filterTasks)
-    }
+        this.loadTask()
+    };
+    toggleTask = async id => {
+        try{
+            await axios.put(`${server}/tasks/${id}/toggle`);
+            await this.loadTask();
+        }catch (err) {
+            showError(err)
+        }
+    };
+
+    loadTask = async () =>{
+        try{
+            const maxDate = moment().format('YYYY-MM-DD 23:59');
+            const res = await axios.get(`${server}/tasks?date=${maxDate}`);
+            this.setState({tasks: res.data}, this.filterTasks)
+        }catch (err) {
+            showError(err)
+        }
+    };
 
     render() {
         return (

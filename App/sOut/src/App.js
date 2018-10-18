@@ -11,7 +11,7 @@ import Config from './screens/Config'
 import Influences from './screens/Influences'
 import Profile from './screens/Profile'
 import TaskList from './screens/TasksList'
-import PerformanceIndicator from './screens/PerformanceIndicator'
+import AuthOrApp from './screens/AuthOrApp'
 
 
 const LoginStack = createStackNavigator({
@@ -27,19 +27,16 @@ const HomehallStack = createStackNavigator({
         Config: {screen: Config},
         Influences: {screen: Influences},
         Profile: {screen: Profile},
-        TasksList: {screen: TaskList},
-        PerformanceIndicator: {screen: PerformanceIndicator}
-
+        TasksList: {screen: TaskList}
     },
     {headerMode: 'none'}
 );
 
 const Application = createStackNavigator(
     {
-        PerformanceIndicator:  {screen: PerformanceIndicator},
-        TasksList: {screen: TaskList},
-        Home: HomehallStack,
+        Splash: {screen: AuthOrApp},
         Hall: LoginStack,
+        Home: HomehallStack
 
     }, {headerMode: 'none'}
 );

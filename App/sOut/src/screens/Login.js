@@ -52,6 +52,7 @@ export default class Login extends Component<Props> {
             });
 
             axios.defaults.headers.common['Authorization'] = `bearer ${res.data.token}`;
+            AsyncStorage.setItem('userData', JSON.stringify(res.data));
             this.props.navigation.navigate('Home')
 
         } catch(e) {
