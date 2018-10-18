@@ -14,6 +14,7 @@ import {
     Modal,
     TouchableHighlight,
 } from 'react-native';
+import moment from 'moment'
 
 import FixedMenu from '../components/FixedMenu';
 import StatusBarSout from '../components/StatusBarSout';
@@ -32,7 +33,7 @@ export default class Home extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBarSout/>
+              <StatusBar translucent={false} backgroundColor={'#fff'} barStyle='dark-content'/>
                 <View style={styles.fixedNav}>
                     <TouchableOpacity style={styles.fixedNavArea} onPress={() => console.warn("Menu")}>
                         <Image source={require('../../resources/images/icons/icon-nav_menu-green.png')}/>
@@ -68,12 +69,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: '#F8F8F8',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 3},
-        shadowOpacity: 0.2,
-        marginBottom: 20,
-        elevation: 3,
-        position: 'relative'
     },
 
     fixedNavArea: {

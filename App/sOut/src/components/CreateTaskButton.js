@@ -8,30 +8,38 @@ import {
   TextInput,
   Text,
   View,
+  StatusBar,
 } from 'react-native';
-
+import moment from 'moment';
 import Modal from "react-native-modal";
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
+
+const data = moment().format('LLL');
+
+const initialState = {
+  title: '',
+  date: new Date(moment().format('LLL')),
+  isModalVisible: false,
+  textResult: '',
+}
 
 export default class CreateTaskButton extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      textResult: "",
+      title: '',
+      textResult: '',
     }
   }
-  state = {
-    isModalVisible: false,
-    textResult: "",
-    title: "",
-  };
+  state = { ...initialState };
 
-  _toggleModal = () =>
-  this.setState({ isModalVisible: !this.state.isModalVisible, textResult: "", title: ""});
+  _toggleModal = () => {
+    this.setState({ isModalVisible: !this.state.isModalVisible, textResult: "", title: ""})
+    console.warn(this.state.date)
+  }
 
   render() {
 
@@ -56,7 +64,12 @@ export default class CreateTaskButton extends Component {
           <Image source={require('../../resources/images/icons/icon-new_task.png')}/>
         </TouchableOpacity>
 
-        <Modal isVisible={this.state.isModalVisible} onRequestClose={this._toggleModal}>
+        <Modal
+          isVisible={this.state.isModalVisible}
+          onRequestClose={this._toggleModal}
+          animationType="fade"
+          hardwareAccelerated={true}>
+
           <View style={styles.modalContent}>
 
             <View style={styles.modalHeader}>
@@ -74,6 +87,7 @@ export default class CreateTaskButton extends Component {
                     <TextInput
                       style={styles.inputTitleText}
                       onChangeText={(title) => this.setState({title})}
+                      value={this.state.title}
                       />
                 </View>
               </View>

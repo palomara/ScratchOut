@@ -33,7 +33,7 @@ const HomehallStack = createStackNavigator({
 
 const Application = createStackNavigator(
     {
-        TasksList: {screen: TaskList},
+        Home: {screen: Home},
         Hall: LoginStack,
         Home: HomehallStack
 
