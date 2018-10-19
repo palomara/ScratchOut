@@ -34,11 +34,7 @@ const HomehallStack = createStackNavigator({
 
 const Application = createStackNavigator(
     {
-<<<<<<< HEAD
-        Home: {screen: Home},
-=======
         Splash: {screen: AuthOrApp},
->>>>>>> e9b4cf99466e39a71ef8c035c2b7d962c1cb7fe3
         Hall: LoginStack,
         Home: HomehallStack
 
