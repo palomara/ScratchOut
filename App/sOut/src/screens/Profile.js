@@ -10,7 +10,7 @@ import {
     Image,
     TouchableOpacity,
     ScrollView,
-    TouchableHighlight,
+    TouchableHighlight, AsyncStorage,
 } from 'react-native';
 
 import ImagePicker from 'react-native-image-picker'
@@ -21,13 +21,25 @@ const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class Profile extends Component {
+
+
+
+
     constructor(props){
         super(props);
         this.state = {
             imagePath: '',
             imageHeight: '',
-            imageWidth: ''
+            imageWidth: '',
+            email: ''
         }
+    }
+    componentDidMount = async () => {
+        const json = await AsyncStorage.getItem('userData');
+        const userData = JSON.parse(json) || {};
+
+        this.setState({email: userData.email })
+
     }
 
     openImagePicker(){
@@ -88,7 +100,7 @@ export default class Profile extends Component {
 
                     <View>
                         <Text style={styles.otherTitle}>E-MAIL</Text>
-                        <Text style={styles.contentInfoUser}>nome.sobrenome@outlook.com</Text>
+                        <Text style={styles.contentInfoUser}>{this.state.email}</Text>
                         <Text style={styles.otherTitle}>PLANO</Text>
                         <Text style={styles.contentInfoUser}>Premium</Text>
                         <Text style={styles.otherTitle}>INDICADOR DE PERFORMANCE</Text>

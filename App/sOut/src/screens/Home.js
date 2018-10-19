@@ -18,6 +18,7 @@ import moment from 'moment'
 
 import FixedMenu from '../components/FixedMenu';
 import StatusBarSout from '../components/StatusBarSout';
+import axios from "axios";
 
 
 const width = Dimensions.get('screen').width;
@@ -26,7 +27,8 @@ const height = Dimensions.get('screen').height;
 export default class Home extends Component<Props> {
 
     logout = () => {
-        AsyncStorage.setItem('token', '');
+        delete axios.defaults.headers.common['Authorization'];
+        AsyncStorage.removeItem('userData')
         this.props.navigation.navigate('Hall')
     };
 

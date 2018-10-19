@@ -7,6 +7,8 @@ import Hall from './src/screens/Hall';
 import Register from "./src/screens/Register";
 import CreateTaskButton from "./src/components/CreateTaskButton";
 import TasksList from './src/screens/TasksList';
+import PerformanceIndicator from './src/screens/PerformanceIndicator';
+
 import App from './src/App'
 
 import {name as appName} from './app.json';

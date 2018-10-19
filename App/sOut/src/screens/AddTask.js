@@ -13,14 +13,15 @@ import {
     Platform, Image, Dimensions
 } from 'react-native'
 import moment from 'moment'
+import 'moment/locale/pt-br'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
-const initialState = { title: '', date: new Date() }
+const initialState = { title: '', date: new Date() };
 
 export default class AddTask extends Component {
-    state = { ...initialState }
+    state = { ...initialState };
 
     save = () => {
         if (!this.state.title.trim()) {
@@ -28,10 +29,10 @@ export default class AddTask extends Component {
             return
         }
 
-        const data = { ...this.state }
-        this.props.onSave(data)
+        const data = { ...this.state };
+        this.props.onSave(data);
         this.setState({ ...initialState })
-    }
+    };
 
     handleDateAndroidChanged = () => {
         DatePickerAndroid.open({
@@ -42,13 +43,14 @@ export default class AddTask extends Component {
                 momentDate.date(e.day)
                 momentDate.month(e.month)
                 momentDate.year(e.year)
+                momentDate.hour((e.hour))
                 this.setState({ date: momentDate.toDate() })
             }
         })
-    }
+    };
 
     render() {
-        let datePicker = null
+        let datePicker = null;
         if (Platform.OS === 'ios') {
             datePicker = <DatePickerIOS mode='date' date={this.state.date}
                                         onDateChange={date => this.setState({ date })} />
