@@ -12,7 +12,6 @@ import {
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
 import PieGraph from '../components/PieGraph'
-import AreaSpline from '../components/AreaSpline'
 import theme from '../components/theme'
 import AnimShape from '../components/AnimShape'
 import data from '../../resources/data'
@@ -23,7 +22,7 @@ const height = Dimensions.get('screen').height;
 
 type State = {
     activeIndex: number,
-   frenquenciaHumorAnual: any
+    frenquenciaHumorAnual: any
 }
 
 export default class PerformanceIndicator extends Component {
@@ -34,7 +33,7 @@ export default class PerformanceIndicator extends Component {
         super(props);
         this.state = {
             activeIndex: 0,
-           frenquenciaHumorAnual: data.frequenciaHumorAnual,
+            frenquenciaHumorAnual: data.frequenciaHumorAnual,
         };
         this._onPieItemSelected = this._onPieItemSelected.bind(this);
         this._shuffle = this._shuffle.bind(this);

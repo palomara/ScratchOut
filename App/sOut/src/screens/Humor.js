@@ -65,7 +65,7 @@ export default class Humor extends Component {
                 </TouchableWithoutFeedback>
                 <View style={styles.modalContent}>
                     <View style={styles.modalHeader}>
-                    <Text style={styles.titleModal}>Como se sente?</Text>
+                        <Text style={styles.titleModal}>Como se sente?</Text>
                     </View>
                     <View style={styles.humorArea}>
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'radiante'}, this.onRadiante)}}>
