@@ -77,11 +77,6 @@ export default class PerformanceIndicator extends Component {
                             height={height}
                             data={data.frequenciaHumorMensal} />
                         <Text style={styles.chart_title}>Frequência mensal de "{data.frequenciaHumorMensal[this.state.activeIndex].name}"</Text>
-                        <AreaSpline
-                            width={width}
-                            height={height}
-                            data={this.state.frenquenciaHumorAnual}
-                            color={theme.colors[this.state.activeIndex]} />
                     </View>
                 </ScrollView>
 
