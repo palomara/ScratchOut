@@ -33,7 +33,7 @@ export default class Influences extends Component {
                        onCancel={() => this.setState({ showHumorOptions: false })} />
                 <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
                 <View style={styles.fixedNav}>
-                    <MyBackButton style={styles.fixedNav}/>
+                    <MyBackButton style={styles.fixedNavArea}/>
                     <Text style={styles.title}>Influências</Text>
                     <View style={styles.emptyView}></View>
                 </View>

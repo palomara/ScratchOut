@@ -6,7 +6,7 @@ class PerformanceButton extends React.Component {
   // não esquecer de alterar o performece no navigate props
   render() {
     return (
-      <TouchableOpacity style={styles.button} onPress={() => { this.props.navigation.navigate('Influences')}}>
+      <TouchableOpacity style={styles.button} onPress={() => { this.props.navigation.navigate('PerformanceIndicator')}}>
         <Image source={require('../../resources/images/icons/icon-sout.png')}/>
       </TouchableOpacity>
     );

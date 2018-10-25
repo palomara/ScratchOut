@@ -23,6 +23,7 @@ import CreateTaskButton from './CreateTaskButton';
 
 
 import {login} from "./data";
+import AddTaskButton from "./AddTaskButton";
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -34,7 +35,7 @@ export default class FixedMenu extends Component {
         <View style={styles.fixedMenu}>
           <PerformanceButton/>
           <TasksListButton/>
-          <CreateTaskButton/>
+          <AddTaskButton/>
           <InfluencesButton/>
           <ProfileButton/>
         </View>
