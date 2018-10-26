@@ -112,8 +112,6 @@ export default class TasksList extends Component {
                     </View>
 
                 </ScrollView>
-                <ActionButton buttonColor={'#00ED74'}  style={styles.actionBtn}
-                              onPress={() => { this.setState({ showAddTask: true }) }} />
                 <View>
                 </View>
                 <FixedMenu/>
