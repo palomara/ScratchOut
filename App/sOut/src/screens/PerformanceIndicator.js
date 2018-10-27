@@ -11,7 +11,7 @@ import {
     ScrollView } from "react-native";
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
-import ProgressCircleChart from '../components/charts/ProgressCircleChart'
+import Chart from '../components/charts/Chart'
 
 
 
@@ -36,7 +36,7 @@ export default class PerformanceIndicator extends Component {
 
                 <ScrollView>
                     <View >
-
+                        <Chart />
                     </View>
                 </ScrollView>
 
