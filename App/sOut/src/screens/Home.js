@@ -18,6 +18,7 @@ import moment from 'moment'
 
 import FixedMenu from '../components/FixedMenu';
 import StatusBarSout from '../components/StatusBarSout';
+import CircleChart from '../components/charts/ProgressCircleChart';
 import axios from "axios";
 
 
@@ -48,6 +49,10 @@ export default class Home extends Component<Props> {
                     <TouchableOpacity onPress={() => this.logout()}>
                         <Text>Logout</Text>
                     </TouchableOpacity>
+
+                    <View>
+                        <CircleChart/>
+                    </View>
                 </ScrollView>
 
                 <FixedMenu/>

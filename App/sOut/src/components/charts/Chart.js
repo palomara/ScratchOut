@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Text, View, TouchableHighlight, StyleSheet, Dimensions, LayoutAnimation } from 'react-native';
-import {CircularProgress} from 'react-native-svg-circular-progress';
+import { Text, View, TouchableHighlight, StyleSheet, Dimensions, LayoutAnimation, ScrollView } from 'react-native';
+
 import Pie from 'react-native-pie';
 
 export default class Chart extends Component {
@@ -8,16 +8,21 @@ export default class Chart extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Pie
-                    radius={100}
-                    series={[10, 20, 30, 40]}
-                    colors={['red', 'lime', 'blue', 'yellow']} />
-                <Pie
-                    radius={100}
-                    innerRadius={60}
-                    series={[10, 20, 30, 40]}
-                    colors={['#f00', '#0f0', '#00f', '#ff0']} />
-                <View>
+                <ScrollView>
+                    <View>
+                        <Pie
+                            radius={100}
+                            series={[10, 20, 30, 40]}
+                            colors={['red', 'lime', 'blue', 'yellow']} />
+                    </View>
+                    <View>
+                        <Pie
+                            radius={100}
+                            innerRadius={60}
+                            series={[10, 20, 30, 40]}
+                            colors={['#f00', '#0f0', '#00f', '#ff0']} />
+                    </View>
+                <View style={{ alignItems: 'center', justifyContent:'center' }}>
                     <Pie
                         radius={50}
                         innerRadius={45}
@@ -28,6 +33,7 @@ export default class Chart extends Component {
                         <Text style={styles.gaugeText}>60%</Text>
                     </View>
                 </View>
+                </ScrollView>
             </View>
         )
     }
