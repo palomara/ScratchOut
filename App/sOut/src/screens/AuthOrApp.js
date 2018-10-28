@@ -32,14 +32,15 @@ export default class AuthOrApp extends Component {
             axios.defaults.headers.common['Authorization'] = `bearer ${userData.token}`;
             this.props.navigation.navigate('Home', userData)
         } else {
-            this.props.navigation.navigate('Hall')
+            setTimeout(() =>{
+                this.props.navigation.navigate('Hall')
+            }, 5000);
+
         }
     };
 
     componentWillMount = () => {
-        setTimeout(() =>{
-            this.verif()
-        }, 5000);
+        this.verif()
     };
 
     render() {

@@ -5,7 +5,7 @@ import {withNavigation} from 'react-navigation';
 class MyBackButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity onPress={() => {this.props.navigation.goBack()}}>
+      <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home')}}>
         <Image source={require('../../resources/images/icons/icon-nav_back-green.png')}/>
       </TouchableOpacity>
     );

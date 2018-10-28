@@ -37,7 +37,7 @@ export default class Home extends Component<Props> {
             <View style={styles.container}>
               <StatusBar translucent={false} backgroundColor={'#fff'} barStyle='dark-content'/>
                 <View style={styles.fixedNav}>
-                    <TouchableOpacity style={styles.fixedNavArea} onPress={() => console.warn("Menu")}>
+                    <TouchableOpacity style={styles.fixedNavArea} onPress={() => this.props.navigation.openDrawer()}>
                         <Image source={require('../../resources/images/icons/icon-nav_menu-green.png')}/>
                     </TouchableOpacity>
                     <Image source={require('../../resources/images/logos/logo-sout-nav.png')}/>
@@ -45,9 +45,7 @@ export default class Home extends Component<Props> {
                 </View>
 
                 <ScrollView style={styles.mainView}>
-                    <TouchableOpacity onPress={() => this.logout()}>
-                        <Text>Logout</Text>
-                    </TouchableOpacity>
+
                 </ScrollView>
 
                 <FixedMenu/>

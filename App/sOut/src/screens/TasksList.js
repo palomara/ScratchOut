@@ -4,20 +4,15 @@ import {
     Text,
     StyleSheet,
     StatusBar,
-    TouchableOpacity,
-    Image,
     Dimensions,
     FlatList,
-    Platform,
-    ScrollView
+    ScrollView,
+    RefreshControl
 } from 'react-native';
-import ActionButton from 'react-native-action-button'
 import Icon from 'react-native-vector-icons/Ionicons';
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
 import Task from '../components/Task';
-import AddTask from './AddTask'
-
 
 import moment from 'moment'
 import 'moment/locale/pt-br'
@@ -34,18 +29,9 @@ export default class TasksList extends Component {
         visibleTasks: [],
         showDoneTasks: true,
         showAddTask: false,
+        refreshing: false,
     };
-    addTask = async task => {
-        try {
-           await axios.post(`${server}/tasks`, {
-               title: task.title,
-               estimateAt: "2018-10-10 23:59"
-           });
-           this.setState({showAddTask: false}, this.loadTask)
-       }catch (err) {
-           showError(err)
-       }
-    };
+
     deleteTask =  async id => {
         try {
             await axios.delete(`${server}/tasks/${id}`);
@@ -82,27 +68,40 @@ export default class TasksList extends Component {
 
     loadTask = async () =>{
         try{
-            const maxDate = moment().format('YYYY-MM-DD 23:59');
+            const maxDate = '2999-12-31 23:59'
             const res = await axios.get(`${server}/tasks?date=${maxDate}`);
             this.setState({tasks: res.data}, this.filterTasks)
         }catch (err) {
             showError(err)
         }
     };
+    _refreshControl(){
+        return (
+            <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={()=>this._refreshListView()} />
+        )
+    }
+    _refreshListView(){
+        //Start Rendering Spinner
+        this.setState({refreshing:true})
+        //Updating the dataSource with new data
+        this.loadTask()
+        this.setState({refreshing:false}) //Stop Rendering Spinner
+    }
 
     render() {
         return (
             <View style={styles.container}>
-                <AddTask isVisible={this.state.showAddTask}
-                         onSave={this.addTask}
-                         onCancel={() => this.setState({ showAddTask: false })} />
                 <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
                 <View style={styles.fixedNav}>
                     <MyBackButton style={styles.fixedNavArea}/>
                     <Text style={styles.title}>Tarefas</Text>
                     <View style={styles.emptyView}></View>
                 </View>
-                <ScrollView style={styles.mainView}>
+                <ScrollView style={styles.mainView}
+                            refreshControl={this._refreshControl()}>
+
                     <View style={styles.flatList}>
                         <FlatList data={this.state.visibleTasks}
                                   keyExtractor={item => `${item.id}`}
