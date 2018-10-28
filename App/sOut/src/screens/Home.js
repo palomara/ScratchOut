@@ -36,7 +36,7 @@ export default class Home extends Component<Props> {
     render() {
         return (
             <View style={styles.container}>
-              <StatusBar translucent={false} backgroundColor={'#fff'} barStyle='dark-content'/>
+              <StatusBar translucent={false} backgroundColor={'transparent'} barStyle='dark-content'/>
                 <View style={styles.fixedNav}>
                     <TouchableOpacity style={styles.fixedNavArea} onPress={() => this.props.navigation.openDrawer()}>
                         <Image source={require('../../resources/images/icons/icon-nav_menu-green.png')}/>

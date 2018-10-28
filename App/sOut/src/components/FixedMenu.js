@@ -19,7 +19,6 @@ import InfluencesButton from './InfluencesButton';
 import TasksListButton from './TasksListButton';
 import ProfileButton from './ProfileButton';
 import PerformanceButton from './PerformanceButton';
-import CreateTaskButton from './CreateTaskButton';
 
 
 import {login} from "./data";
