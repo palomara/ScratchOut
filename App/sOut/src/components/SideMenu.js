@@ -1,34 +1,156 @@
 import React, {Component} from 'react';
-import {AsyncStorage, ScrollView, Text, TouchableOpacity, View} from 'react-native';
-import axios from "axios";
+import {
+    AsyncStorage,
+    Dimensions,
+    Image,
+    Linking,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View
+} from 'react-native';
+import {Avatar} from 'react-native-elements'
+import axios from "axios"
+
+
+const width = Dimensions.get('screen').width;
+const height = Dimensions.get('screen').height;
 
 class SideMenu extends Component {
+
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            nome: '',
+            email: ''
+        }
+    }
+    //TODO: corigir bug de atualização de props user info (quando troca de usuário as infos não atualizam)
+    componentDidMount = async () => {
+        const json = await AsyncStorage.getItem('userData');
+        const userData = JSON.parse(json) || {};
+
+        this.setState({email: userData.email})
+        this.setState({nome: userData.nome})
+
+    };
+
     logout = () => {
         delete axios.defaults.headers.common['Authorization'];
         AsyncStorage.removeItem('userData')
         this.props.navigation.navigate('Hall')
     };
+
     //TODO: Personalizar o side menu aqui.
-    render () {
+    //TODO: Verificar esquemas de cores.
+    render() {
         return (
-            <View>
-                <View>
-                    <Text>This is my fixed Header</Text>
-                </View>
-                <ScrollView>
-                    <View>
-                        <Text>AQUI VAI O CONTEUDO</Text>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <Avatar
+                        width={120}
+                        rounded
+                        title="foto"
+                        onPress={() => this.props.navigation.navigate('Profile')}
+                        onLongPress={() => console.warn('ir para configuração') /*this.props.navigation.navigate('Config')*/}
+                        activeOpacity={0.7}
+                    />
+                    <View style={styles.userInfo}>
+                        <Text style={styles.userInfoItemNome}>{this.state.nome}</Text>
+                        <Text style={styles.userInfoItemEmail}>{this.state.email}</Text>
                     </View>
-                    <TouchableOpacity onPress={() => this.logout()}>
-                        <Text>Logout</Text>
+                </View>
+
+                <ScrollView syle={styles.containerItem}>
+                    <View>
+                        <Text>Aqui vai os items do side</Text>
+                    </View>
+                    <TouchableOpacity onPress={() => this.logout()} style={styles.itemSide}>
+                        <Image style={{width: 18, height: 18}} source={require('../../resources/images/icons/logout.png')}/>
+                        <Text>   Sair</Text>
                     </TouchableOpacity>
                 </ScrollView>
-                <View>
-                    <Text>This is my fixed footer</Text>
-                </View>
+                    <TouchableOpacity onPress={()=>{ Linking.openURL('https://google.com')}} style={styles.footer}>
+                        <Image style={{width: 20, height: 20}} source={require('../../resources/images/icons/bugIcon.png')}/>
+                        <Text>Reportar bug</Text>
+                    </TouchableOpacity>
+                <View style={styles.emptyView}></View>
             </View>
         );
     }
 }
 
 export default SideMenu;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    icon: {
+        width: 5,
+        height: 5,
+    },
+
+    emptyView: {
+        height: height * 0.02,
+        width: width * 0.15,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    header: {
+        flexDirection: 'row',
+        height: 200,
+        width: 300,
+        padding: 5,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        backgroundColor: '#58b058',
+    },
+
+    footer: {
+        flexDirection: 'row',
+        padding: 5,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    userInfo: {
+        flexDirection: 'column',
+        height: 200,
+        width: 250,
+        padding: 5,
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+    },
+    userInfoItemNome: {
+        fontFamily: 'Roboto',
+        fontSize: 20,
+        color: '#f8ffff',
+        fontWeight: 'bold',
+    },
+    userInfoItemEmail: {
+        fontFamily: 'Roboto',
+        fontSize: 15,
+        color: '#f8ffff',
+    },
+    itemSide: {
+        fontFamily: 'Roboto',
+        fontSize: 30,
+        flexDirection: 'row',
+        padding: 5,
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+    },
+    containerItem: {
+        flexDirection: 'row',
+        alignItems: 'flex-start',
+        justifyContent: 'center',
+        backgroundColor: '#aba0ac',
+
+    },
+
+});
