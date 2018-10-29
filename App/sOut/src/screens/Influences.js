@@ -43,19 +43,13 @@ export default class Influences extends Component {
 
                 </ScrollView>
 
-                <ActionButton buttonColor={'#00ED74'} style={styles.actionBtn}>
-                    <ActionButton.Item buttonColor='#9b59b6' title="Humor" onPress={() => { this.setState({ showHumorOptions: true }) }}>
-                        <Icon name="ios-happy" style={styles.actionButtonIcon} />
-                    </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#3498db' title="Exercícios" onPress={() => {}}>
-                        <Icon name="md-fitness" style={styles.actionButtonIcon} />
-                    </ActionButton.Item>
-                    <ActionButton.Item buttonColor='#1abc9c' title="Saúde" onPress={() => {}}>
-                        <Icon name="ios-medkit" style={styles.actionButtonIcon} />
-                    </ActionButton.Item>
-                </ActionButton>
-
-                <View></View>
+                <View style={styles.Entry}>
+                <TouchableOpacity style={styles.newEntry} onPress={() => { this.setState({ showHumorOptions: true }) }}>
+                    <Text style={styles.newEntryText}>Insira uma
+                    <Text style={styles.newEntryTextBold}> nova entrada </Text>
+                    </Text>
+                </TouchableOpacity>
+                </View>
 
                 <FixedMenu/>
             </View>
@@ -137,5 +131,26 @@ const styles = StyleSheet.create({
         color: '#00ED74',
         marginLeft: width * 0.2,
         marginBottom: 10,
+    },
+    Entry: {
+        width: width * 0.99,
+        height: height / 12.8,
+        backgroundColor: "#00ED74",
+        marginTop: height / 50
+    },
+    newEntry: {
+        flex: 1,
+        alignItems:'center',
+        justifyContent: 'center',
+    },
+    newEntryText: {
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        color: '#fff',
+    },
+    newEntryTextBold: {
+        fontFamily: 'Roboto Bold',
+        fontSize: 18,
+        color: '#fff'
     }
 });

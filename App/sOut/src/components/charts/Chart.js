@@ -8,21 +8,20 @@ export default class Chart extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <ScrollView>
                     <View>
                         <Pie
                             radius={100}
                             series={[10, 20, 30, 40]}
-                            colors={['red', 'lime', 'blue', 'yellow']} />
+                            colors={['#88ff6e', '#15c3bf', '#faca19', '#FF2452']} />
                     </View>
-                    <View>
+                    <View style={styles.pieHealthChart}>
                         <Pie
                             radius={100}
                             innerRadius={60}
                             series={[10, 20, 30, 40]}
-                            colors={['#f00', '#0f0', '#00f', '#ff0']} />
+                            colors={['#88ff6e', '#989c80', '#54f29e', '#15c3bf']} />
                     </View>
-                <View style={{ alignItems: 'center', justifyContent:'center' }}>
+                <View style={styles.progressChart}>
                     <Pie
                         radius={50}
                         innerRadius={45}
@@ -33,7 +32,6 @@ export default class Chart extends Component {
                         <Text style={styles.gaugeText}>60%</Text>
                     </View>
                 </View>
-                </ScrollView>
             </View>
         )
     }
@@ -57,4 +55,12 @@ const styles = StyleSheet.create({
         color: '#000',
         fontSize: 24,
     },
+    pieHealthChart: {
+        paddingTop: 20,
+    },
+    progressChart: {
+        alignItems: 'center',
+        justifyContent:'center',
+        paddingTop: 20
+    }
 })

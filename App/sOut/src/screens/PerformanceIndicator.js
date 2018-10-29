@@ -34,7 +34,7 @@ export default class PerformanceIndicator extends Component {
                     <View style={styles.emptyView}></View>
                 </View>
 
-                <ScrollView>
+                <ScrollView style={styles.mainView}>
                     <View >
                         <Chart />
                     </View>
@@ -90,5 +90,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
+    mainView: {
+        height: height * 0.6,
+        width: width,
+    }
 
 })
