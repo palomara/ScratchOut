@@ -194,21 +194,6 @@ var styles = StyleSheet.create({
     width: width * 0.80,
   },
 
-  inputTitleBorder:{
-    flex: 1,
-    flexDirection: 'row',
-    borderBottomWidth: 1,
-    borderColor: '#00ED74',
-    marginBottom: 10,
-  },
-  inputTitleText: {
-    flex: 1,
-    fontFamily: 'Roboto Light',
-    fontSize: 20,
-    color: '#00ED74',
-    height: height / 14,
-  },
-
   button: {
     flex: 1,
     height: height * 0.085,

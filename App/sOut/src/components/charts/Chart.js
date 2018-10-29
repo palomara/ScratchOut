@@ -9,17 +9,21 @@ export default class Chart extends Component {
         return (
             <View style={styles.container}>
                     <View>
+                        <Text> Título </Text>
                         <Pie
                             radius={100}
                             series={[10, 20, 30, 40]}
                             colors={['#88ff6e', '#15c3bf', '#faca19', '#FF2452']} />
+                        <Text>Legenda</Text>
                     </View>
                     <View style={styles.pieHealthChart}>
+                        <Text> Título </Text>
                         <Pie
                             radius={100}
                             innerRadius={60}
                             series={[10, 20, 30, 40]}
                             colors={['#88ff6e', '#989c80', '#54f29e', '#15c3bf']} />
+                        <Text>Legenda</Text>
                     </View>
                 <View style={styles.progressChart}>
                     <Pie
@@ -31,6 +35,7 @@ export default class Chart extends Component {
                     <View style={styles.gauge}>
                         <Text style={styles.gaugeText}>60%</Text>
                     </View>
+                    <Text>Legenda</Text>
                 </View>
             </View>
         )

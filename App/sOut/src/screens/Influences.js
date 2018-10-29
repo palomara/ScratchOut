@@ -38,13 +38,29 @@ export default class Influences extends Component {
                     <View style={styles.emptyView}></View>
                 </View>
 
+                <View style={styles.Entry}>
+                    <TouchableOpacity style={styles.newEntry} onPress={() => { this.setState({ showHumorOptions: true }) }}>
+                        <View style={styles.icon}>
+                        <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
+                        </View>
+
+                        <Text style={styles.newEntryText}>Como você está se sentindo
+                            <Text style={styles.newEntryTextBold}> agora</Text>?
+                        </Text>
+                    </TouchableOpacity>
+                </View>
+
                 <ScrollView style={styles.mainView}>
 
 
                 </ScrollView>
 
                 <View style={styles.Entry}>
-                <TouchableOpacity style={styles.newEntry} onPress={() => { this.setState({ showHumorOptions: true }) }}>
+                <TouchableOpacity style={styles.newEntry}>
+                    <View style={styles.icon}>
+                    <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
+                    </View>
+
                     <Text style={styles.newEntryText}>Insira uma
                     <Text style={styles.newEntryTextBold}> nova entrada </Text>
                     </Text>
@@ -133,15 +149,19 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     Entry: {
-        width: width * 0.99,
+        width: width * 0.97,
         height: height / 12.8,
         backgroundColor: "#00ED74",
-        marginTop: height / 50
+        marginTop: height / 50,
+        borderRadius: 3,
+
     },
     newEntry: {
         flex: 1,
         alignItems:'center',
         justifyContent: 'center',
+        flexDirection: 'row',
+
     },
     newEntryText: {
         fontFamily: 'Roboto',
@@ -152,5 +172,10 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto Bold',
         fontSize: 18,
         color: '#fff'
+    },
+    icon: {
+        justifyContent: 'space-evenly',
+        paddingRight: 20
     }
+
 });
