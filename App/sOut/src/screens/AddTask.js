@@ -9,6 +9,9 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
+  DatePickerAndroid,
+  DatePickerIOS,
+  Platform
 } from 'react-native'
 
 import moment from 'moment'
@@ -23,7 +26,7 @@ export default class AddTask extends Component {
 
   save = () => {
     if (!this.state.title.trim()) {
-      this.setState({textResult: "insira um título"})
+      this.setState({textResult: "insira título e prazo"})
       return
     }
 
@@ -32,9 +35,38 @@ export default class AddTask extends Component {
     this.setState({ ...initialState })
   }
 
+    handleDateAndroidChanged = () => {
+        DatePickerAndroid.open({
+            date: this.state.date
+        }).then(e => {
+            if (e.action !==
+                DatePickerAndroid.dismissedAction) {
+                const momentDate = moment(this.state.date)
+                momentDate.date(e.day)
+                momentDate.month(e.month)
+                momentDate.year(e.year)
+                this.setState({ date: momentDate.toDate() })
+            }
+        })
+    }
+
 
 
   render() {
+
+      let datePicker = null
+      if (Platform.OS === 'ios') {
+          datePicker = <DatePickerIOS mode='date' date={this.state.date}
+                                      onDateChange={date => this.setState({ date })} />
+      } else {
+      datePicker = (
+          <TouchableOpacity onPress={this.handleDateAndroidChanged}>
+              <Text style={styles.date}>
+                  {moment(this.state.date).format('ddd, D [de] MMMM [de] YYYY')}
+              </Text>
+          </TouchableOpacity>
+      )
+      }
 
     return (
       <Modal
@@ -51,11 +83,7 @@ export default class AddTask extends Component {
           <View style={styles.modalContent}>
 
             <View style={styles.modalHeader}>
-              <View style={styles.closeView}></View>
               <Text style={styles.modalHeaderText}>Nova tarefa</Text>
-              <TouchableOpacity style={styles.closeView} onPress={this.props.onCancel}>
-                <Image source={require('../../resources/images/icons/icon-nav_close-grey.png')}/>
-              </TouchableOpacity>
             </View>
 
             <View style={styles.newTask}>
@@ -72,7 +100,9 @@ export default class AddTask extends Component {
             <View style={styles.modalText}>
               <Text style={styles.modalText}>{this.state.textResult}</Text>
             </View>
-
+              <View>
+                  {datePicker}
+              </View>
             <View style={styles.Create}>
               <TouchableOpacity style={styles.createTouch} onPress={this.save}>
                 <Text style={styles.createText}>Criar</Text>
@@ -201,20 +231,14 @@ var styles = StyleSheet.create({
     justifyContent: 'center',
   },
 
-  closeView: {
-    height: height / 14,
-    width: height / 14,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
 
 
   modalHeader:{
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    height: height / 14,
-    width: width * 0.88,
+      height: height / 14,
+      width: width * 0.30
   },
 
   modalHeaderText:{

@@ -8,6 +8,7 @@ import {
 } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
+import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import MyBackButton from "../components/MyBackButton";
 import FixedMenu from "../components/FixedMenu";
@@ -22,6 +23,23 @@ export default class Influences extends Component {
     state = {
         showHumorOptions: false,
     }
+
+    //TODO: Mostrar o TimePicker - _handleDatePicked pega a data/hora selecionada
+
+    state = {
+        isDateTimePickerVisible: false,
+    };
+    
+    /*aqui define o state de visibilidade */
+
+    _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
+
+    _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
+
+    _handleDatePicked = (time) => {
+        console.log('A date has been picked: ', time);
+        this._hideDateTimePicker();
+    };
 
     render() {
 
@@ -56,7 +74,7 @@ export default class Influences extends Component {
                 </ScrollView>
 
                 <View style={styles.Entry}>
-                <TouchableOpacity style={styles.newEntry}>
+                <TouchableOpacity style={styles.newEntry} onPress={this._showDateTimePicker}>
                     <View style={styles.icon}>
                     <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
                     </View>
@@ -65,6 +83,11 @@ export default class Influences extends Component {
                     <Text style={styles.newEntryTextBold}> nova entrada </Text>
                     </Text>
                 </TouchableOpacity>
+                    <DateTimePicker
+                        isVisible={this.state.isDateTimePickerVisible}
+                        onConfirm={this._handleDatePicked}
+                        onCancel={this._hideDateTimePicker}
+                    />
                 </View>
 
                 <FixedMenu/>

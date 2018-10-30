@@ -27,7 +27,7 @@ export default class Chart extends Component {
                     </View>
                 <View style={styles.progressChart}>
                     <Pie
-                        radius={50}
+                        radius={60}
                         innerRadius={45}
                         series={[60]}
                         colors={['#f00']}

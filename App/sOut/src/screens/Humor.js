@@ -34,23 +34,28 @@ export default class Humor extends Component {
 
     onRadiante =  () => {
         console.warn(this.state.humor)
+        this.state = { uri: require('../../resources/images/icons/icon-5.png') }
     }
 
     onFeliz =  () => {
         console.warn(this.state.humor)
+        this.state = { uri: require('../../resources/images/icons/icon-4.png') }
     }
 
     onNormal =  () => {
         console.warn(this.state.humor)
+        this.state = { uri: require('../../resources/images/icons/icon-3.png') }
     }
 
 
     onTriste =  () => {
         console.warn(this.state.humor)
+        this.state = { uri: require('../../resources/images/icons/icon-2.png') }
     }
 
     onHorrivel =  () => {
         console.warn(this.state.humor)
+        this.state = { uri: require('../../resources/images/icons/icon-1.png') }
     }
 
 
@@ -63,6 +68,7 @@ export default class Humor extends Component {
                 <TouchableWithoutFeedback onPress={this.props.onCancel}>
                     <View style={styles.offset}></View>
                 </TouchableWithoutFeedback>
+                <View style={styles.modalArea}>
                 <View style={styles.modalContent}>
                     <View style={styles.modalHeader}>
                         <Text style={styles.titleModal}>Como se sente?</Text>
@@ -102,6 +108,7 @@ export default class Humor extends Component {
                         </TouchableOpacity>
                     </View>
                 </View>
+                </View>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}>
                     <View style={styles.offset}></View>
                 </TouchableWithoutFeedback>
@@ -114,15 +121,22 @@ export default class Humor extends Component {
 var styles = StyleSheet.create({
     offset: {
         flex: 1,
-        backgroundColor: 'rgba(0,0,0,0.7)',
+        backgroundColor: '#000',
+        opacity: 0.1
+    },
+    modalArea: {
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: height / 150,
     },
     modalContent: {
-        backgroundColor: 'white',
-        padding: 20,
-        justifyContent: 'center',
+        backgroundColor: '#fff',
+        justifyContent: 'space-between',
         alignItems: 'center',
         borderRadius: 30,
-        borderColor: 'rgba(0, 0, 0, 0.1)'
+        padding: height / 150,
+        width: width * 0.9,
     },
     modalHeader:{
         flexDirection: 'row',
@@ -139,8 +153,8 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
     },
     humorArea: {
-        height: height * 0.085,
-        width: width,
+        padding: height / 150,
+        width: width * 0.9,
         flexDirection: 'row',
         alignItems:'center',
         justifyContent: 'space-between',
@@ -176,5 +190,6 @@ var styles = StyleSheet.create({
         fontFamily: 'Roboto',
         alignItems: 'center',
         justifyContent: 'center',
+
     }
 })
