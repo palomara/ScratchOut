@@ -30,7 +30,7 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 
 
 
-## Linguages & Framework
+## Linguagens & Framework
 
 -   [![enter image description here](https://camo.githubusercontent.com/041fc9e57fb97a5cbc27a32f04447f9bdbf7d8f9/68747470733a2f2f692e696d6775722e636f6d2f6b505753574c742e706e67)](https://camo.githubusercontent.com/041fc9e57fb97a5cbc27a32f04447f9bdbf7d8f9/68747470733a2f2f692e696d6775722e636f6d2f6b505753574c742e706e67)  **[React Native](https://facebook.github.io/react-native/docs/getting-started.html)**
 -   [![enter image description here](https://camo.githubusercontent.com/8b88a00c553f22fc77f4e4643f270464d116ec9e/68747470733a2f2f692e696d6775722e636f6d2f3732344b3538342e706e67)](https://camo.githubusercontent.com/8b88a00c553f22fc77f4e4643f270464d116ec9e/68747470733a2f2f692e696d6775722e636f6d2f3732344b3538342e706e67)  **[R](https://www.r-project.org/other-docs.html)**
