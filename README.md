@@ -26,7 +26,7 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 ![Editar Influência](https://imgur.com/p728uLt.png)
 
 ### - DER&MER
-![Editar Influência](https://imgur.com/a/NOH5Paf.png)
+![DER & MER](https://imgur.com/a/NOH5Paf.png)
 
 
 
