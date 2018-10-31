@@ -3,13 +3,13 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 
 ## Diagramas
 ### - Casos de Uso
-![Diagrama de Casos de Uso sOut](https://imgur.com/a/QxT88Sk.png)
+![Diagrama de Casos de Uso sOut](https://imgur.com/KaNjX1q.png)
 
 ### - Atividades
 #### - Login
 ![Efetuar Login](https://i.imgur.com/QLn15uU.png)
 #### - Manter Tarefa
-![Manter Tarefa](https://imgur.com/a/U9SFldW.png)
+![Manter Tarefa](https://imgur.com/sOrCRke.png)
 #### - Concluir Tarefa
 ![Concluir Tarefa](https://i.imgur.com/QpkPBiq.png)
 #### - Editar Tarefa
@@ -26,7 +26,7 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 ![Editar Influência](https://imgur.com/p728uLt.png)
 
 ### - DER&MER
-![DER & MER](https://imgur.com/a/NOH5Paf.png)
+![DER & MER](https://imgur.com/cJtpAJc.png)
 
 
 
@@ -48,10 +48,10 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 | Diagrama Sequência | 18/09/2018 |05/09/2018|
 | Desenvolvimento Front-end ||17/10/2018|
 | Desenvolvimento Back-end ||17/10/2018|
-| Feira Tecnológica ||16/10/2018|
-| Teste da Aplicação ||31/10/2018|
+| Feira Tecnológica ||16/10/2018| **19/10/2018**
+| Teste da Aplicação ||31/10/2018| **09/11/2018**
+| Defesa ||23/11/2018| 
 
-#### *Data de apresentação do projeto: 23/11/2018 e 30/11/2018
 
 # Como usar o GitHub
 
