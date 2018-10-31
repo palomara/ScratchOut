@@ -3,7 +3,7 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 
 ## Diagramas
 ### - Casos de Uso
-![Diagrama de Casos de Uso sOut](https://i.imgur.com/LbyUwig.png)
+![Diagrama de Casos de Uso sOut](https://imgur.com/a/KPN06mF.png)
 
 ### - Atividades
 #### - Login
