@@ -8,11 +8,12 @@ import {
 } from 'react-native';
 import ActionButton from 'react-native-action-button';
 import Icon from 'react-native-vector-icons/Ionicons';
-import DateTimePicker from 'react-native-modal-datetime-picker';
 
 import MyBackButton from "../components/MyBackButton";
 import FixedMenu from "../components/FixedMenu";
 import Humor from './Humor'
+import AddInfluences from './AddInfluences'
+import PieChartWithDifferentArcs from '../components/charts/with-different-arcs'
 
 
 const width = Dimensions.get('screen').width;
@@ -24,22 +25,8 @@ export default class Influences extends Component {
         showHumorOptions: false,
     }
 
-    //TODO: Mostrar o TimePicker - _handleDatePicked pega a data/hora selecionada
+    //TODO: Modal está abrindo automaticamente quando a página é iniciada
 
-    state = {
-        isDateTimePickerVisible: false,
-    };
-    
-    /*aqui define o state de visibilidade */
-
-    _showDateTimePicker = () => this.setState({ isDateTimePickerVisible: true });
-
-    _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
-
-    _handleDatePicked = (time) => {
-        console.log('A date has been picked: ', time);
-        this._hideDateTimePicker();
-    };
 
     render() {
 
@@ -69,12 +56,14 @@ export default class Influences extends Component {
                 </View>
 
                 <ScrollView style={styles.mainView}>
-
+                    <View>
+                <PieChartWithDifferentArcs/>
+                    </View>
 
                 </ScrollView>
 
                 <View style={styles.Entry}>
-                <TouchableOpacity style={styles.newEntry} onPress={this._showDateTimePicker}>
+                <TouchableOpacity style={styles.newEntry} onPress={() => { this.props.navigation.navigate('AddInfluences')}}>
                     <View style={styles.icon}>
                     <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
                     </View>
@@ -83,11 +72,7 @@ export default class Influences extends Component {
                     <Text style={styles.newEntryTextBold}> nova entrada </Text>
                     </Text>
                 </TouchableOpacity>
-                    <DateTimePicker
-                        isVisible={this.state.isDateTimePickerVisible}
-                        onConfirm={this._handleDatePicked}
-                        onCancel={this._hideDateTimePicker}
-                    />
+
                 </View>
 
                 <FixedMenu/>
@@ -176,7 +161,8 @@ const styles = StyleSheet.create({
         height: height / 12.8,
         backgroundColor: "#00ED74",
         marginTop: height / 50,
-        borderRadius: 3,
+        borderRadius: 4,
+        marginBottom: 10
 
     },
     newEntry: {

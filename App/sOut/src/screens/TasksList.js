@@ -7,9 +7,10 @@ import {
     Dimensions,
     FlatList,
     ScrollView,
-    RefreshControl
+    RefreshControl, Image, TouchableOpacity
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
+import { SearchBar } from 'react-native-elements'
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
 import Task from '../components/Task';
@@ -99,6 +100,26 @@ export default class TasksList extends Component {
                     <Text style={styles.title}>Tarefas</Text>
                     <View style={styles.emptyView}></View>
                 </View>
+
+                <SearchBar
+                    lightTheme={true}
+                    round
+                    showLoading={true}
+                    searchIcon={{ size: 24 }}
+                    placeholder=' Procurar' />
+
+                <View style={styles.barOptions}>
+                <TouchableOpacity style={styles.iconArea} >
+                    <Image source={require('../../resources/images/icons/icon-archives-grey.png')}/>
+                </TouchableOpacity>
+                <TouchableOpacity style={styles.iconArea} onPress={this.toggleFilter}>
+                    <Image source={require('../../resources/images/icons/icon-filter_completed-grey.png')}/>
+                </TouchableOpacity>
+                 <TouchableOpacity style={styles.iconArea}>
+                     <Image source={require('../../resources/images/icons/icon-sort_by-c.png')}/>
+                 </TouchableOpacity>
+                </View>
+
                 <ScrollView style={styles.mainView}
                             refreshControl={this._refreshControl()}>
 
@@ -154,6 +175,7 @@ const styles = StyleSheet.create({
         width: width * 0.15,
         alignItems: 'center',
         justifyContent: 'center',
+        flexDirection: 'row',
     },
 
     title: {
@@ -167,5 +189,23 @@ const styles = StyleSheet.create({
     flatList: {
         flex: 1,
     },
+    barOptions: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        height: height * 0.06,
+        width: width,
+        backgroundColor: '#fff'
+    },
+    iconArea: {
+        flex: 1,
+        height: height * 0.010,
+        alignItems:'center',
+        justifyContent: 'center',
+    },
+    mainView: {
+        height: height * 0.6,
+        width: width,
+    }
 
 });

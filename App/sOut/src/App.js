@@ -14,6 +14,7 @@ import Profile from './screens/Profile'
 import TaskList from './screens/TasksList'
 import AuthOrApp from './screens/AuthOrApp'
 import PerformanceIndicator from './screens/PerformanceIndicator'
+import AddInfluences from './screens/AddInfluences'
 import SideMenu from './components/SideMenu'
 
 
@@ -31,7 +32,8 @@ const HomehallStack = createDrawerNavigator({
         Influences: {screen: Influences},
         Profile: {screen: Profile},
         TasksList: {screen: TaskList},
-        PerformanceIndicator: {screen: PerformanceIndicator}
+        PerformanceIndicator: {screen: PerformanceIndicator},
+        AddInfluences: {screen: AddInfluences}
     },
     {
         headerMode: 'none',

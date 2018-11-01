@@ -1,17 +1,22 @@
 import React from 'react';
-import {Image, TouchableOpacity} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 import {withNavigation} from 'react-navigation';
 
 class MyBackButton extends React.Component {
   render() {
     return (
-      <TouchableOpacity onPress={() => {this.props.navigation.navigate('Home')}}>
+      <TouchableOpacity style={styles.buttonStyle} onPress={() => {this.props.navigation.navigate('Home')}}>
         <Image source={require('../../resources/images/icons/icon-nav_back-green.png')}/>
       </TouchableOpacity>
     );
   }
 }
 
+const styles = StyleSheet.create({
+    buttonStyle: {
+        marginLeft: 20
+    },
+});
 // withNavigation returns a component that wraps MyBackButton and passes in the
 // navigation prop
 export default withNavigation(MyBackButton);

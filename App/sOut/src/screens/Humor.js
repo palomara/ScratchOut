@@ -64,7 +64,7 @@ export default class Humor extends Component {
         return (
             <Modal onRequestClose={this.props.onCancel}
                    visible={this.props.isVisible}
-                   animationType='slide' transparent={true}>
+                   animationType='fade' transparent={true}>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}>
                     <View style={styles.offset}></View>
                 </TouchableWithoutFeedback>
