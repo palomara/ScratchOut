@@ -3,13 +3,13 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 
 ## Diagramas
 ### - Casos de Uso
-![Diagrama de Casos de Uso sOut](https://i.imgur.com/LbyUwig.png)
+![Diagrama de Casos de Uso sOut](https://imgur.com/KaNjX1q.png)
 
 ### - Atividades
 #### - Login
 ![Efetuar Login](https://i.imgur.com/QLn15uU.png)
 #### - Manter Tarefa
-![Manter Tarefa](https://i.imgur.com/yjUM2Y9.png)
+![Manter Tarefa](https://imgur.com/sOrCRke.png)
 #### - Concluir Tarefa
 ![Concluir Tarefa](https://i.imgur.com/QpkPBiq.png)
 #### - Editar Tarefa
@@ -26,11 +26,11 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 ![Editar Influência](https://imgur.com/p728uLt.png)
 
 ### - DER&MER
-![Editar Influência](https://i.imgur.com/eHTf35l.png)
+![DER & MER](https://imgur.com/cJtpAJc.png)
 
 
 
-## Linguages & Framework
+## Linguagens & Framework
 
 -   [![enter image description here](https://camo.githubusercontent.com/041fc9e57fb97a5cbc27a32f04447f9bdbf7d8f9/68747470733a2f2f692e696d6775722e636f6d2f6b505753574c742e706e67)](https://camo.githubusercontent.com/041fc9e57fb97a5cbc27a32f04447f9bdbf7d8f9/68747470733a2f2f692e696d6775722e636f6d2f6b505753574c742e706e67)  **[React Native](https://facebook.github.io/react-native/docs/getting-started.html)**
 -   [![enter image description here](https://camo.githubusercontent.com/8b88a00c553f22fc77f4e4643f270464d116ec9e/68747470733a2f2f692e696d6775722e636f6d2f3732344b3538342e706e67)](https://camo.githubusercontent.com/8b88a00c553f22fc77f4e4643f270464d116ec9e/68747470733a2f2f692e696d6775722e636f6d2f3732344b3538342e706e67)  **[R](https://www.r-project.org/other-docs.html)**
@@ -48,10 +48,10 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 | Diagrama Sequência | 18/09/2018 |05/09/2018|
 | Desenvolvimento Front-end ||17/10/2018|
 | Desenvolvimento Back-end ||17/10/2018|
-| Feira Tecnológica ||16/10/2018|
-| Teste da Aplicação ||31/10/2018|
+| Feira Tecnológica ||16/10/2018| **19/10/2018**
+| Teste da Aplicação ||31/10/2018| **09/11/2018**
+| Defesa ||23/11/2018| 
 
-#### *Data de apresentação do projeto: 23/11/2018 e 30/11/2018
 
 # Como usar o GitHub
 
