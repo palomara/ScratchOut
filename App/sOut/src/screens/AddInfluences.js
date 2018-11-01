@@ -6,6 +6,7 @@ import {
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
+import { Slider } from 'react-native-elements'
 import DateTimePicker from 'react-native-modal-datetime-picker';
 import MyBackButton from "../components/MyBackButton";
 import Task from "../components/Task";
@@ -24,6 +25,10 @@ export default class AddInfluences extends Component {
 
     state = {
         isDateTimePickerVisible: false,
+    };
+
+    state = {
+        value: 0,
     };
 
     /*aqui define o state de visibilidade */
@@ -47,13 +52,14 @@ export default class AddInfluences extends Component {
                     <View style={styles.emptyView}></View>
                 </View>
 
-                <ScrollView>
+                <ScrollView style={styles.mainView}>
                     <View style={styles.healthView}>
                         <Text style={styles.title}>Sintomas </Text>
                         <CheckBox
                             title="Dor de cabeça"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#00ED74'}
                         />
                         <CheckBox
                             title="Dor nas costas"
@@ -80,7 +86,65 @@ export default class AddInfluences extends Component {
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
                         />
+                        <CheckBox
+                            title="Estresse"
+                            checked={this.state.checked}
+                            onPress={() => this.setState({ checked: !this.state.checked })}
+                        />
+                        <CheckBox
+                            title="Doente"
+                            checked={this.state.checked}
+                            onPress={() => this.setState({ checked: !this.state.checked })}
+                        />
                     </View>
+
+                    <View style={styles.hourSleptView}>
+                        <Text style={styles.title}>Horas dormidas</Text>
+                    </View>
+
+                    <View>
+                        <Text style={styles.title}>Exercício físico</Text>
+                        <CheckBox
+                            center
+                            title='15 - 30 min'
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                            onPress={() => this.setState({ checked: !this.state.checked })}
+                        />
+                        <CheckBox
+                            center
+                            title='30 - 60 min'
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                            onPress={() => this.setState({ checked: !this.state.checked })}
+                        />
+                        <CheckBox
+                            center
+                            title='60+ min'
+                            checkedIcon='dot-circle-o'
+                            uncheckedIcon='circle-o'
+                            checked={this.state.checked}
+                            onPress={() => this.setState({ checked: !this.state.checked })}
+                        />
+                    </View>
+
+                    <View>
+                        <Text style={styles.title}>Disposição</Text>
+                        <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
+                            <Slider
+                                minimumValue={0}
+                                maximumValue={100}
+                                thumbTintColor={'#00ED74'}
+                                marginLeft={20}
+                                width={300}
+                                value={this.state.value}
+                                onValueChange={(value) => this.setState({value})} />
+                            <Text style={styles.sliderValue}>{this.state.value} %</Text>
+                        </View>
+                    </View>
+
                 </ScrollView>
 
 
@@ -130,13 +194,30 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#00ED74',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginBottom: 10,
+        marginLeft: 10
     },
     healthView: {
-        marginRight: 200
+
     },
     backButtonStyle: {
         marginLeft: 20
+    },
+    hourSleptView: {
+        marginTop: 3,
+    },
+    mainView: {
+        height: height * 0.6,
+        width: width,
+    },
+    sliderValue: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        fontFamily: 'Roboto',
+        color: '#000',
+        fontSize: 15,
     }
+
 
 })

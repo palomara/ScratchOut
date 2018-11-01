@@ -51,7 +51,11 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems:'center',
     justifyContent: 'space-between',
-    backgroundColor: "#fff",
-    elevation: 2,
+    backgroundColor: "#F8F8F8",
+    elevation: 3,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 3},
+    shadowOpacity: 0.2,
+    position: 'relative'
   },
 });

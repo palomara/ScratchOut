@@ -33,7 +33,8 @@ const HomehallStack = createDrawerNavigator({
         Profile: {screen: Profile},
         TasksList: {screen: TaskList},
         PerformanceIndicator: {screen: PerformanceIndicator},
-        AddInfluences: {screen: AddInfluences}
+        AddInfluences: {screen: AddInfluences},
+
     },
     {
         headerMode: 'none',

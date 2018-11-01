@@ -23,6 +23,8 @@ import axios from 'axios'
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
+//TODO: Adicionar métodos para pesquisa de tarefas, estilizar a lista de tarefas, arrumar as opções de fitlro, e adicionar edição de tarefas
+
 export default class TasksList extends Component {
 
     state = {
@@ -104,11 +106,14 @@ export default class TasksList extends Component {
                 <SearchBar
                     lightTheme={true}
                     round
+                    inputContainerStyle={{ backgroundColor: '#fff' }}
+                    containerStyle={{ backgroundColor: '#fff' }}
                     showLoading={true}
                     searchIcon={{ size: 24 }}
                     placeholder=' Procurar' />
 
                 <View style={styles.barOptions}>
+
                 <TouchableOpacity style={styles.iconArea} >
                     <Image source={require('../../resources/images/icons/icon-archives-grey.png')}/>
                 </TouchableOpacity>
@@ -154,7 +159,6 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.2,
-        marginBottom: 20,
         elevation: 3,
         position: 'relative'
     },
@@ -195,7 +199,12 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height * 0.06,
         width: width,
-        backgroundColor: '#fff'
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.2,
+        elevation: 3,
+        position: 'relative'
     },
     iconArea: {
         flex: 1,

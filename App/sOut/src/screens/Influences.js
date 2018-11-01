@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#fff'
     },
 
     fixedNav: {
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.2,
-        marginBottom: 20,
+        marginBottom: 2,
         elevation: 3,
         position: 'relative'
     },

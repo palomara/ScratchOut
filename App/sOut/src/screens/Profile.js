@@ -93,7 +93,7 @@ export default class Profile extends Component {
                             </TouchableHighlight>
                         </View>
 
-                        <TouchableOpacity style={styles.editView} onPress={() => console.warn("Go to Settings")}>
+                        <TouchableOpacity style={styles.editView} onPress={() => { this.props.navigation.navigate('Config')}}>
                             <Image source={require('../../resources/images/icons/icon-settings-green.png')}/>
                         </TouchableOpacity>
                     </View>
@@ -125,6 +125,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+
     },
 
     fixedNav: {
