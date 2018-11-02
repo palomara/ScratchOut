@@ -12,6 +12,29 @@ module.exports = app => {
             .then(tasks => res.json(tasks))
             .catch(err => res.status(400).json(err))
     }
+    const getTaskdonAt = (req, res) => {
+        const date = req.query.date ? req.query.date
+            : moment().endOf('day').toDate()
+
+        app.db('tasks')
+            .count('id as TarefasConcluidas')
+            .where({ userId: req.user.id })
+            .where('doneAt', '!=', '')
+            .then(tasksC => res.json(tasksC))
+            .catch(err => res.status(400).json(err))
+    }
+
+    const getCountTask = (req, res) => {
+        const date = req.query.date ? req.query.date
+            : moment().endOf('day').toDate()
+        
+        app.db('tasks')
+            .count('id as Tarefas')
+            .where({ userId: req.user.id })
+            .then(tasks => res.json(tasks))
+            .catch(err => res.status(400).json(err))
+
+    }
 
     const save = (req, res) => {
         if (!req.body.title.trim()) {
@@ -65,5 +88,10 @@ module.exports = app => {
             .catch(err => res.status(400).json(err))
     }
 
-    return { getTasks, save, remove, toggleTask }
+    return { getTasks,
+             save, 
+             remove, 
+             toggleTask, 
+             getTaskdonAt, 
+             getCountTask }
 }
