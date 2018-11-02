@@ -130,6 +130,7 @@ export default class AddInfluences extends Component {
                                 <Text style={styles.sleepTouchText}>Inserir</Text>
                             </TouchableOpacity>
                             <DateTimePicker
+                            mode='time'
                                 isVisible={this.state.isDateTimePickerVisible}
                                 onConfirm={this._handleDatePicked}
                                 onCancel={this._hideDateTimePicker}
@@ -181,6 +182,7 @@ export default class AddInfluences extends Component {
                         </View>
                         <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center', flexDirection: 'row'}}>
                             <Slider
+                            step={1}
                                 minimumValue={0}
                                 maximumValue={100}
                                 thumbTintColor={'#006F77'}
