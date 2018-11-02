@@ -11,14 +11,15 @@ import {
     ScrollView } from "react-native";
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
-import Chart from '../components/charts/Chart'
+import BarChartHorizontalWithLabels from '../components/charts/horizontal-with-labels'
+import PieChartIndicator from '../components/charts/pie-chart'
 
 
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
-
+//Todo: legenda dos gráficos, título e gráficos de correlações
 
 export default class PerformanceIndicator extends Component {
 
@@ -35,9 +36,20 @@ export default class PerformanceIndicator extends Component {
                 </View>
 
                 <ScrollView style={styles.mainView}>
-                    <View >
-                        <Chart />
+                    <View style={styles.chartsArea}>
+                        <View style={styles.Indicator}>
+                            <Text style={styles.titleChart}> Saúde </Text>
+                            <PieChartIndicator/>
+                            <Text>Legenda</Text>
+                        </View>
+
+                        <View style={styles.Indicator}>
+                            <Text style={styles.titleChart}> Tarefas concluídas - semana  </Text>
+                            <BarChartHorizontalWithLabels/>
+                            <Text> Legenda</Text>
+                        </View>
                     </View>
+
                 </ScrollView>
 
                 <FixedMenu/>
@@ -94,6 +106,19 @@ const styles = StyleSheet.create({
     mainView: {
         height: height * 0.6,
         width: width,
+    },
+    Indicator: {
+        marginTop: 20,
+        marginBottom: 20
+    },
+    titleChart: {
+        fontSize: 16,
+        fontFamily: 'Roboto Bold',
+        justifyContent: 'center',
+        marginLeft: 60
+    },
+    chartsArea: {
+        justifyContent: 'space-between'
     }
 
 })

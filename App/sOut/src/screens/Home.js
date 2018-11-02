@@ -19,6 +19,7 @@ import moment from 'moment'
 import FixedMenu from '../components/FixedMenu';
 import StatusBarSout from '../components/StatusBarSout';
 import CircleChart from '../components/charts/ProgressCircleChart';
+import ProgressCircleHome from '../components/charts/progress-gauge'
 import axios from "axios";
 
 
@@ -47,13 +48,16 @@ export default class Home extends Component<Props> {
 
                 <ScrollView style={styles.mainView}>
 
-                    <TouchableOpacity onPress={() => this.logout()}>
-                        <Text>Logout</Text>
-                    </TouchableOpacity>
+                    <View style={styles.historicalView}>
+                        <View>
+                            <CircleChart/>
+                        </View>
 
-                    <View>
-                        <CircleChart/>
+                        <View>
+                            <ProgressCircleHome/>
+                        </View>
                     </View>
+
 
                 </ScrollView>
 
@@ -69,6 +73,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
+        backgroundColor: '#fff'
     },
 
     fixedNav: {
@@ -98,4 +103,7 @@ const styles = StyleSheet.create({
         height: height * 0.6,
         width: width,
     },
+    historicalView:{
+
+    }
 });

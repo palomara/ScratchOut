@@ -107,7 +107,7 @@ export default class TasksList extends Component {
                     lightTheme={true}
                     round
                     inputContainerStyle={{ backgroundColor: '#fff' }}
-                    containerStyle={{ backgroundColor: '#fff' }}
+                    containerStyle={{ backgroundColor: '#F8F8F8' }}
                     showLoading={true}
                     searchIcon={{ size: 24 }}
                     placeholder=' Procurar' />
@@ -148,6 +148,7 @@ export default class TasksList extends Component {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: '#fff'
     },
     fixedNav: {
         flexDirection: 'row',
@@ -199,12 +200,8 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         height: height * 0.06,
         width: width,
-        backgroundColor: '#fff',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 3},
-        shadowOpacity: 0.2,
-        elevation: 3,
-        position: 'relative'
+        backgroundColor: '#F8F8F8',
+
     },
     iconArea: {
         flex: 1,

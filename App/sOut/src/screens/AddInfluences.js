@@ -11,6 +11,10 @@ import DateTimePicker from 'react-native-modal-datetime-picker';
 import MyBackButton from "../components/MyBackButton";
 import Task from "../components/Task";
 import FixedMenu from "../components/FixedMenu";
+import Icon from 'react-native-vector-icons/AntDesign';
+import Iconic from 'react-native-vector-icons/Ionicons';
+import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
+import IconS from 'react-native-vector-icons/SimpleLineIcons';
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -54,56 +58,90 @@ export default class AddInfluences extends Component {
 
                 <ScrollView style={styles.mainView}>
                     <View style={styles.healthView}>
-                        <Text style={styles.title}>Sintomas </Text>
+                        <View style={styles.titleIconArea}>
+                        <Text style={styles.title}>Sintomas</Text>
+                        <Icon  name='medicinebox' size={25} color={'#00ED74'} />
+                        </View>
                         <CheckBox
                             title="Dor de cabeça"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
-                            checkedColor={'#00ED74'}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Dor nas costas"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Dor de barriga"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Febre"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
-                            title="Insonia"
+                            title="Insônia"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Fadiga"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Estresse"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Doente"
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                     </View>
 
-                    <View style={styles.hourSleptView}>
-                        <Text style={styles.title}>Horas dormidas</Text>
+                    <View style={styles.hourSleptView} marginTop={20}>
+                        <View style={styles.titleIconArea}>
+                            <Text style={styles.title}>Horas dormidas</Text>
+                            <IconM   name='sleep' size={25} color={'#00ED74'} />
+                        </View>
+                        <View style={styles.sleepTouchView}>
+                            <TouchableOpacity style={styles.sleepTouch}  onPress={this._showDateTimePicker}>
+                                <Text style={styles.sleepTouchText}>Inserir</Text>
+                            </TouchableOpacity>
+                            <DateTimePicker
+                                isVisible={this.state.isDateTimePickerVisible}
+                                onConfirm={this._handleDatePicked}
+                                onCancel={this._hideDateTimePicker}
+                            />
+                        </View>
                     </View>
 
                     <View>
-                        <Text style={styles.title}>Exercício físico</Text>
+                        <View style={styles.titleIconArea} marginTop={20}>
+                            <Text style={styles.title}>Exercício físico</Text>
+                            <Iconic   name='md-fitness' size={25} color={'#00ED74'} />
+                        </View>
                         <CheckBox
                             center
                             title='15 - 30 min'
@@ -111,6 +149,8 @@ export default class AddInfluences extends Component {
                             uncheckedIcon='circle-o'
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             center
@@ -119,6 +159,8 @@ export default class AddInfluences extends Component {
                             uncheckedIcon='circle-o'
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                         <CheckBox
                             center
@@ -127,22 +169,33 @@ export default class AddInfluences extends Component {
                             uncheckedIcon='circle-o'
                             checked={this.state.checked}
                             onPress={() => this.setState({ checked: !this.state.checked })}
+                            checkedColor={'#006F77'}
+                            fontFamily={'Roboto'}
                         />
                     </View>
 
                     <View>
-                        <Text style={styles.title}>Disposição</Text>
-                        <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center'}}>
+                        <View style={styles.titleIconArea} marginTop={20}>
+                            <Text style={styles.title}>Disposição</Text>
+                            <IconS   name='energy' size={25} color={'#00ED74'} />
+                        </View>
+                        <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center', flexDirection: 'row'}}>
                             <Slider
                                 minimumValue={0}
                                 maximumValue={100}
-                                thumbTintColor={'#00ED74'}
-                                marginLeft={20}
+                                thumbTintColor={'#006F77'}
+                                marginLeft={15}
                                 width={300}
                                 value={this.state.value}
                                 onValueChange={(value) => this.setState({value})} />
                             <Text style={styles.sliderValue}>{this.state.value} %</Text>
                         </View>
+                    </View>
+
+                    <View style={styles.touchSaveView}>
+                        <TouchableOpacity style={styles.touchSave}>
+                            <Text style={styles.touchSaveText}>Salvar</Text>
+                        </TouchableOpacity>
                     </View>
 
                 </ScrollView>
@@ -196,7 +249,9 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 10,
-        marginLeft: 10
+        marginLeft: 10,
+        marginRight: 20,
+
     },
     healthView: {
 
@@ -212,11 +267,55 @@ const styles = StyleSheet.create({
         width: width,
     },
     sliderValue: {
-        flexDirection: 'row',
         justifyContent: 'center',
         fontFamily: 'Roboto',
         color: '#000',
-        fontSize: 15,
+        fontSize: 18,
+        marginLeft: 10
+    },
+    titleIconArea: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginTop: 10,
+        marginBottom: 10
+    },
+    sleepTouchView: {
+        marginLeft: 100,
+        width: width * 0.50,
+        height: height / 16,
+        backgroundColor: '#006F77',
+        borderRadius: 10,
+    },
+    sleepTouch: {
+        flex: 1,
+        alignItems:'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    sleepTouchText: {
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        color: '#fff',
+    },
+    touchSaveView: {
+        width: width * 0.80,
+        height: height / 12.8,
+        backgroundColor: "#00ED74",
+        marginTop: height / 50,
+        borderRadius: 4,
+        marginBottom: 10,
+        marginLeft: 40
+    },
+    touchSave: {
+        flex: 1,
+        alignItems:'center',
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    touchSaveText: {
+        fontFamily: 'Roboto',
+        fontSize: 18,
+        color: '#fff',
     }
 
 

@@ -7,7 +7,7 @@ import {
     StyleSheet, StatusBar, ScrollView, TouchableOpacity, Image, Dimensions,
 } from 'react-native';
 import ActionButton from 'react-native-action-button';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 
 import MyBackButton from "../components/MyBackButton";
 import FixedMenu from "../components/FixedMenu";
@@ -25,7 +25,7 @@ export default class Influences extends Component {
         showHumorOptions: false,
     }
 
-    //TODO: Modal está abrindo automaticamente quando a página é iniciada
+    //TODO: Legenda do gráfico de humor + arrumar modal de humor -> state dos ícones, posicionamento e legendas
 
 
     render() {
@@ -56,8 +56,8 @@ export default class Influences extends Component {
                 </View>
 
                 <ScrollView style={styles.mainView}>
-                    <View>
-                <PieChartWithDifferentArcs/>
+                    <View style={styles.humorChart}>
+                        <PieChartWithDifferentArcs/>
                     </View>
 
                 </ScrollView>
@@ -125,43 +125,17 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center'
     },
-    actionButtonIcon: {
-        fontSize: 20,
-        height: 22,
-        color: 'white',
-    },
-    actionBtn: {
-        position: 'absolute',
-        bottom: 50,
-    },
-    humorArea: {
-        height: height * 0.085,
-        width: width,
-        flexDirection: 'row',
-        alignItems:'center',
-        justifyContent: 'space-between',
-        backgroundColor: "#fff",
-        elevation: 2,
-    },
-    buttonHumor: {
-        flex: 1,
-        height: height * 0.085,
-        alignItems:'center',
-        justifyContent: 'center',
 
+    mainView: {
+        height: height * 0.6,
+        width: width
     },
-    influenceText: {
-        fontFamily: 'Roboto',
-        fontSize: 18,
-        color: '#00ED74',
-        marginLeft: width * 0.2,
-        marginBottom: 10,
-    },
+
     Entry: {
         width: width * 0.97,
         height: height / 12.8,
         backgroundColor: "#00ED74",
-        marginTop: height / 50,
+        marginTop: 10,
         borderRadius: 4,
         marginBottom: 10
 
@@ -186,6 +160,12 @@ const styles = StyleSheet.create({
     icon: {
         justifyContent: 'space-evenly',
         paddingRight: 20
+    },
+    humorChart: {
+        alignItems: 'center',
+        justifyContent: 'center',
+
+
     }
 
 });
