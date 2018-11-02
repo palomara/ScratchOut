@@ -19,12 +19,19 @@ import moment from 'moment'
 import FixedMenu from '../components/FixedMenu';
 import StatusBarSout from '../components/StatusBarSout';
 import CircleChart from '../components/charts/ProgressCircleChart';
+import CalendarStrip from "react-native-calendar-strip";
 import ProgressCircleHome from '../components/charts/progress-gauge'
 import axios from "axios";
 
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
+
+let datesWhitelist = [{
+    start: moment(),
+    end: moment().add(3, 'days')  // total 4 days enabled
+}];
+let datesBlacklist = [ moment().add(1, 'days') ]; // 1 day disabled
 
 export default class Home extends Component<Props> {
 
@@ -33,6 +40,8 @@ export default class Home extends Component<Props> {
         AsyncStorage.removeItem('userData')
         this.props.navigation.navigate('Hall')
     };
+
+
 
     render() {
         return (
@@ -45,6 +54,23 @@ export default class Home extends Component<Props> {
                     <Image source={require('../../resources/images/logos/logo-sout-nav.png')}/>
                     <View style={styles.emptyView}></View>
                 </View>
+
+                <CalendarStrip
+                    calendarAnimation={{type: 'sequence', duration: 30}}
+                    daySelectionAnimation={{type: 'border', duration: 200, borderWidth: 1, borderHighlightColor: '#000'}}
+                    style={{height: 100, width: width}}
+                    calendarHeaderStyle={{color: 'white'}}
+                    calendarColor={'#fff'}
+                    dateNumberStyle={{color: '#000'}}
+                    dateNameStyle={{color: '#000'}}
+                    highlightDateNumberStyle={{color: 'yellow'}}
+                    highlightDateNameStyle={{color: 'yellow'}}
+                    disabledDateNameStyle={{color: '#000'}}
+                    disabledDateNumberStyle={{color: '#000'}}
+                    datesWhitelist={datesWhitelist}
+                    datesBlacklist={datesBlacklist}
+                    iconContainer={{flex: 0.1}}
+                />
 
                 <ScrollView style={styles.mainView}>
 
