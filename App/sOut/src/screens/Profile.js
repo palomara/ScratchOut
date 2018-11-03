@@ -82,11 +82,7 @@ export default class Profile extends Component {
 
                 <ScrollView style={styles.mainView}>
                     <View style={styles.editView}>
-                        <TouchableOpacity style={styles.editView} onPress={() => console.warn("Edit User")}>
-                            <Image source={require('../../resources/images/icons/icon-edit-green.png')}/>
-                        </TouchableOpacity>
-
-                        <View>
+                        <View style={{paddingLeft: 20}}>
                             {this.state.imagePath ? <Image style={{width: this.state.imageWidth, height: this.state.imageHeight}} source={{uri: this.state.imagePath}} /> : null }
                             <TouchableHighlight style={styles.editView} onPress={this.openImagePicker.bind(this)}>
                                 <Image source={require('../../resources/images/icons/icon-profile-green@3.png')}/>
@@ -106,11 +102,11 @@ export default class Profile extends Component {
                         <Text style={styles.otherTitle}>INDICADOR DE PERFORMANCE</Text>
                         <Text style={styles.contentInfoUser}>Feliz</Text>
                         <Text style={styles.otherTitle}>ADICIONAR</Text>
-                        <Text style={styles.contentInfoUser}>Blá</Text>
+                        <Text style={styles.contentInfoUser}>1</Text>
                         <Text style={styles.otherTitle}>ADICIONAR</Text>
-                        <Text style={styles.contentInfoUser}>Blá</Text>
+                        <Text style={styles.contentInfoUser}>2</Text>
                         <Text style={styles.otherTitle}>ADICIONAR</Text>
-                        <Text style={styles.contentInfoUser}>Blá</Text>
+                        <Text style={styles.contentInfoUser}>3</Text>
                     </View>
                 </ScrollView>
 
