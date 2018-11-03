@@ -8,9 +8,7 @@ import {
 import { CheckBox } from 'react-native-elements'
 import { Slider } from 'react-native-elements'
 import DateTimePicker from 'react-native-modal-datetime-picker';
-import MyBackButton from "../components/MyBackButton";
-import Task from "../components/Task";
-import FixedMenu from "../components/FixedMenu";
+
 import Icon from 'react-native-vector-icons/AntDesign';
 import Iconic from 'react-native-vector-icons/Ionicons';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';

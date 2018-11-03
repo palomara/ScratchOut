@@ -10,6 +10,7 @@ import moment from 'moment'
 import Icon from 'react-native-vector-icons/FontAwesome'
 import 'moment/locale/pt-br'
 import Swipeable from 'react-native-swipeable'
+import EditTasks from "../screens/EditTasks";
 
 export default props => {
     let check = null
@@ -32,7 +33,7 @@ export default props => {
     const leftContent = (
         <TouchableOpacity
             style={[styles.edit, { justifyContent: 'flex-start', paddingLeft: 20 }]}
-            onPress={() => props.onDelete(props.id)}>
+            nPress={() => { this.props.navigation.navigate('EditTasks')}}>
             <Image source={require('../../resources/images/icons/icon-edit-white.png')}/>
         </TouchableOpacity>
     )
@@ -47,7 +48,7 @@ export default props => {
 
     return (
         <Swipeable
-                   leftContent={leftContent} rightButtons={rightContent}>
+            leftContent={leftContent} rightButtons={rightContent}>
             <View style={styles.container}>
                 <TouchableWithoutFeedback onPress={() => props.onToggleTask(props.id)}>
                     <View style={styles.checkContainer}>{check}</View>
