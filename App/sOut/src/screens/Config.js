@@ -68,28 +68,8 @@ export default class Config extends Component {
             return data;
         }
 
-        /*const gradientHeight = 500;
-        const gradientBackground = '#006F77';
-        const data = Array.from({ length: gradientHeight});*/
         return (
-            /*<View style={{flex: 1}}>
-                {data.map((_, i) => (
-                    <View
-                    key={i}
-                    style={{
-                    position: 'absolute',
-                    backgroundColor: gradientBackground,
-                        height: 1,
-                        bottom: (gradientHeight - i),
-                        top: i,
-                        right: 0,
-                        left: 0,
-                        zIndex: 2,
-                        opacity: (1 / gradientHeight) * (i + 1)
-                    }}
-                    />
 
-                ))}*/
 
             <SafeAreaView>
                 <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
@@ -109,7 +89,7 @@ export default class Config extends Component {
                             return <View style={[styles.item, styles.itemEmpty]} />;
                         }
                         return (
-                            /*<TouchableOpacity onPress={() => console.warn("Procurar como criar funções individuais")}>*/
+
                                 <View style={{
                                     flex: 1,
                                     flexDirection: 'row',
@@ -123,7 +103,7 @@ export default class Config extends Component {
                                         <Text style={styles.textTwo}>{item.lastName}</Text>
                                     </View>
                                 </View>
-                           /* </TouchableOpacity>*/
+
                         );
                     }}
                     disableVirtualization/>
