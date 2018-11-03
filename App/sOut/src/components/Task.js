@@ -30,13 +30,13 @@ export default props => {
         { textDecorationLine: 'line-through' } : {}
 
 
-    const leftContent = (
+    const leftContent = [
         <TouchableOpacity
-            style={[styles.edit, { justifyContent: 'flex-start', paddingLeft: 20 }]}
+            style={[styles.edit, { justifyContent: 'flex-end', paddingRight: 20 }]}
             nPress={() => { this.props.navigation.navigate('EditTasks')}}>
             <Image source={require('../../resources/images/icons/icon-edit-white.png')}/>
-        </TouchableOpacity>
-    )
+        </TouchableOpacity>,
+    ]
 
     const rightContent = [
         <TouchableOpacity
@@ -48,7 +48,8 @@ export default props => {
 
     return (
         <Swipeable
-            leftContent={leftContent} rightButtons={rightContent}>
+            rightButtons={rightContent}
+            leftButtons={leftContent} >
             <View style={styles.container}>
                 <TouchableWithoutFeedback onPress={() => props.onToggleTask(props.id)}>
                     <View style={styles.checkContainer}>{check}</View>
