@@ -13,6 +13,8 @@ import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
 import BarChartHorizontalWithLabels from '../components/charts/horizontal-with-labels'
 import PieChartIndicator from '../components/charts/pie-chart'
+import PieChartWithLabel from '../components/charts/pie-with-labels'
+import GradientLine from '../components/charts/line-with-gradient'
 
 
 
@@ -38,16 +40,29 @@ export default class PerformanceIndicator extends Component {
                 <ScrollView style={styles.mainView}>
                     <View style={styles.chartsArea}>
                         <View style={styles.Indicator}>
-                            <Text style={styles.titleChart}> Saúde </Text>
+                            <Text style={styles.titleChart}> Saúde - Sintomas </Text>
                             <PieChartIndicator/>
                             <Text>Legenda</Text>
                         </View>
 
                         <View style={styles.Indicator}>
-                            <Text style={styles.titleChart}> Tarefas concluídas - semana  </Text>
+                            <Text style={styles.titleChart}> Metodologias  </Text>
+                            <PieChartWithLabel/>
+                        </View>
+
+                        <View style={styles.Indicator}>
+                            <Text style={styles.titleChart}> Disposição x Humor  </Text>
+                            <GradientLine/>
+                        </View>
+
+                        <View style={styles.Indicator}>
+                            <Text style={styles.titleChart}> Tarefas concluídas - Semana  </Text>
                             <BarChartHorizontalWithLabels/>
                             <Text> Legenda</Text>
                         </View>
+
+
+
                     </View>
 
                 </ScrollView>
@@ -109,13 +124,15 @@ const styles = StyleSheet.create({
     },
     Indicator: {
         marginTop: 20,
-        marginBottom: 20
+        marginBottom: 20,
+
     },
     titleChart: {
         fontSize: 16,
         fontFamily: 'Roboto Bold',
         justifyContent: 'center',
-        marginLeft: 60
+        marginLeft: 60,
+        marginBottom: 15
     },
     chartsArea: {
         justifyContent: 'space-between'

@@ -57,18 +57,14 @@ export default class Home extends Component<Props> {
 
                 <CalendarStrip
                     calendarAnimation={{type: 'sequence', duration: 30}}
-                    daySelectionAnimation={{type: 'border', duration: 200, borderWidth: 1, borderHighlightColor: '#000'}}
-                    style={{height: 100, width: width}}
-                    calendarHeaderStyle={{color: 'white'}}
+                    daySelectionAnimation={{type: 'border', duration: 200, borderWidth: 1, borderHighlightColor: 'black'}}
+                    style={{height: 100, width: width, paddingTop: 10, paddingBottom: 10}}
+                    calendarHeaderStyle={{color: '#000', marginBottom: 10}}
                     calendarColor={'#fff'}
                     dateNumberStyle={{color: '#000'}}
                     dateNameStyle={{color: '#000'}}
-                    highlightDateNumberStyle={{color: 'yellow'}}
-                    highlightDateNameStyle={{color: 'yellow'}}
-                    disabledDateNameStyle={{color: '#000'}}
-                    disabledDateNumberStyle={{color: '#000'}}
-                    datesWhitelist={datesWhitelist}
-                    datesBlacklist={datesBlacklist}
+                    highlightDateNumberStyle={{color: '#006F77'}}
+                    highlightDateNameStyle={{color: '#006F77'}}
                     iconContainer={{flex: 0.1}}
                 />
 
@@ -76,10 +72,11 @@ export default class Home extends Component<Props> {
 
                     <View style={styles.historicalView}>
                         <View>
+                            <Text> </Text>
                             <CircleChart/>
                         </View>
 
-                        <View>
+                        <View style={styles.chartArea}>
                             <ProgressCircleHome/>
                         </View>
                     </View>
@@ -131,5 +128,8 @@ const styles = StyleSheet.create({
     },
     historicalView:{
 
+    },
+    chartArea: {
+        marginTop: 20
     }
 });
