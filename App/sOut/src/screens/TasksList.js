@@ -196,6 +196,7 @@ const styles = StyleSheet.create({
     },
     barOptions: {
         alignItems: 'center',
+        justifyContent: 'space-between',
         flexDirection: 'row',
         height: height * 0.06,
         width: width,
@@ -207,7 +208,6 @@ const styles = StyleSheet.create({
         height: height * 0.010,
         alignItems:'center',
         justifyContent: 'center',
-        position: 'absolute'
     },
     mainView: {
         height: height * 0.6,
