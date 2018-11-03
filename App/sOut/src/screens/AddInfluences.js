@@ -2,17 +2,22 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet, StatusBar, ScrollView, TouchableOpacity, Image, Dimensions, FlatList,
+    StyleSheet, 
+    StatusBar, 
+    ScrollView, 
+    TouchableOpacity, 
+    Image, 
+    Dimensions, 
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
 import { Slider } from 'react-native-elements'
 import DateTimePicker from 'react-native-modal-datetime-picker';
-
 import Icon from 'react-native-vector-icons/AntDesign';
 import Iconic from 'react-native-vector-icons/Ionicons';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconS from 'react-native-vector-icons/SimpleLineIcons';
+import moment from 'moment'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -20,15 +25,31 @@ const height = Dimensions.get('screen').height;
 //TODO: Corrigir checkbuttons, estão sendo todos selecionados quando seleciona-se um, e adicionar o TimePicker
 
 export default class AddInfluences extends Component {
-
+    /* checkbox */
     state = {
-        checked: false,
-    };
+        checkedDorCab: false,
+        checkedDorCos: false,
+        checkedDorBar: false,
+        checkedFebre: false,
+        checkedInsonia: false,
+        checkedFadiga: false,
+        checkedEstres: false,
+        checkedDoente: false,
 
+
+    };
+    /* radion */
+    state = {
+        checkdR15: false,
+        checkdR30: false,
+        checkdR40: false,
+    };
+    /* timepicker */
     state = {
         isDateTimePickerVisible: false,
+        time: ''
     };
-
+    /* slider */
     state = {
         value: 0,
     };
@@ -39,10 +60,27 @@ export default class AddInfluences extends Component {
 
     _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
-    _handleDatePicked = (time) => {
-        console.log('A date has been picked: ', time);
+    _handleDatePicked = time => {
+        this.setState({time: moment(time).format('HH:mm')})
+        console.warn(this.state.time);
         this._hideDateTimePicker();
     };
+
+    readionSelect = () =>{
+        if(!this.state.checkdR15){
+            this.setState({checkdR30: false})
+            this.setState({checkdR40: false})
+        }
+        if(!this.state.checkedR30){
+            this.setState({checkdR15: false})
+            this.setState({checkdR40: false})
+        }else{
+            this.setState({checkdR15: false})
+            this.setState({checkdR30: false})
+        }
+    }
+
+
     render() {
         return (
             <View style={styles.container}>
@@ -62,57 +100,57 @@ export default class AddInfluences extends Component {
                         </View>
                         <CheckBox
                             title="Dor de cabeça"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedDorC}
+                            onPress={() => this.setState({ checkedDorC: !this.state.checkedDorC })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Dor nas costas"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedDorCos}
+                            onPress={() => this.setState({ checkedDorCos: !this.state.checkedDorCos })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Dor de barriga"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedDorBar}
+                            onPress={() => this.setState({ checkedDorBar: !this.state.checkedDorBar })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Febre"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedFebre}
+                            onPress={() => this.setState({ checkedFebre: !this.state.checkedFebre })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Insônia"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedInsonia}
+                            onPress={() => this.setState({ checkedInsonia: !this.state.checkedInsonia })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Fadiga"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedFadiga}
+                            onPress={() => this.setState({ checkedFadiga: !this.state.checkedFadiga })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Estresse"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedEstres}
+                            onPress={() => this.setState({ checkedEstres: !this.state.checkedEstres })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
                         <CheckBox
                             title="Doente"
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkedDoente}
+                            onPress={() => this.setState({ checkedDoente: !this.state.checkedDoente })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
@@ -146,8 +184,8 @@ export default class AddInfluences extends Component {
                             title='15 - 30 min'
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkdR15}
+                            onPress={() => this.setState({ checkdR15: !this.state.checkdR15 }, this.readionSelect())}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
@@ -156,8 +194,8 @@ export default class AddInfluences extends Component {
                             title='30 - 60 min'
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkdR30}
+                            onPress={() => this.setState({ checkdR30: !this.state.checkdR30 },  this.readionSelect())}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
@@ -166,8 +204,8 @@ export default class AddInfluences extends Component {
                             title='60+ min'
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
-                            checked={this.state.checked}
-                            onPress={() => this.setState({ checked: !this.state.checked })}
+                            checked={this.state.checkdR40}
+                            onPress={() => this.setState({ checkdR40: !this.state.checkdR40 }, this.readionSelect())}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
