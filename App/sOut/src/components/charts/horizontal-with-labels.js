@@ -1,7 +1,9 @@
 import React from 'react'
-import { View } from 'react-native'
+import {Dimensions, View} from 'react-native'
 import { BarChart, Grid } from 'react-native-svg-charts'
 import { Text } from 'react-native-svg'
+
+const width = Dimensions.get('screen').width;
 
 class BarChartHorizontalWithLabels extends React.PureComponent {
 
@@ -28,7 +30,7 @@ class BarChartHorizontalWithLabels extends React.PureComponent {
         return (
             <View style={{ flexDirection: 'row', height: 200, paddingVertical: 16 }}>
                 <BarChart
-                    style={{ flex: 1, marginLeft: 8 }}
+                    style={{ flex: 1, marginLeft: 3}}
                     data={data}
                     horizontal={true}
                     svg={{ fill: '#006F77' }}

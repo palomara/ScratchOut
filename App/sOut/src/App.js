@@ -46,7 +46,7 @@ const HomehallStack = createDrawerNavigator({
 
 const Application = createStackNavigator(
     {
-        PerformanceIndicator: {screen: PerformanceIndicator},
+
         Splash: {screen: AuthOrApp},
         Hall: LoginStack,
         Home: HomehallStack

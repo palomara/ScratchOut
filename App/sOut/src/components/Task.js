@@ -4,7 +4,7 @@ import {
     Text,
     View,
     TouchableWithoutFeedback,
-    TouchableOpacity
+    TouchableOpacity, Image
 } from 'react-native'
 import moment from 'moment'
 import Icon from 'react-native-vector-icons/FontAwesome'
@@ -16,11 +16,13 @@ export default props => {
     if (props.doneAt !== null) {
         check = (
             <View>
-                <Icon name='check' size={20} />
+                <Image style={{height: 25, width: 25}} source={require('../../resources/images/icons/icon-task-checked.png')}/>
             </View>
         )
     } else {
-        check = <View style={styles.pending} />
+        check = <View>
+            <Image style={{height: 25, width: 25}} source={require('../../resources/images/icons/icon-task-unchecked.png')}/>
+        </View>
     }
 
     const titleStyle = props.doneAt !== null ?
@@ -28,34 +30,34 @@ export default props => {
 
 
     const leftContent = (
-        <View>
-            <Icon name='trash' size={20} color='#FFF' />
-            <Text>Excluir</Text>
-        </View>
+        <TouchableOpacity
+            style={[styles.edit, { justifyContent: 'flex-start', paddingLeft: 20 }]}
+            onPress={() => props.onDelete(props.id)}>
+            <Image source={require('../../resources/images/icons/icon-edit-white.png')}/>
+        </TouchableOpacity>
     )
 
     const rightContent = [
         <TouchableOpacity
             style={[styles.exclude, { justifyContent: 'flex-start', paddingLeft: 20 }]}
             onPress={() => props.onDelete(props.id)}>
-            <Icon name='trash' size={30} color='#FFF' />
+            <Image source={require('../../resources/images/icons/icon-icon-trashcan-white.png')}/>
         </TouchableOpacity>,
     ]
 
     return (
-        <Swipeable leftActionActivationDistance={200}
-                   onLeftActionActivate={() => props.onDelete(props.id)}
+        <Swipeable
                    leftContent={leftContent} rightButtons={rightContent}>
             <View style={styles.container}>
                 <TouchableWithoutFeedback onPress={() => props.onToggleTask(props.id)}>
                     <View style={styles.checkContainer}>{check}</View>
                 </TouchableWithoutFeedback>
-                <View>
+                <View style={styles.taskView}>
                     <Text style={[styles.title, titleStyle]}>
                         {props.title}
                     </Text>
                     <Text style={styles.date}>
-                        {moment(props.estimateAt).locale('pt-br').format('ddd, D [de] MMMM [de] YYYY')}
+                        {moment(props.estimateAt).locale('pt-br').format('ll')}
                     </Text>
                 </View>
             </View>
@@ -65,7 +67,7 @@ export default props => {
 
 const styles = StyleSheet.create({
     container: {
-        paddingVertical: 10,
+        paddingVertical: 15,
         flexDirection: 'row',
         borderBottomWidth: 1,
         borderColor: '#AAA',
@@ -90,11 +92,23 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    taskView: {
+      flexDirection: 'row',
+      justifyContent: 'space-between'
+    },
     title: {
-        fontSize: 15,
+        fontSize: 18,
+        fontFamily: 'Roboto',
+        color: '#006F77',
     },
     date: {
-        fontSize: 12,
+        fontSize: 15,
+        fontFamily: 'Roboto Bold',
+        color: 'red',
+        left: 185,
+        position: 'absolute',
+
+
     },
     exclude: {
         flex: 1,
@@ -107,5 +121,12 @@ const styles = StyleSheet.create({
         color: '#FFF',
         fontSize: 20,
         margin: 10,
-    }
+    },
+    edit: {
+        flex: 1,
+        backgroundColor: '#006F77',
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        alignItems: 'center',
+    },
 })
