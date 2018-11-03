@@ -31,8 +31,10 @@ export default class TasksList extends Component {
         tasks: [],
         visibleTasks: [],
         showDoneTasks: true,
+        showSearchTask: true,
         showAddTask: false,
         refreshing: false,
+        searchText: ''
     };
 
     deleteTask =  async id => {
@@ -53,6 +55,19 @@ export default class TasksList extends Component {
         }
         this.setState({ visibleTasks })
     };
+    filtersearchTasks = () =>{
+        let visibleTasks = null;
+        if (this.state.showSearchTask) {
+            visibleTasks = [...this.state.tasks]
+        } else {
+            const pending = task => task.title === this.state.searchText;
+            visibleTasks = this.state.tasks.filter(pending)
+        }
+        this.setState({ visibleTasks })
+    }
+    searchTasks = () =>{
+        this.setState({showSearchTask: !this.state.showSearchTask}, this.filtersearchTasks)
+    }
     toggleFilter = () => {
         this.setState({ showDoneTasks: !this.state.showDoneTasks }
             , this.filterTasks)
@@ -110,6 +125,8 @@ export default class TasksList extends Component {
                     containerStyle={{ backgroundColor: '#F8F8F8' }}
                     showLoading={true}
                     searchIcon={{ size: 24 }}
+                    onSubmitEditing={() => this.searchTasks()}
+                    onChangeText={(text) => this.setState({searchText: text})}
                     placeholder=' Procurar' />
 
                 <View style={styles.barOptions}>

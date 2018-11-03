@@ -16,6 +16,18 @@ import Icon from "react-native-vector-icons/FontAwesome";
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
+const radianteSelect = require('../../resources/images/icons/icon-5.png');
+const readianteUnSelect = require('../../resources/images/icons/icon-5-outliine.png');
+const felizSelect = require('../../resources/images/icons/icon-4.png');
+const felizUnSelect = require('../../resources/images/icons/icon-4-outliine.png');
+const normalSelect = require('../../resources/images/icons/icon-3.png');
+const normalUnselect = require('../../resources/images/icons/icon-3-outliine.png');
+const tristeSelect = require('../../resources/images/icons/icon-2.png');
+const tristeUnSelect = require('../../resources/images/icons/icon-2-outliine.png');
+const horrivelSelect = require('../../resources/images/icons/icon-1.png');
+const horrivelUnSelect = require('../../resources/images/icons/icon-1-outliine.png');
+
+
 const initialState = { humor: '', date: new Date() }
 
 
@@ -23,37 +35,49 @@ export default class Humor extends Component {
 
     state = { ...initialState }
 
+    
 
     constructor (props) {
         super(props);
         this.state = {
             humor: '',
-            date: new Date()
+            date: moment().format('YYYY-MM-DD'),
+            radianteS: false,
+            felisS: false,
+            normalS: false,
+            tristeS: false,
+            horrivelS: false,
         }
     }
 
-    onRadiante =  () => {
-        console.warn(this.state.humor)
+    onRadiante =  () => { 
+        
+        this.setState({radianteS: !this.state.radianteS})
+        console.warn(this.state.humor, this.state.date)
         this.state = { uri: require('../../resources/images/icons/icon-5.png') }
     }
 
     onFeliz =  () => {
+        this.setState({felisS: !this.state.felisS})
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-4.png') }
     }
 
     onNormal =  () => {
+        this.setState({normalS: !this.state.normalS})
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-3.png') }
     }
 
 
     onTriste =  () => {
+        this.setState({tristeS: !this.state.tristeS})
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-2.png') }
     }
 
     onHorrivel =  () => {
+        this.setState({horrivelS: !this.state.horrivelS})
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-1.png') }
     }
@@ -61,6 +85,13 @@ export default class Humor extends Component {
 
 
     render () {
+
+        let iconRadiante = this.state.radianteS ? radianteSelect : readianteUnSelect;
+        let iconFeliz = this.state.felisS ? felizSelect : felizUnSelect;
+        let iconNormal = this.state.normalS ? normalSelect : normalUnselect;
+        let iconTriste = this.state.tristeS ? tristeSelect : tristeUnSelect;
+        let iconHorrivel = this.state.horrivelS ? horrivelSelect : horrivelUnSelect;
+
         return (
             <Modal onRequestClose={this.props.onCancel}
                    visible={this.props.isVisible}
@@ -75,27 +106,27 @@ export default class Humor extends Component {
                     </View>
                     <View style={styles.humorArea}>
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'radiante'}, this.onRadiante)}}>
-                            <Image source={require('../../resources/images/icons/icon-5-outliine.png')}/>
-                            <Text style={styles.iconText} sytle={{color: '#88ff6e'}}>Radiante</Text>
+                            <Image source={iconRadiante}/>
+                            <Text style={styles.iconText} sytle={{color: this.state.disabl === '1' ? '#88ff6e' : '#949494'}}>Radiante</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'feliz'}, this.onFeliz)}}>
-                            <Image source={require('../../resources/images/icons/icon-4-outliine.png')}/>
-                            <Text style={styles.iconText} style={{color: '#15c3bf'}}>Feliz</Text>
+                            <Image source={iconFeliz}/>
+                            <Text style={styles.iconText} style={{color:'#15c3bf'}}>Feliz</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'normal'}, this.onNormal)}}>
-                            <Image source={require('../../resources/images/icons/icon-3-outliine.png')}/>
+                            <Image source={iconNormal}/>
                             <Text style={styles.iconText} style={{color: '#faca19'}}>Normal</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'triste'}, this.onTriste)}}>
-                            <Image source={require('../../resources/images/icons/icon-2-outliine.png')}/>
+                            <Image source={iconTriste}/>
                             <Text style={styles.iconText} style={{color: '#FF2452'}}>Triste</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'horrivel'}, this.onHorrivel)}}>
-                            <Image source={require('../../resources/images/icons/icon-1-outliine.png')}/>
+                            <Image source={iconHorrivel}/>
                             <Text style={styles.iconText} style={{color: '#5D5D5D'}}>Horrível</Text>
                         </TouchableOpacity>
                     </View>
