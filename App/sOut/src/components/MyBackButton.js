@@ -14,6 +14,7 @@ class MyBackButton extends React.Component {
 
 const styles = StyleSheet.create({
     buttonStyle: {
+        marginTop: 5,
         marginLeft: 20
     },
 });

@@ -22,6 +22,10 @@ export default class EditTasks extends Component {
                     <View style={styles.emptyView}></View>
                 </View>
 
+                <View style={styles.editTaskTitleView}>
+                    <Text style={styles.taskTitle}> Task Title </Text>
+                </View>
+
 
 
             </View>
@@ -65,4 +69,29 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+    backButtonStyle: {
+        marginLeft: 10
+    },
+    editTaskTitleView: {
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        height: height * 0.1,
+        width: width,
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: {width: 0, height: 3},
+        shadowOpacity: 0.2,
+        elevation: 3,
+        position: 'relative'
+    },
+    taskTitle: {
+        fontFamily: 'Roboto',
+        fontSize: 20,
+        color: '#00ED74',
+        marginTop: 20,
+        right: 280,
+        position: 'absolute',
+
+
+    }
 })

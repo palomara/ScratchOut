@@ -131,7 +131,7 @@ export default class TasksList extends Component {
 
                 <View style={styles.barOptions}>
 
-                <TouchableOpacity style={styles.iconArea} >
+                <TouchableOpacity style={styles.iconArea} onPress={() => { this.props.navigation.navigate('EditTasks')}}>
                     <Image source={require('../../resources/images/icons/icon-archives-grey.png')}/>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.iconArea} onPress={this.toggleFilter}>
@@ -205,7 +205,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#00ED74',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 5
     },
 
     flatList: {

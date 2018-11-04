@@ -123,7 +123,8 @@ const styles = StyleSheet.create({
         fontSize: 20,
         color: '#00ED74',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        marginTop: 5
     },
 
     mainView: {
