@@ -7,9 +7,11 @@ import {
     Dimensions,
     FlatList,
     ScrollView,
-    RefreshControl, Image, TouchableOpacity
+    RefreshControl,
+    Image,
+    TouchableOpacity
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons';
+
 import { SearchBar } from 'react-native-elements'
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'

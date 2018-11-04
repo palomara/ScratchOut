@@ -4,9 +4,14 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet, StatusBar, ScrollView, TouchableOpacity, Image, Dimensions,
+    StyleSheet,
+    StatusBar,
+    ScrollView,
+    TouchableOpacity,
+    Image,
+    Dimensions,
 } from 'react-native';
-import ActionButton from 'react-native-action-button';
+
 
 
 import MyBackButton from "../components/MyBackButton";
