@@ -20,19 +20,19 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 ![Diagrama de Classes](https://imgur.com/XmrheT1.png)
 
 ### - Sequência
-### - Cadastro
+#### - Cadastro
 ![Cadastro](https://imgur.com/piLXqV2.png)
-### - Indicador de Performance
+#### - Indicador de Performance
 ![Indicador de Performance](https://imgur.com/wCgWZko.png)
-### - Influências
+#### - Influências
 ![Influências](https://imgur.com/yXUVAXv.png)
-### - Login
+#### - Login
 ![Login](https://imgur.com/WnP6lJF.png)
-### - Tarefas
+#### - Tarefas
 ![Tarefas](https://imgur.com/WC3Izkm.png)
 
-### - DER&MER
-![DER & MER](https://imgur.com/a/2fzK2zL.png)
+#### - DER&MER
+![DER & MER](https://imgur.com/4r2E0sp.png)
 
 
 
