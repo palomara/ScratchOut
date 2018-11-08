@@ -8,8 +8,6 @@ import {
     StatusBar,
     Image,
     Text,
-    TouchableOpacity,
-    Linking,
     ImageBackground,
     Dimensions
 } from 'react-native'

@@ -6,7 +6,7 @@ module.exports = app => {
         .all(app.config.passport.authenticate())
         .get(app.api.task.getTasks)
         .post(app.api.task.save)
-    
+
     app.route('/tasks/doneat')
         .all(app.config.passport.authenticate())
         .get(app.api.task.getTaskdonAt)
@@ -47,4 +47,9 @@ module.exports = app => {
         .all(app.config.passport.authenticate())
         .get(app.api.saude.getSaude)
         .post(app.api.saude.saveSaude)
+
+    app.route('/rotina')
+        .all(app.config.passport.authenticate())
+        .get(app.api.rotina.getRotina)
+        .post(app.api.rotina.saveRotina)
 };

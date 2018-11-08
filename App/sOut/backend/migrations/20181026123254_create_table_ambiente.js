@@ -4,7 +4,6 @@ exports.up = function(knex, Promise) {
         table.increments('id').primary()
         table.string('title').notNull()
         table.string('Status')
-        table.string('som')
         table.datetime('dtIncluded')
         table.integer('userId').references('id').inTable('users').notNull()
 

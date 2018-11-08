@@ -29,9 +29,9 @@ module.exports = app => {
             : moment().endOf('day').toDate()
         
         app.db('tasks')
-            .count('id as Tarefas')
+            .count('id as tarefas')
             .where({ userId: req.user.id })
-            .then(tasks => res.json(tasks))
+            .then(task => res.json(task))
             .catch(err => res.status(400).json(err))
 
     }

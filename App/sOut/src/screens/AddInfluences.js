@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {
     View,
     Text,
-    StyleSheet, 
-    StatusBar, 
-    ScrollView, 
-    TouchableOpacity, 
-    Image, 
-    Dimensions, 
+    StyleSheet,
+    StatusBar,
+    ScrollView,
+    TouchableOpacity,
+    Image,
+    Dimensions,
 } from 'react-native';
 
 import { CheckBox } from 'react-native-elements'
@@ -18,11 +18,12 @@ import Iconic from 'react-native-vector-icons/Ionicons';
 import IconM from 'react-native-vector-icons/MaterialCommunityIcons';
 import IconS from 'react-native-vector-icons/SimpleLineIcons';
 import moment from 'moment'
+import axios from 'axios'
+import { server, showError } from '../components/common'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
-
-//TODO: Corrigir checkbuttons, estão sendo todos selecionados quando seleciona-se um, e adicionar o TimePicker
+const datatime = moment().endOf('day').format('YYYY-MM-DD');
 
 export default class AddInfluences extends Component {
     /* checkbox */
@@ -35,14 +36,13 @@ export default class AddInfluences extends Component {
         checkedFadiga: false,
         checkedEstres: false,
         checkedDoente: false,
-
-
     };
     /* radion */
     state = {
         checkdR15: false,
         checkdR30: false,
         checkdR40: false,
+        tempo: '',
     };
     /* timepicker */
     state = {
@@ -61,33 +61,108 @@ export default class AddInfluences extends Component {
     _hideDateTimePicker = () => this.setState({ isDateTimePickerVisible: false });
 
     _handleDatePicked = time => {
-        this.setState({time: moment(time).format('HH:mm')})
+        this.setState({ time: moment(time).format('HH:mm') })
         console.warn(this.state.time);
         this._hideDateTimePicker();
     };
 
-    readionSelect = () =>{
-        if(!this.state.checkdR15){
-            this.setState({checkdR30: false})
-            this.setState({checkdR40: false})
-        }
-        if(!this.state.checkedR30){
-            this.setState({checkdR15: false})
-            this.setState({checkdR40: false})
-        }else{
-            this.setState({checkdR15: false})
-            this.setState({checkdR30: false})
+    readionSelect = () => {
+        if (!this.state.checkdR15) {
+            this.setState({ checkdR30: false })
+            this.setState({ checkdR40: false })
+        } else if (!this.state.checkdR30) {
+            this.setState({ checkdR15: false })
+            this.setState({ checkdR40: false })
+        } else{
+            this.setState({ checkdR15: false })
+            this.setState({ checkdR30: false })
         }
     }
 
+    saveSaude = async () => {
+        try {
+            if (this.state.checkedDoente) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "Doente",
+                    dtIncluded: datatime
+                })
+            }
+            if (this.state.checkedDorBar) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "dor de barriga",
+                    dtIncluded: datatime
+                })
+            }
+            if (this.state.checkedDorCab) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "dor de cabeca",
+                    dtIncluded: datatime
+                })
+            }
+            if (this.state.checkedDorCos) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "dor nas costas",
+                    dtIncluded: datatime
+                })
+            }
+            if (this.state.checkedEstres) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "estressado",
+                    dtIncluded: datatime
+                })
+            }
+            if (this.state.checkedFadiga) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "fadiga",
+                    dtIncluded: datatime
+                })
+            }
+            if (this.state.checkedFebre) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "febre",
+                    dtIncluded: datatime
+                })
+            }
+            if (this.state.checkedInsonia) {
+                await axios.post(`${server}/saude`, {
+                    sintomas: "insonia",
+                    dtIncluded: datatime
+                })
+            }
+        } catch (error) {
+
+        }
+
+    }
+
+    saveRotina = async () => {
+        try {
+            await axios.post(`${server}/rotina`, {
+                Texercicio: this.state.tempo,
+                Tsono: this.state.time,
+                dtIncluded: datatime,
+                disposicao: this.state.value
+            })
+            console.warn("rotina salva!")
+        } catch (err) {
+            showError(err)
+        }
+
+    }
+
+    save = () => {
+        this.saveRotina()
+        this.saveSaude()
+        this.props.navigation.navigate('Influences')
+    }
 
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+                <StatusBar backgroundColor='transparent' barStyle='dark-content' />
                 <View style={styles.fixedNav}>
-                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('Influences')}} style={styles.backButtonStyle}>
-                        <Image source={require('../../resources/images/icons/icon-nav_back-white.png')}/>
+                    <TouchableOpacity onPress={() => { this.props.navigation.navigate('Influences') }} style={styles.backButtonStyle}>
+                        <Image source={require('../../resources/images/icons/icon-nav_back-white.png')} />
                     </TouchableOpacity>
                     <View style={styles.emptyView}></View>
                 </View>
@@ -95,8 +170,8 @@ export default class AddInfluences extends Component {
                 <ScrollView style={styles.mainView}>
                     <View style={styles.healthView}>
                         <View style={styles.titleIconArea}>
-                        <Text style={styles.title}>Sintomas</Text>
-                        <Icon  name='medicinebox' size={25} color={'#00ED74'} />
+                            <Text style={styles.title}>Sintomas</Text>
+                            <Icon name='medicinebox' size={25} color={'#00ED74'} />
                         </View>
                         <CheckBox
                             title="Dor de cabeça"
@@ -159,14 +234,14 @@ export default class AddInfluences extends Component {
                     <View style={styles.hourSleptView} marginTop={20}>
                         <View style={styles.titleIconArea}>
                             <Text style={styles.title}>Horas dormidas</Text>
-                            <IconM   name='sleep' size={25} color={'#00ED74'} />
+                            <IconM name='sleep' size={25} color={'#00ED74'} />
                         </View>
                         <View style={styles.sleepTouchView}>
-                            <TouchableOpacity style={styles.sleepTouch}  onPress={this._showDateTimePicker}>
+                            <TouchableOpacity style={styles.sleepTouch} onPress={this._showDateTimePicker}>
                                 <Text style={styles.sleepTouchText}>Inserir</Text>
                             </TouchableOpacity>
                             <DateTimePicker
-                            mode='time'
+                                mode='time'
                                 isVisible={this.state.isDateTimePickerVisible}
                                 onConfirm={this._handleDatePicked}
                                 onCancel={this._hideDateTimePicker}
@@ -177,7 +252,7 @@ export default class AddInfluences extends Component {
                     <View>
                         <View style={styles.titleIconArea} marginTop={20}>
                             <Text style={styles.title}>Exercício físico</Text>
-                            <Iconic   name='md-fitness' size={25} color={'#00ED74'} />
+                            <Iconic name='md-fitness' size={25} color={'#00ED74'} />
                         </View>
                         <CheckBox
                             center
@@ -185,7 +260,7 @@ export default class AddInfluences extends Component {
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
                             checked={this.state.checkdR15}
-                            onPress={() => this.setState({ checkdR15: !this.state.checkdR15 }, this.readionSelect())}
+                            onPress={() => this.setState({ checkdR15: !this.state.checkdR15, tempo: '15-30' }, this.readionSelect())}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
@@ -195,7 +270,7 @@ export default class AddInfluences extends Component {
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
                             checked={this.state.checkdR30}
-                            onPress={() => this.setState({ checkdR30: !this.state.checkdR30 },  this.readionSelect())}
+                            onPress={() => this.setState({ checkdR30: !this.state.checkdR30, tempo: '30-60' }, this.readionSelect())}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
@@ -205,7 +280,7 @@ export default class AddInfluences extends Component {
                             checkedIcon='dot-circle-o'
                             uncheckedIcon='circle-o'
                             checked={this.state.checkdR40}
-                            onPress={() => this.setState({ checkdR40: !this.state.checkdR40 }, this.readionSelect())}
+                            onPress={() => this.setState({ checkdR40: !this.state.checkdR40, tempo: '60+' }, this.readionSelect())}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />
@@ -214,24 +289,24 @@ export default class AddInfluences extends Component {
                     <View>
                         <View style={styles.titleIconArea} marginTop={20}>
                             <Text style={styles.title}>Disposição</Text>
-                            <IconS   name='energy' size={25} color={'#00ED74'} />
+                            <IconS name='energy' size={25} color={'#00ED74'} />
                         </View>
-                        <View style={{flex: 1, alignItems: 'stretch', justifyContent: 'center', flexDirection: 'row'}}>
+                        <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center', flexDirection: 'row' }}>
                             <Slider
-                            step={1}
+                                step={1}
                                 minimumValue={0}
                                 maximumValue={100}
                                 thumbTintColor={'#006F77'}
                                 marginLeft={15}
                                 width={300}
                                 value={this.state.value}
-                                onValueChange={(value) => this.setState({value})} />
+                                onValueChange={(value) => this.setState({ value })} />
                             <Text style={styles.sliderValue}>{this.state.value} %</Text>
                         </View>
                     </View>
 
                     <View style={styles.touchSaveView}>
-                        <TouchableOpacity style={styles.touchSave}>
+                        <TouchableOpacity style={styles.touchSave} onPress={this.save}>
                             <Text style={styles.touchSaveText}>Salvar</Text>
                         </TouchableOpacity>
                     </View>
@@ -260,7 +335,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: '#00ED74',
         shadowColor: '#000',
-        shadowOffset: {width: 0, height: 3},
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
         marginBottom: 20,
         elevation: 3,
@@ -326,7 +401,7 @@ const styles = StyleSheet.create({
     },
     sleepTouch: {
         flex: 1,
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
     },
@@ -346,7 +421,7 @@ const styles = StyleSheet.create({
     },
     touchSave: {
         flex: 1,
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
     },
