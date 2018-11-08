@@ -3,30 +3,36 @@ O **Scratch Out** é uma aplicação móvel em desenvolvimento com o propósito 
 
 ## Diagramas
 ### - Casos de Uso
-![Diagrama de Casos de Uso sOut](https://imgur.com/KaNjX1q.png)
+![Diagrama de Casos de Uso sOut](https://imgur.com/4vBKkBQ.png)
 
 ### - Atividades
 #### - Login
-![Efetuar Login](https://i.imgur.com/QLn15uU.png)
+![Efetuar Login](https://imgur.com/DD0HqA5.png)
 #### - Manter Tarefa
-![Manter Tarefa](https://imgur.com/sOrCRke.png)
-#### - Concluir Tarefa
-![Concluir Tarefa](https://i.imgur.com/QpkPBiq.png)
-#### - Editar Tarefa
-![Editar Tarefa](https://i.imgur.com/Er9fcPK.png)
+![Manter Tarefa](https://imgur.com/QF0468j.png)
 #### - Manter Influência
-![Manter Influência](https://i.imgur.com/UKHgglG.png)
-#### - Editar Influência
-![Editar Influência](https://i.imgur.com/4jXsEoU.png)
+![Manter Influência](https://imgur.com/UFW7ZbR.png)
+#### - Manter Perfil
+![Manter Perfil](https://imgur.com/6WBHyIr.png)
+
 
 ### - Classes
-![Editar Influência](https://i.imgur.com/SShKhbS.png)
+![Diagrama de Classes](https://imgur.com/XmrheT1.png)
 
 ### - Sequência
-![Editar Influência](https://imgur.com/p728uLt.png)
+#### - Cadastro
+![Cadastro](https://imgur.com/piLXqV2.png)
+#### - Indicador de Performance
+![Indicador de Performance](https://imgur.com/wCgWZko.png)
+#### - Influências
+![Influências](https://imgur.com/yXUVAXv.png)
+#### - Login
+![Login](https://imgur.com/WnP6lJF.png)
+#### - Tarefas
+![Tarefas](https://imgur.com/WC3Izkm.png)
 
-### - DER&MER
-![DER & MER](https://imgur.com/cJtpAJc.png)
+#### - DER&MER
+![DER & MER](https://imgur.com/4r2E0sp.png)
 
 
 
