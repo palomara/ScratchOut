@@ -31,6 +31,7 @@ class PieChartWithDifferentArcs extends React.PureComponent {
                 key: 5,
                 value: 35,
                 svg: { fill: '#5D5D5D' }
+                
             }
         ]
 
@@ -41,6 +42,7 @@ class PieChartWithDifferentArcs extends React.PureComponent {
                 outerRadius={'100%'}
                 innerRadius={10}
                 data={data}
+
             />
         )
     }

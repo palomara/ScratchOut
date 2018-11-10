@@ -100,7 +100,7 @@ export default class Home extends Component<Props> {
                         <View style={styles.chartArea}>
                             <Text> </Text>
                             <CircleChart progresso={this.state.progress} />
-                            <Text style={{ alignContent: 'center' }}>{this.state.ftasks > 1 ? 'Faltam' : 'Falta'} {this.state.ftasks} {this.state.ftasks > 1 ? 'tarefas' : 'tarefa'}</Text>
+                            <Text style={styles.progressMessage}>{this.state.ftasks > 1 ? 'Faltam' : 'Falta'} {this.state.ftasks} {this.state.ftasks > 1 ? 'tarefas' : 'tarefa'}</Text>
                         </View>
                     </View>
 
@@ -153,6 +153,15 @@ const styles = StyleSheet.create({
 
     },
     chartArea: {
+        marginTop: 20
+    },
+    progressMessage: {
+        fontFamily: 'Roboto',
+        fontSize: 16,
+        alignItems: 'center',
+        flexDirection: 'row',
+        justifyContent: 'center',
+        marginLeft: 150,
         marginTop: 20
     }
 });

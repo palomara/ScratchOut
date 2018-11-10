@@ -171,7 +171,7 @@ export default class AddInfluences extends Component {
                     <View style={styles.healthView}>
                         <View style={styles.titleIconArea}>
                             <Text style={styles.title}>Sintomas</Text>
-                            <Icon name='medicinebox' size={25} color={'#00ED74'} />
+                            <Icon name='medicinebox' size={25} color={'#00ce67'} />
                         </View>
                         <CheckBox
                             title="Dor de cabeça"
@@ -234,7 +234,7 @@ export default class AddInfluences extends Component {
                     <View style={styles.hourSleptView} marginTop={20}>
                         <View style={styles.titleIconArea}>
                             <Text style={styles.title}>Horas dormidas</Text>
-                            <IconM name='sleep' size={25} color={'#00ED74'} />
+                            <IconM name='sleep' size={25} color={'#00ce67'} />
                         </View>
                         <View style={styles.sleepTouchView}>
                             <TouchableOpacity style={styles.sleepTouch} onPress={this._showDateTimePicker}>
@@ -252,7 +252,7 @@ export default class AddInfluences extends Component {
                     <View>
                         <View style={styles.titleIconArea} marginTop={20}>
                             <Text style={styles.title}>Exercício físico</Text>
-                            <Iconic name='md-fitness' size={25} color={'#00ED74'} />
+                            <Iconic name='md-fitness' size={25} color={'#00ce67'} />
                         </View>
                         <CheckBox
                             center
@@ -289,7 +289,7 @@ export default class AddInfluences extends Component {
                     <View>
                         <View style={styles.titleIconArea} marginTop={20}>
                             <Text style={styles.title}>Disposição</Text>
-                            <IconS name='energy' size={25} color={'#00ED74'} />
+                            <IconS name='energy' size={25} color={'#00ce67'} />
                         </View>
                         <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center', flexDirection: 'row' }}>
                             <Slider
@@ -333,7 +333,7 @@ const styles = StyleSheet.create({
         width: width,
         alignItems: 'center',
         justifyContent: 'space-between',
-        backgroundColor: '#00ED74',
+        backgroundColor: '#00ce67',
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'Roboto',
         fontSize: 20,
-        color: '#00ED74',
+        color: '#00ce67',
         alignItems: 'center',
         justifyContent: 'center',
         marginBottom: 10,
@@ -413,7 +413,7 @@ const styles = StyleSheet.create({
     touchSaveView: {
         width: width * 0.80,
         height: height / 12.8,
-        backgroundColor: "#00ED74",
+        backgroundColor: "#00ce67",
         marginTop: height / 50,
         borderRadius: 4,
         marginBottom: 10,
@@ -426,7 +426,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
     },
     touchSaveText: {
-        fontFamily: 'Roboto',
+        fontFamily: 'Roboto Bold',
         fontSize: 18,
         color: '#fff',
     }

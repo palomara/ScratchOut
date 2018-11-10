@@ -70,7 +70,7 @@ export default class Hall extends Component<Props> {
             <View style={styles.SocialGoogleArea}>
               <Image style={styles.SocialGoogle} source={require('../../resources/images/drawables/draw-g_google.png')}/>
             </View>
-            <Text style={styles.withSocialGoogleText}>Entre com Google</Text>
+            <Text style={styles.withSocialGoogleText}>Entre com Facebook</Text>
             <View style={styles.emptyView}></View>
           </TouchableOpacity>
           <View style={styles.withSocialFacebook}>
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
 
   logo:{
-    width: width * 0.78,
+    width: width
   },
 
   fieldNewAccount:{

@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'Roboto',
         fontSize: 20,
-        color: '#00ED74',
+        color: '#00ce67',
         alignItems: 'center',
         justifyContent: 'center',
         marginTop: 5
@@ -140,7 +140,7 @@ const styles = StyleSheet.create({
     Entry: {
         width: width * 0.97,
         height: height / 12.8,
-        backgroundColor: "#00ED74",
+        backgroundColor: "#00ce67",
         marginTop: 10,
         borderRadius: 4,
         marginBottom: 10

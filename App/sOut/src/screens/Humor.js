@@ -179,7 +179,7 @@ var styles = StyleSheet.create({
     titleModal: {
         fontFamily: 'Roboto',
         fontSize: 20,
-        color: '#00ED74',
+        color: '#00ce67',
         alignItems: 'center',
         justifyContent: 'center',
     },
@@ -202,7 +202,7 @@ var styles = StyleSheet.create({
     concludeButtonArea: {
         width: width * 0.88,
         height: height / 12.8,
-        backgroundColor: "#00ED74",
+        backgroundColor: "#00ce67",
         borderRadius: 40,
         marginTop: height / 50
     },

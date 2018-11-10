@@ -72,7 +72,6 @@ export default class Register extends Component<Props> {
                 </View>
 
                 <View style={styles.questionField}>
-                    <Text style={styles.questionText}>espaçamento</Text>
                 </View>
 
                 <View style={styles.nextField}>
@@ -191,6 +190,7 @@ const styles = StyleSheet.create({
         fontFamily: 'Roboto Bold',
         fontSize: 26,
         color: '#FFFFFF',
+        marginTop: 20
     },
 
     questionField: {
@@ -200,8 +200,9 @@ const styles = StyleSheet.create({
 
     questionText:{
         fontFamily: 'Roboto Regular',
-        fontSize: 16,
+        fontSize: 17,
         color: '#FFFFFF',
+        marginTop: 10
     },
 
     inputField:{
