@@ -99,14 +99,6 @@ export default class Profile extends Component {
                         <Text style={styles.contentInfoUser}>{this.state.email}</Text>
                         <Text style={styles.otherTitle}>PLANO</Text>
                         <Text style={styles.contentInfoUser}>Premium</Text>
-                        <Text style={styles.otherTitle}>INDICADOR DE PERFORMANCE</Text>
-                        <Text style={styles.contentInfoUser}>Feliz</Text>
-                        <Text style={styles.otherTitle}>ADICIONAR</Text>
-                        <Text style={styles.contentInfoUser}>1</Text>
-                        <Text style={styles.otherTitle}>ADICIONAR</Text>
-                        <Text style={styles.contentInfoUser}>2</Text>
-                        <Text style={styles.otherTitle}>ADICIONAR</Text>
-                        <Text style={styles.contentInfoUser}>3</Text>
                     </View>
                 </ScrollView>
 
@@ -177,7 +169,7 @@ const styles = StyleSheet.create({
     contentInfoUser: {
         fontFamily: 'Roboto',
         fontSize: 18,
-        color: '#00ED74',
+        color: '#00ce67',
         marginLeft: width * 0.06,
     },
 

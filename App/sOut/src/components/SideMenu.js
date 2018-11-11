@@ -52,7 +52,8 @@ class SideMenu extends Component {
                     <Avatar
                         width={120}
                         rounded
-                        title="foto"
+                        containerStyle={{marginLeft: 70, borderWidth: 2, borderColor: '#00ce67', borderStyle:'solid', borderMargin: 30 }}
+                        icon={{name: 'user', type: 'font-awesome'}}
                         onPress={() => this.props.navigation.navigate('Profile')}
                         onLongPress={() => console.warn('ir para configuração') /*this.props.navigation.navigate('Config')*/}
                         activeOpacity={0.7}
@@ -73,8 +74,8 @@ class SideMenu extends Component {
                     </TouchableOpacity>
                 </ScrollView>
                     <TouchableOpacity onPress={()=>{ Linking.openURL('https://google.com')}} style={styles.footer}>
-                        <Image style={{width: 20, height: 20}} source={require('../../resources/images/icons/bugIcon.png')}/>
-                        <Text>Reportar bug</Text>
+                        <Image style={{width: 20, height: 20, marginRight: 10}} source={require('../../resources/images/icons/bugIcon.png')}/>
+                        <Text>Reportar</Text>
                     </TouchableOpacity>
                 <View style={styles.emptyView}></View>
             </View>
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
         padding: 5,
         alignItems: 'center',
         justifyContent: 'flex-start',
-        backgroundColor: '#58b058',
+        backgroundColor: '#fff',
     },
 
     footer: {

@@ -163,7 +163,7 @@ var styles = StyleSheet.create({
   input: {
     fontFamily: 'Roboto Light',
     fontSize: 20,
-    color: '#00ED74',
+    color: '#00ce67',
     flex: 1
   },
   addTaskIcon: {
@@ -174,7 +174,7 @@ var styles = StyleSheet.create({
   inputFieldPass:{
     flex: 1,
     borderBottomWidth: 2,
-    borderColor: '#00ED74',
+    borderColor: '#00ce67',
     alignItems:'center',
     flexDirection: 'row',
     marginBottom: 8,
@@ -191,7 +191,7 @@ var styles = StyleSheet.create({
   Create : {
     width: width * 0.88,
     height: height / 12.8,
-    backgroundColor: "#00ED74",
+    backgroundColor: "#00ce67",
     borderRadius: 40,
     marginTop: height / 50
   },
@@ -209,7 +209,7 @@ var styles = StyleSheet.create({
 
   date: {
     fontFamily: 'Roboto',
-    color: "#00ED74",
+    color: "#00ce67",
     fontSize: 20,
     marginLeft: 10,
     marginTop: 10,

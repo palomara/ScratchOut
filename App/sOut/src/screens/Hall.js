@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
   },
 
   logo:{
-    width: width
+    width: width * 0.78,
   },
 
   fieldNewAccount:{

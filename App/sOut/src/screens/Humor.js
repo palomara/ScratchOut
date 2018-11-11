@@ -107,7 +107,7 @@ export default class Humor extends Component {
                     <View style={styles.humorArea}>
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'radiante'}, this.onRadiante)}}>
                             <Image source={iconRadiante}/>
-                            <Text style={styles.iconText} sytle={{color: this.state.disabl === '1' ? '#88ff6e' : '#949494'}}>Radiante</Text>
+                            <Text style={styles.iconText} sytle={{color: '#00ED74'}}>Radiante</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'feliz'}, this.onFeliz)}}>
