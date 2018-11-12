@@ -7,11 +7,13 @@ import {
     TouchableWithoutFeedback,
     TouchableOpacity,
     Alert,
-    Platform, Image, Dimensions, TextInput,  AsyncStorage
+    Platform, Image, Dimensions, TextInput, AsyncStorage
 } from 'react-native'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import Icon from "react-native-vector-icons/FontAwesome";
+import axios from 'axios'
+import { server, showError } from '../components/common'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -29,19 +31,19 @@ const horrivelUnSelect = require('../../resources/images/icons/icon-1-outliine.p
 
 
 const initialState = { humor: '', date: new Date() }
+const datatime = moment().endOf('day').format('YYYY-MM-DD');
 
 
 export default class Humor extends Component {
 
     state = { ...initialState }
 
-    
 
-    constructor (props) {
+
+    constructor(props) {
         super(props);
         this.state = {
             humor: '',
-            date: moment().format('YYYY-MM-DD'),
             radianteS: false,
             felisS: false,
             normalS: false,
@@ -50,41 +52,68 @@ export default class Humor extends Component {
         }
     }
 
-    onRadiante =  () => { 
-        
-        this.setState({radianteS: !this.state.radianteS})
+    onRadiante = () => {
+
+        this.setState({ radianteS: !this.state.radianteS })
         console.warn(this.state.humor, this.state.date)
         this.state = { uri: require('../../resources/images/icons/icon-5.png') }
     }
-
-    onFeliz =  () => {
-        this.setState({felisS: !this.state.felisS})
+    onFeliz = () => {
+        this.setState({ felisS: !this.state.felisS })
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-4.png') }
     }
-
-    onNormal =  () => {
-        this.setState({normalS: !this.state.normalS})
+    onNormal = () => {
+        this.setState({ normalS: !this.state.normalS })
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-3.png') }
     }
-
-
-    onTriste =  () => {
-        this.setState({tristeS: !this.state.tristeS})
+    onTriste = () => {
+        this.setState({ tristeS: !this.state.tristeS })
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-2.png') }
     }
-
-    onHorrivel =  () => {
-        this.setState({horrivelS: !this.state.horrivelS})
+    onHorrivel = () => {
+        this.setState({ horrivelS: !this.state.horrivelS })
         console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-1.png') }
     }
+    onSave = async () => {
+        if (this.state.radianteS) {
+            await axios.post(`${server}/humor`, {
+                title: 'radiante',
+                dtIncluded: datatime
+            })   
+        }
+        if (this.state.felisS) {
+            await axios.post(`${server}/humor`, {
+                title: 'feliz',
+                dtIncluded: datatime
+            })
+        }
+        if (this.state.normalS) {
+            await axios.post(`${server}/humor`, {
+                title: 'normal',
+                dtIncluded: datatime
+            })
+        }
+        if (this.state.tristeS) {
+            await axios.post(`${server}/humor`, {
+                title: 'triste',
+                dtIncluded: datatime
+            })
+        }
+        if (this.state.horrivelS) {
+            await axios.post(`${server}/humor`, {
+                title: 'horivel',
+                dtIncluded: datatime
+            })
+        }
+       () => {this.props.onCancel}
+    }
 
 
-
-    render () {
+    render() {
 
         let iconRadiante = this.state.radianteS ? radianteSelect : readianteUnSelect;
         let iconFeliz = this.state.felisS ? felizSelect : felizUnSelect;
@@ -94,51 +123,51 @@ export default class Humor extends Component {
 
         return (
             <Modal onRequestClose={this.props.onCancel}
-                   visible={this.props.isVisible}
-                   animationType='fade' transparent={true}>
+                visible={this.props.isVisible}
+                animationType='fade' transparent={true}>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}>
                     <View style={styles.offset}></View>
                 </TouchableWithoutFeedback>
                 <View style={styles.modalArea}>
-                <View style={styles.modalContent}>
-                    <View style={styles.modalHeader}>
-                        <Text style={styles.titleModal}>Como se sente?</Text>
+                    <View style={styles.modalContent}>
+                        <View style={styles.modalHeader}>
+                            <Text style={styles.titleModal}>Como se sente?</Text>
+                        </View>
+                        <View style={styles.humorArea}>
+                            <TouchableOpacity style={styles.buttonHumor} onPress={() => { this.setState({ humor: 'radiante' }, this.onRadiante) }}>
+                                <Image source={iconRadiante} />
+                                <Text style={styles.iconText} sytle={{ color: this.state.disabl === '1' ? '#88ff6e' : '#949494' }}>Radiante</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.buttonHumor} onPress={() => { this.setState({ humor: 'feliz' }, this.onFeliz) }}>
+                                <Image source={iconFeliz} />
+                                <Text style={styles.iconText} style={{ color: '#15c3bf' }}>Feliz</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.buttonHumor} onPress={() => { this.setState({ humor: 'normal' }, this.onNormal) }}>
+                                <Image source={iconNormal} />
+                                <Text style={styles.iconText} style={{ color: '#faca19' }}>Normal</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.buttonHumor} onPress={() => { this.setState({ humor: 'triste' }, this.onTriste) }}>
+                                <Image source={iconTriste} />
+                                <Text style={styles.iconText} style={{ color: '#FF2452' }}>Triste</Text>
+                            </TouchableOpacity>
+
+                            <TouchableOpacity style={styles.buttonHumor} onPress={() => { this.setState({ humor: 'horrivel' }, this.onHorrivel) }}>
+                                <Image source={iconHorrivel} />
+                                <Text style={styles.iconText} style={{ color: '#5D5D5D' }}>Horrível</Text>
+                            </TouchableOpacity>
+                        </View>
+                        <View>
+
+                        </View>
+                        <View style={styles.concludeButtonArea}>
+                            <TouchableOpacity style={styles.concludeTouch} onPress={this.onSave}>
+                                <Text style={styles.concludeText}>OK</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
-                    <View style={styles.humorArea}>
-                        <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'radiante'}, this.onRadiante)}}>
-                            <Image source={iconRadiante}/>
-                            <Text style={styles.iconText} sytle={{color: '#00ED74'}}>Radiante</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'feliz'}, this.onFeliz)}}>
-                            <Image source={iconFeliz}/>
-                            <Text style={styles.iconText} style={{color:'#15c3bf'}}>Feliz</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'normal'}, this.onNormal)}}>
-                            <Image source={iconNormal}/>
-                            <Text style={styles.iconText} style={{color: '#faca19'}}>Normal</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'triste'}, this.onTriste)}}>
-                            <Image source={iconTriste}/>
-                            <Text style={styles.iconText} style={{color: '#FF2452'}}>Triste</Text>
-                        </TouchableOpacity>
-
-                        <TouchableOpacity style={styles.buttonHumor} onPress={() => {this.setState({humor: 'horrivel'}, this.onHorrivel)}}>
-                            <Image source={iconHorrivel}/>
-                            <Text style={styles.iconText} style={{color: '#5D5D5D'}}>Horrível</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View>
-
-                    </View>
-                    <View style={styles.concludeButtonArea}>
-                        <TouchableOpacity style={styles.concludeTouch} onPress={this.save}>
-                            <Text style={styles.concludeText}>OK</Text>
-                        </TouchableOpacity>
-                    </View>
-                </View>
                 </View>
                 <TouchableWithoutFeedback onPress={this.props.onCancel}>
                     <View style={styles.offset}></View>
@@ -169,7 +198,7 @@ var styles = StyleSheet.create({
         padding: height / 150,
         width: width * 0.9,
     },
-    modalHeader:{
+    modalHeader: {
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center',
@@ -187,14 +216,14 @@ var styles = StyleSheet.create({
         padding: height / 150,
         width: width * 0.9,
         flexDirection: 'row',
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'space-between',
         backgroundColor: "#fff",
         marginLeft: 2
 
     },
     buttonHumor: {
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
 
 
@@ -208,7 +237,7 @@ var styles = StyleSheet.create({
     },
     concludeTouch: {
         flex: 1,
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
     },
     concludeText: {

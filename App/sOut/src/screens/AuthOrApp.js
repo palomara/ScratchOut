@@ -30,7 +30,7 @@ export default class AuthOrApp extends Component {
         } else {
             setTimeout(() =>{
                 this.props.navigation.navigate('Hall')
-            }, 5000);
+            }, 2000);
 
         }
     };
