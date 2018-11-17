@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
         fontSize: 15,
         fontFamily: 'Roboto Bold',
         color: 'red',
-        left: 185,
+        left: 165,
         position: 'absolute',
 
 

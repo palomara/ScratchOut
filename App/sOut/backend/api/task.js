@@ -14,19 +14,20 @@ module.exports = app => {
     }
     const getTaskdonAt = (req, res) => {
         const date = req.query.date ? req.query.date
-            : moment().endOf('day').toDate()
+            : moment().endOf('month').toDate()
 
         app.db('tasks')
             .count('id as TarefasConcluidas')
             .where({ userId: req.user.id })
             .where('doneAt', '!=', '')
+            .where('doneAt', '<=', date)
             .then(tasksC => res.json(tasksC))
             .catch(err => res.status(400).json(err))
     }
 
     const getCountTask = (req, res) => {
         const date = req.query.date ? req.query.date
-            : moment().endOf('day').toDate()
+            : moment().endOf('month').toDate()
         
         app.db('tasks')
             .count('id as tarefas')

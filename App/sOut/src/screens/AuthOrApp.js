@@ -75,7 +75,7 @@ var styles = StyleSheet.create({
     },
 
     logo:{
-        width: width * 0.78,
+        width: width * 0.90,
         marginBottom: 60
     },
 

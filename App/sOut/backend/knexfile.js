@@ -3,11 +3,11 @@
 module.exports = {
     client: 'MySQL',
     connection: {
-        host: 'soutdev.cuevqr10c1ly.sa-east-1.rds.amazonaws.com',
-        port: '3000',
-        database: 'soutroot',
-        user:     'soutroot',
-        password: 'soutroot211'
+        /*host: 'soutdev.cuevqr10c1ly.sa-east-1.rds.amazonaws.com',
+        port: '3000',*/
+        database: 'sout',
+        user:     'root',
+        password: ''
     },
     pool: {
         min: 2,
