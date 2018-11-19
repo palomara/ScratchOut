@@ -1,10 +1,11 @@
 import React from 'react';
-import {Image, TouchableOpacity} from 'react-native';
+import {Image, TouchableOpacity, ToastAndroid} from 'react-native';
 import {withNavigation} from 'react-navigation';
 import axios from "axios";
 import {server, showError} from "./common";
 import moment from "moment";
 import AddTask from "../screens/AddTask";
+import toast from 'react-native-simple-toast'
 
 class AddTaskButton extends React.Component {
 
@@ -24,6 +25,8 @@ class AddTaskButton extends React.Component {
                 estimateAt: data
             });
             this.setState({showAddTask: false}, this.loadTask)
+            toast.show('Tarefa salva!', toast.SHORT)
+            
         } catch (err) {
             showError(err)
         }

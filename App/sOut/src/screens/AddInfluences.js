@@ -20,6 +20,7 @@ import IconS from 'react-native-vector-icons/SimpleLineIcons';
 import moment from 'moment'
 import axios from 'axios'
 import { server, showError } from '../components/common'
+import toast from 'react-native-simple-toast'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -94,6 +95,7 @@ export default class AddInfluences extends Component {
                 })
             }
             if (this.state.checkedDorCab) {
+                console.warn('aqui')
                 await axios.post(`${server}/saude`, {
                     sintomas: "dor de cabeca",
                     dtIncluded: datatime
@@ -153,6 +155,7 @@ export default class AddInfluences extends Component {
     save = () => {
         this.saveRotina()
         this.saveSaude()
+        toast.show('Influencias registradas!', toast.LONG)
         this.props.navigation.navigate('Influences')
     }
 
@@ -175,8 +178,8 @@ export default class AddInfluences extends Component {
                         </View>
                         <CheckBox
                             title="Dor de cabeça"
-                            checked={this.state.checkedDorC}
-                            onPress={() => this.setState({ checkedDorC: !this.state.checkedDorC })}
+                            checked={this.state.checkedDorCab}
+                            onPress={() => this.setState({ checkedDorCab: !this.state.checkedDorCab })}
                             checkedColor={'#006F77'}
                             fontFamily={'Roboto'}
                         />

@@ -59,12 +59,6 @@ export default class Home extends Component<Props> {
         this.setState({ ftasks: t - tc })
 
         this.setState({ progress: ((tc * 100) / t).toFixed(2) })
-
-        console.warn(tc)
-        console.warn(t)
-
-
-
     }
 
 

@@ -67,6 +67,19 @@ export default class TasksList extends Component {
         }
         this.setState({ visibleTasks })
     }
+    filterTasksDone = () =>{
+        let visibleTasks = null;
+        if (this.state.showSearchTask) {
+            visibleTasks = [...this.state.tasks]
+        } else {
+            const pending = task => task.doneAt !== null;
+            visibleTasks = this.state.tasks.filter(pending)
+        }
+        this.setState({ visibleTasks })
+    }
+    searchTasksDone = () =>{
+        this.setState({showSearchTask: !this.state.showSearchTask}, this.filterTasksDone)
+    }
     searchTasks = () =>{
         this.setState({showSearchTask: !this.state.showSearchTask}, this.filtersearchTasks)
     }
@@ -139,7 +152,7 @@ export default class TasksList extends Component {
                 <TouchableOpacity style={styles.iconArea} onPress={this.toggleFilter}>
                     <Image source={require('../../resources/images/icons/icon-filter_completed-grey.png')}/>
                 </TouchableOpacity>
-                 <TouchableOpacity style={styles.iconArea}>
+                 <TouchableOpacity style={styles.iconArea} onPress={this.searchTasksDone}>
                      <Image source={require('../../resources/images/icons/icon-sort_by-c.png')}/>
                  </TouchableOpacity>
                 </View>

@@ -15,6 +15,10 @@ module.exports = app => {
         .all(app.config.passport.authenticate())
         .get(app.api.task.getCountTask)
 
+    app.route('/tasks/week')
+        .all(app.config.passport.authenticate())
+        .get(app.api.task.getTaskBetween)
+
 
     app.route('/tasks/:id')
         .all(app.config.passport.authenticate())
