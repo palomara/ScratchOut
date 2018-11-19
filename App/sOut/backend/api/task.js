@@ -28,7 +28,7 @@ module.exports = app => {
     const getCountTask = (req, res) => {
         const date = req.query.date ? req.query.date
             : moment().endOf('month').toDate()
-        
+
         app.db('tasks')
             .count('id as tarefas')
             .where({ userId: req.user.id })
@@ -89,10 +89,28 @@ module.exports = app => {
             .catch(err => res.status(400).json(err))
     }
 
-    return { getTasks,
-             save, 
-             remove, 
-             toggleTask, 
-             getTaskdonAt, 
-             getCountTask }
+    const getTaskBetween = (req, res) => {
+        const dateI = req.query.dateI ? req.query.dateI
+            : moment().startOf('week').toDate()
+        const dateF = req.query.dateF ? req.query.dateF
+            : moment().endOf('week').toDate()
+
+        app.db('tasks')
+            .count('id as TarefasConcluidas')
+            .where({ userId: req.user.id })
+            .where('doneAt', '!=', '')
+            .whereBetween('doneAt', [dateI, dateF])
+            .then(tasksC => res.json(tasksC))
+            .catch(err => res.status(400).json(err))
+    }
+
+    return {
+        getTasks,
+        save,
+        remove,
+        toggleTask,
+        getTaskdonAt,
+        getCountTask,
+        getTaskBetween
+    }
 }

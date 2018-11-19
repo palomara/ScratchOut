@@ -9,6 +9,7 @@ import {
     Alert,
     Platform, Image, Dimensions, TextInput, AsyncStorage
 } from 'react-native'
+import toast from 'react-native-simple-toast'
 import moment from 'moment'
 import 'moment/locale/pt-br'
 import Icon from "react-native-vector-icons/FontAwesome";
@@ -109,9 +110,10 @@ export default class Humor extends Component {
                 dtIncluded: datatime
             })
         }
-       () => {this.props.onCancel}
+       
+        toast.show('Humor registrado!', toast.LONG )
+        this.props.onCancel()
     }
-
 
     render() {
 

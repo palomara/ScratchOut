@@ -14,6 +14,7 @@ import {
 } from 'react-native'
 import {server, showError} from "../components/common";
 import axios from  'axios'
+import toast from 'react-native-simple-toast'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -41,7 +42,7 @@ export default class Register extends Component<Props> {
                     password: this.state.password,
                 });
 
-                Alert.alert('Sucesso','Usuario cadastrado')
+                toast.show('Cadastro realizado!', toast.LONG)
 
             }catch (err) {
                 showError(err)
@@ -57,7 +58,8 @@ export default class Register extends Component<Props> {
         let formstage = null;
         if(this.state.formtype === false){
             // primeiro form
-            formstage = <View style={styles.form}>
+            formstage = <KeyboardAvoidingView>
+            <View style={styles.form}>
 
                 <View style={styles.highlightText}>
                     <Text style={styles.highlightText}>Antes de tudo,</Text>
@@ -85,9 +87,11 @@ export default class Register extends Component<Props> {
 
                 </View>
             </View>
+            </KeyboardAvoidingView> 
         }else{
             //segundo form
-            formstage = <View style={styles.form}>
+            formstage = <KeyboardAvoidingView>
+            <View style={styles.form}>
 
                 <View style={styles.highlightText}>
                     <Text style={styles.highlightText}>Bem-Vindo, {this.state.name == null ? 'convidado' : this.state.name}!</Text>
@@ -135,6 +139,7 @@ export default class Register extends Component<Props> {
 
                 </View>
             </View>
+            </KeyboardAvoidingView>
 
             }
 
