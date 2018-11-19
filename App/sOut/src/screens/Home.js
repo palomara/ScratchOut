@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
 
     },
     chartArea: {
-        marginTop: 20
+
     },
     progressMessage: {
         fontFamily: 'Roboto',

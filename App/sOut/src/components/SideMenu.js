@@ -50,9 +50,9 @@ class SideMenu extends Component {
             <View style={styles.container}>
                 <View style={styles.header}>
                     <Avatar
-                        width={120}
+                        width={160}
                         rounded
-                        containerStyle={{marginLeft: 70, borderWidth: 2, borderColor: '#00ce67', borderStyle:'solid', borderMargin: 30 }}
+                        containerStyle={{marginLeft: 70, borderWidth: 2, borderColor: '#00ce67', borderStyle:'solid' }}
                         icon={{name: 'user', type: 'font-awesome'}}
                         onPress={() => this.props.navigation.navigate('Profile')}
                         onLongPress={() => console.warn('ir para configuração') /*this.props.navigation.navigate('Config')*/}
@@ -66,11 +66,14 @@ class SideMenu extends Component {
 
                 <ScrollView syle={styles.containerItem}>
                     <View>
-                        <Text>Aqui vai os items do side</Text>
+                       <TouchableOpacity  style={styles.itemSide} onPress={() => {this.props.navigation.navigate('CalendarsList')}}>
+                           <Image  source={require('../../resources/images/icons/icon-due_date@2.png')}/>
+                           <Text style={styles.textSide} > Calendário</Text>
+                       </TouchableOpacity>
                     </View>
                     <TouchableOpacity onPress={() => this.logout()} style={styles.itemSide}>
-                        <Image style={{width: 18, height: 18}} source={require('../../resources/images/icons/logout.png')}/>
-                        <Text>   Sair</Text>
+                        <Image style={{width: 25, height: 25, marginLeft: 4}} source={require('../../resources/images/icons/logout.png')}/>
+                        <Text style={styles.textSide} >   Sair</Text>
                     </TouchableOpacity>
                 </ScrollView>
                     <TouchableOpacity onPress={()=>{ Linking.openURL('https://google.com')}} style={styles.footer}>
@@ -145,6 +148,9 @@ const styles = StyleSheet.create({
         padding: 5,
         alignItems: 'center',
         justifyContent: 'flex-start',
+        marginRight: 135
+
+
     },
     containerItem: {
         flexDirection: 'row',
@@ -153,5 +159,11 @@ const styles = StyleSheet.create({
         backgroundColor: '#aba0ac',
 
     },
+
+    textSide: {
+        fontFamily: 'Roboto',
+        color: '#000',
+        fontSize: 16
+    }
 
 });
