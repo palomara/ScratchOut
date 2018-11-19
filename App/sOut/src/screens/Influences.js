@@ -51,7 +51,7 @@ export default class Influences extends Component {
                 <View style={styles.Entry}>
                     <TouchableOpacity style={styles.newEntry} onPress={() => { this.setState({ showHumorOptions: true }) }}>
                         <View style={styles.icon}>
-                        <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
+                            <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
                         </View>
 
                         <Text style={styles.newEntryText}>Como você está se sentindo

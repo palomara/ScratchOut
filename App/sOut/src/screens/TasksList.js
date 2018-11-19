@@ -25,7 +25,7 @@ import axios from 'axios'
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
-//TODO: Adicionar métodos para pesquisa de tarefas, estilizar a lista de tarefas, arrumar as opções de fitlro, e adicionar edição de tarefas
+//TODO: Adicionar métodos para pesquisa de tarefas, arrumar estilo da lista de tarefas, implementar opções de fitlro, e adicionar edição de tarefas
 
 export default class TasksList extends Component {
 
