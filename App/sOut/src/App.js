@@ -17,6 +17,7 @@ import PerformanceIndicator from './screens/PerformanceIndicator'
 import AddInfluences from './screens/AddInfluences'
 import EditTasks from './screens/EditTasks'
 import SideMenu from './components/SideMenu'
+import CalendarsList from './components/calendarList'
 
 
 const LoginStack = createStackNavigator({
@@ -35,7 +36,9 @@ const HomehallStack = createDrawerNavigator({
         TasksList: {screen: TaskList},
         PerformanceIndicator: {screen: PerformanceIndicator},
         AddInfluences: {screen: AddInfluences},
-        EditTasks: {screen: EditTasks}
+        EditTasks: {screen: EditTasks},
+        CalendarsList: {screen: CalendarsList}
+
 
     },
     {
@@ -48,7 +51,7 @@ const HomehallStack = createDrawerNavigator({
 
 const Application = createStackNavigator(
     {
-
+        Config: {screen: Config},
         Splash: {screen: AuthOrApp},
         Hall: LoginStack,
         Home: HomehallStack

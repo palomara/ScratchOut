@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
     item: {
         justifyContent: "flex-start",
         borderRadius: 10,
-        backgroundColor: "#00ED74",
+        backgroundColor: "#00ce67",
         flexGrow: 1,
         flexBasis: 0,
         margin: 6,
@@ -173,7 +173,7 @@ const styles = StyleSheet.create({
     title: {
         fontFamily: 'Roboto',
         fontSize: 20,
-        color: '#00ED74',
+        color: '#00ce67',
         alignItems: 'center',
         justifyContent: 'center'
     }
