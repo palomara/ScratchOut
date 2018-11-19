@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import {Avatar} from 'react-native-elements'
 import axios from "axios"
+import ImagePicker from 'react-native-image-picker'
 
 
 const width = Dimensions.get('screen').width;
@@ -24,14 +25,22 @@ class SideMenu extends Component {
         super(props);
         this.state = {
             nome: '',
-            email: ''
+            email: '',
+            imagePath: '',
+            imageHeight: '',
+            imageWidth: '',
         }
     }
     //TODO: corigir bug de atualização de props user info (quando troca de usuário as infos não atualizam)
     componentDidMount = async () => {
         const json = await AsyncStorage.getItem('userData');
         const userData = JSON.parse(json) || {};
-
+        const image = await AsyncStorage.getItem('userImage')
+        if(image !== null){
+            await this.setState({imagePath: image})
+            console.warn(this.state.imagePath)
+        }
+        
         this.setState({email: userData.email})
         this.setState({nome: userData.nome})
 
@@ -42,20 +51,60 @@ class SideMenu extends Component {
         AsyncStorage.removeItem('userData')
         this.props.navigation.navigate('Hall')
     };
+    _cacheImage = async () => {
+        try {
+            await AsyncStorage.setItem('userImage', this.state.imagePath);
+           
+            console.warn(image)   
+          } catch (error) {
+            // Error saving data
+          }
+        }
+    openImagePicker = () =>{
+        const options ={
+            title: 'Selecione a Foto de Perfil',
+            storageOptions: {
+                skipBackup: true,
+                path: 'Images'
+            }
+        }
+        ImagePicker.showImagePicker(options, (response) => {
+            if(response.didCancel){
+                console.log('User cancelled image picker')
+            }
+            else if (response.error){
+                console.log('Error' + response.error)
+            }
+            else if(response.customButton){
+                console.log('User tapped custom button'+response.customButton)
+            }
+            else{
+                this.setState({
+                    imagePath: response.uri,
+                    imageHeight: response.height,
+                    imageWidth: response.width
+                })           
+               
+            }
+        })
+
+        this._cacheImage()
+    }
 
     //TODO: Personalizar o side menu aqui.
     //TODO: Verificar esquemas de cores.
     render() {
         return (
             <View style={styles.container}>
+            
                 <View style={styles.header}>
                     <Avatar
                         width={160}
                         rounded
                         containerStyle={{marginLeft: 70, borderWidth: 2, borderColor: '#00ce67', borderStyle:'solid' }}
-                        icon={{name: 'user', type: 'font-awesome'}}
+                        source={{uri: this.state.imagePath}}
                         onPress={() => this.props.navigation.navigate('Profile')}
-                        onLongPress={() => console.warn('ir para configuração') /*this.props.navigation.navigate('Config')*/}
+                        onLongPress={this.openImagePicker.bind(this)}
                         activeOpacity={0.7}
                     />
                     <View style={styles.userInfo}>

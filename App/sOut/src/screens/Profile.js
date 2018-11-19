@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -16,6 +16,7 @@ import {
 import ImagePicker from 'react-native-image-picker'
 import FixedMenu from '../components/FixedMenu';
 import MyBackButton from '../components/MyBackButton'
+import { Avatar } from 'react-native-elements'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -25,7 +26,7 @@ export default class Profile extends Component {
 
 
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.state = {
             imagePath: '',
@@ -38,12 +39,12 @@ export default class Profile extends Component {
         const json = await AsyncStorage.getItem('userData');
         const userData = JSON.parse(json) || {};
 
-        this.setState({email: userData.email })
+        this.setState({ email: userData.email })
 
     }
 
-    openImagePicker(){
-        const options ={
+    openImagePicker() {
+        const options = {
             title: 'Selecione a Foto de Perfil',
             storageOptions: {
                 skipBackup: true,
@@ -51,16 +52,16 @@ export default class Profile extends Component {
             }
         }
         ImagePicker.showImagePicker(options, (response) => {
-            if(response.didCancel){
+            if (response.didCancel) {
                 console.log('User cancelled image picker')
             }
-            else if (response.error){
+            else if (response.error) {
                 console.log('Error' + response.error)
             }
-            else if(response.customButton){
-                console.log('User tapped custom button'+response.customButton)
+            else if (response.customButton) {
+                console.log('User tapped custom button' + response.customButton)
             }
-            else{
+            else {
                 this.setState({
                     imagePath: response.uri,
                     imageHeight: response.height,
@@ -73,24 +74,29 @@ export default class Profile extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+                <StatusBar backgroundColor='transparent' barStyle='dark-content' />
                 <View style={styles.fixedNav}>
-                    <MyBackButton style={styles.fixedNav}/>
+                    <MyBackButton style={styles.fixedNav} />
                     <Text style={styles.title}>Perfil</Text>
                     <View style={styles.emptyView}></View>
                 </View>
 
                 <ScrollView style={styles.mainView}>
                     <View style={styles.editView}>
-                        <View style={{paddingLeft: 20}}>
-                            {this.state.imagePath ? <Image style={{width: this.state.imageWidth, height: this.state.imageHeight}} source={{uri: this.state.imagePath}} /> : null }
-                            <TouchableHighlight style={styles.editView} onPress={this.openImagePicker.bind(this)}>
-                                <Image source={require('../../resources/images/icons/icon-profile-green@3.png')}/>
-                            </TouchableHighlight>
+                        <View style={{ paddingLeft: 20 }}>
+                            <Avatar
+                                width={130}
+                                rounded
+                                containerStyle={{ marginLeft: 70, borderWidth: 2, borderColor: '#00ce67', borderStyle: 'solid' }}
+                                source={{ uri: this.state.imagePath }}
+                                onPress={this.openImagePicker.bind(this)}
+                                activeOpacity={0.7}
+                            />
+                            <Text>{this.state.imagePath}</Text>
                         </View>
 
-                        <TouchableOpacity style={styles.editView} onPress={() => { this.props.navigation.navigate('Config')}}>
-                            <Image source={require('../../resources/images/icons/icon-settings-green.png')}/>
+                        <TouchableOpacity style={styles.editView} onPress={() => { this.props.navigation.navigate('Config') }}>
+                            <Image source={require('../../resources/images/icons/icon-settings-green.png')} />
                         </TouchableOpacity>
                     </View>
 
@@ -102,7 +108,7 @@ export default class Profile extends Component {
                     </View>
                 </ScrollView>
 
-                <FixedMenu/>
+                <FixedMenu />
             </View>
         );
     }
@@ -125,7 +131,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: '#F8F8F8',
         shadowColor: '#000',
-        shadowOffset: {width: 0, height: 3},
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
         marginBottom: 20,
         elevation: 3,
