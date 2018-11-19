@@ -104,7 +104,7 @@ export default class Profile extends Component {
                         <Text style={styles.otherTitle}>E-MAIL</Text>
                         <Text style={styles.contentInfoUser}>{this.state.email}</Text>
                         <Text style={styles.otherTitle}>PLANO</Text>
-                        <Text style={styles.contentInfoUser}>Premium</Text>
+                        <Text style={styles.contentInfoUser}>Freemium</Text>
                     </View>
                 </ScrollView>
 

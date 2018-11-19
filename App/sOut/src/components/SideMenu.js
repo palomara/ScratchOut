@@ -114,12 +114,17 @@ class SideMenu extends Component {
                 </View>
 
                 <ScrollView syle={styles.containerItem}>
-                    <View>
-                       <TouchableOpacity  style={styles.itemSide} onPress={() => {this.props.navigation.navigate('CalendarsList')}}>
-                           <Image  source={require('../../resources/images/icons/icon-due_date@2.png')}/>
-                           <Text style={styles.textSide} > Calendário</Text>
-                       </TouchableOpacity>
-                    </View>
+
+                    <TouchableOpacity style={styles.itemSide}>
+                        <Image  source={require('../../resources/images/icons/icon-faq-green.png')}/>
+                        <Text style={styles.textSide}>  FAQ</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity  style={styles.itemSide} onPress={() => {this.props.navigation.navigate('CalendarsList')}}>
+                        <Image  source={require('../../resources/images/icons/icon-due_date@2.png')}/>
+                        <Text style={styles.textSide} > Calendário</Text>
+                    </TouchableOpacity>
+
                     <TouchableOpacity onPress={() => this.logout()} style={styles.itemSide}>
                         <Image style={{width: 25, height: 25, marginLeft: 4}} source={require('../../resources/images/icons/logout.png')}/>
                         <Text style={styles.textSide} >   Sair</Text>

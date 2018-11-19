@@ -147,7 +147,7 @@ var styles = StyleSheet.create({
   titleModal:{
     fontFamily: 'Roboto',
     fontSize: 20,
-    color: '#00ED74',
+    color: '#00ce67',
     alignItems: 'center',
     justifyContent: 'center',
   },
