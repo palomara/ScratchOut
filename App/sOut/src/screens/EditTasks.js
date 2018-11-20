@@ -42,12 +42,18 @@ export default class EditTasks extends Component {
                         <Task {...item} onToggleTask={this.toggleTask}
                                />} >
                     </Text>
+                    <Image style={{
+                        width: 25,
+                        height: 25,
+                        left: 120,
+                        marginTop: 20,
+                        }} source={require('../../resources/images/icons/icon-task-checked@2.png')}/>
                 </View>
 
 
-                <Text style={styles.textTitle}>DESCRIÇÃO</Text>
+                <Text style={styles.textTitleDescription}>DESCRIÇÃO</Text>
                 <View style={styles.editTaskDescription}>
-                    <View style={styles.viewInput}>
+                    <View style={styles.viewInput} >
                         <TextInput style={styles.inputDescription}></TextInput>
                     </View>
                 </View>
@@ -56,34 +62,34 @@ export default class EditTasks extends Component {
                     <Text style={styles.textTitle}>OUTROS DETALHES</Text>
                     <View style={styles.otherDetailsOptions}>
                         <TouchableOpacity style={styles.optionDetail}>
-                            <Image source={require('../../resources/images/icons/icon-tag.png')}/>
+                            <Image style={styles.iconOption} source={require('../../resources/images/icons/icon-tag@2.png')}/>
                             <Text style={styles.optionDetailText}>Etiquetas...</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.optionDetail}>
-                            <Image source={require('../../resources/images/icons/icon-due_date.png')}/>
+                            <Image style={styles.iconOption} source={require('../../resources/images/icons/icon-due_date@2.png')}/>
                             <Text style={styles.optionDetailText}>Prazo estimado...</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.optionDetail}>
-                            <Image source={require('../../resources/images/icons/icon-method.png')}/>
+                            <Image style={styles.iconOption} source={require('../../resources/images/icons/icon-method@2.png')}/>
                             <Text style={styles.optionDetailText}>Metodologia...</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.optionDetail}>
-                            <Image source={require('../../resources/images/icons/icon-attachment.png')}/>
+                            <Image style={styles.iconOption} source={require('../../resources/images/icons/icon-attachment@2.png')}/>
                             <Text style={styles.optionDetailText}>Anexo...</Text>
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.optionDetail}>
-                            <Image source={require('../../resources/images/icons/icon-task-checked.png')}/>
+                            <Image style={styles.iconOption} source={require('../../resources/images/icons/icon-filter_completed@2.png')}/>
                             <Text style={styles.optionDetailText}>Checklist...</Text>
                         </TouchableOpacity>
                     </View>
                 </View>
 
                 <View style={styles.editTaskView}>
-                    <Text style={styles.lastTimeEdit}>Última vez editado</Text>
+                    <Text style={styles.lastTimeEdit}>Última edição </Text>
                     <View style={styles.feelAboutTaskButtonArea}>
                     <TouchableOpacity style={styles.feelAboutTaskButton}>
                         <View style={styles.iconPlus}>
@@ -119,7 +125,6 @@ const styles = StyleSheet.create({
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 3},
         shadowOpacity: 0.2,
-        marginBottom: 20,
         elevation: 3,
         position: 'relative'
     },
@@ -135,7 +140,6 @@ const styles = StyleSheet.create({
     },
     editTaskView: {
         alignItems: 'center',
-        justifyContent: 'space-between',
         height: height * 0.1,
         width: width,
         backgroundColor: '#fff',
@@ -153,27 +157,39 @@ const styles = StyleSheet.create({
         right: 280,
         position: 'absolute',
     },
-    editTasksDescription: {
-        width: width * 0.60,
-        height: height / 2
+    editTaskDescription: {
+        width: width * 0.9,
+        height: height / 4.5
+
     },
     viewInput: {
-        flexDirection: 'row',
+        flexWrap: 'wrap',
     },
     inputDescription: {
         fontFamily: 'Roboto Light',
         fontSize: 14,
         color: '#000',
-        flex: 1
+        flex: 1,
+        height: height / 14,
+
     },
     textTitle: {
        fontFamily: 'Roboto',
        fontSize: 10,
        marginTop: 8,
        marginBottom: 5,
-       right: 130,
+       right: 125,
        alignItems: 'center',
        justifyContent: 'center'
+    },
+    textTitleDescription: {
+        fontFamily: 'Roboto',
+        fontSize: 10,
+        marginTop: 8,
+        marginBottom: 5,
+        right: 160,
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     otherDetailsOptions: {
        right: 140,
@@ -182,6 +198,7 @@ const styles = StyleSheet.create({
     },
     optionDetail: {
        flexDirection: 'row',
+       alignItems: 'center',
        marginTop: 5
     },
     optionDetailText: {
@@ -190,8 +207,13 @@ const styles = StyleSheet.create({
        fontSize: 14,
        marginLeft: 2
     },
+    iconOption: {
+      marginLeft: 10,
+      width: 20,
+      height: 20
+    },
     lastTimeEdit: {
-      marginTop: 8,
+      marginTop: 7,
       fontFamily: 'Roboto',
       color: "#00ce67",
       fontSize: 14

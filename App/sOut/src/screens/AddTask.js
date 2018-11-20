@@ -171,16 +171,6 @@ var styles = StyleSheet.create({
     height: 20,
     marginRight: width * 0.1
   },
-  inputFieldPass:{
-    flex: 1,
-    borderBottomWidth: 2,
-    borderColor: '#00ce67',
-    alignItems:'center',
-    flexDirection: 'row',
-    marginBottom: 8,
-    height: 40,
-  },
-
   newTaskArea:{
     flexDirection: 'row',
     height: 30,
