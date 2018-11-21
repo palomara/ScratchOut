@@ -149,6 +149,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-onesignal')
     compile project(':react-native-linear-gradient')
     compile project(':react-native-network-info')
     compile project(':react-native-image-picker')

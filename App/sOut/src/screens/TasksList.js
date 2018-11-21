@@ -108,6 +108,11 @@ export default class TasksList extends Component {
             showError(err)
         }
     };
+
+    editTasks = () =>{
+        this.props.navigation.navigate('EditTasks')
+    }
+
     _refreshControl(){
         return (
             <RefreshControl
@@ -122,6 +127,7 @@ export default class TasksList extends Component {
         this.loadTask()
         this.setState({refreshing:false}) //Stop Rendering Spinner
     }
+
 
     render() {
         return (
@@ -165,7 +171,8 @@ export default class TasksList extends Component {
                                   keyExtractor={item => `${item.id}`}
                                   renderItem={({ item }) =>
                                       <Task {...item} onToggleTask={this.toggleTask}
-                                            onDelete={this.deleteTask} />} />
+                                            onDelete={this.deleteTask}
+                                            onEdittaks={this.editTasks} />} />
                     </View>
 
                 </ScrollView>

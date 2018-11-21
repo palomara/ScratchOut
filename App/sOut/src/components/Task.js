@@ -36,7 +36,7 @@ export default props => {
         <TouchableOpacity
 
             style={[styles.edit, { justifyContent: 'flex-end', paddingRight: 20 }]}
-            onPress={() => { this.props.navigation.navigate('EditTasks')}}>
+            onPress={() => props.onEdittaks()}>
             <Image source={require('../../resources/images/icons/icon-edit-white.png')}/>
         </TouchableOpacity>,
     ]
