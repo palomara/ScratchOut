@@ -5,7 +5,7 @@ import android.app.Application;
 import com.facebook.react.ReactApplication;
 import com.geektime.rnonesignalandroid.ReactNativeOneSignalPackage;
 import com.BV.LinearGradient.LinearGradientPackage;
-import com.pusherman.networkinfo.RNNetworkInfoPackage;
+
 import com.imagepicker.ImagePickerPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.horcrux.svg.SvgPackage;
@@ -41,7 +41,6 @@ public class MainApplication extends Application implements ReactApplication {
           new MainReactPackage(),
             new ReactNativeOneSignalPackage(),
             new LinearGradientPackage(),
-            new RNNetworkInfoPackage(),
             new ImagePickerPackage(),
             new VectorIconsPackage(),
             new SvgPackage(),

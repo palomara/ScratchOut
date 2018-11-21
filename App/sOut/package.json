@@ -25,7 +25,6 @@
     "react-native-modal": "^6.5.0",
     "react-native-modal-datetime-picker": "^6.0.0",
     "react-native-modalbox": "^1.6.0",
-    "react-native-network-info": "^4.0.0",
     "react-native-onesignal": "^3.2.8",
     "react-native-pie": "^0.5.0",
     "react-native-popup-dialog": "^0.15.1",
