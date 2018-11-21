@@ -3,6 +3,8 @@ import {
     createStackNavigator,
     createDrawerNavigator
 } from 'react-navigation'
+import OneSignal from 'react-native-onesignal'
+
 import Hall from './screens/Hall'
 import Login from './screens/Login'
 import Register from './screens/Register'
@@ -18,6 +20,7 @@ import AddInfluences from './screens/AddInfluences'
 import EditTasks from './screens/EditTasks'
 import SideMenu from './components/SideMenu'
 import CalendarsList from './components/calendarList'
+
 
 
 const LoginStack = createStackNavigator({
@@ -60,6 +63,35 @@ const Application = createStackNavigator(
 );
 
 export default class App extends Component {
+    constructor(properties) {
+        super(properties);
+        OneSignal.init("800362b5-d2d6-42c8-9318-e3897e73d508");
+    
+        OneSignal.addEventListener('received', this.onReceived);
+        OneSignal.addEventListener('opened', this.onOpened);
+        OneSignal.addEventListener('ids', this.onIds);
+      }
+    
+      componentWillUnmount() {
+        OneSignal.removeEventListener('received', this.onReceived);
+        OneSignal.removeEventListener('opened', this.onOpened);
+        OneSignal.removeEventListener('ids', this.onIds);
+      }
+    
+      onReceived(notification) {
+        console.log("Notification received: ", notification);
+      }
+    
+      onOpened(openResult) {
+        console.log('Message: ', openResult.notification.payload.body);
+        console.log('Data: ', openResult.notification.payload.additionalData);
+        console.log('isActive: ', openResult.notification.isAppInFocus);
+        console.log('openResult: ', openResult);
+      }
+    
+      onIds(device) {
+        console.log('Device info: ', device);
+      }
     render() {
         return (
             <Application/>
