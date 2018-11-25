@@ -1,6 +1,7 @@
 import React from 'react'
 import {Dimensions, View} from 'react-native'
-import { BarChart, Grid } from 'react-native-svg-charts'
+import { BarChart, Grid, YAxis  } from 'react-native-svg-charts'
+import * as scale from 'd3-scale'
 import { Text } from 'react-native-svg'
 import axios from 'axios'
 import {server, showError} from '../../components/common'
@@ -40,7 +41,22 @@ class BarChartHorizontalWithLabels extends React.PureComponent {
     }
     
     render() {
-
+        const date =[{
+            value: 1,
+            label: 'Semana atual'
+        },
+        {
+            value: 2,
+            label: 'Semana passada'
+        },
+        {
+            value: 3,
+            label: `${week3i} à ${week3e}`
+        },
+        {
+            value: 4,
+            label: `${week4i} à ${week4e}`
+        }]
         const data = [ this.state.week1taks, this.state.week2taks, this.state.week3taks, this.state.week4taks]
         const max = (Math.max(this.state.week1taks, this.state.week2taks, this.state.week3taks, this.state.week4taks))-1
         const CUT_OFF = max
@@ -60,7 +76,15 @@ class BarChartHorizontalWithLabels extends React.PureComponent {
         )
 
         return (
-            <View style={{ flexDirection: 'row', height: 200, width: 300 }}>
+            <View style={{ flexDirection: 'row', justifyContent: 'flex-start', height: 200, width: 400 }}>
+                <YAxis
+                    data={date}
+                    yAccessor={({ index }) => index}
+                    scale={scale.scaleBand}
+                    contentInset={{ top: 10, bottom: 10 }}
+                    spacing={0.2}
+                    formatLabel={(_, index) => date[ index ].label}
+                />
                 <BarChart
                     style={{ flex: 1, marginLeft: 3}}
                     data={data}

@@ -17,21 +17,16 @@ class PieChartWithDifferentArcs extends React.PureComponent {
     }
 
     componentDidMount = async () => {
-        const dataRad = await axios.get(`${server}/humor/count/radiante`)
+        const dataRad = await axios.get(`${server}/humor/count`)
         const raddata = dataRad.data
-        this.setState({ radiante: raddata[0].Qtd })
-        const dataFel = await axios.get(`${server}/humor/count/feliz`)
-        const feldata = dataFel.data
-        this.setState({ feliz: feldata[0].Qtd })
-        const dataNorm = await axios.get(`${server}/humor/count/normal`)
-        var normdata = dataNorm.data
-        this.setState({ normal: normdata[0].Qtd })
-        const dataTris = await axios.get(`${server}/humor/count/triste`)
-        const trisdata = dataTris.data
-        this.setState({ triste: trisdata[0].Qtd })
-        const dataHor = await axios.get(`${server}/humor/count/horrivel`)
-        const hordata = dataHor.data
-        this.setState({ horrivel: hordata[0].Qtd })
+        this.setState({
+            radiante: raddata[0].freq,
+            feliz: raddata[1].freq,
+            normal: raddata[2].freq,
+            triste: raddata[3].freq,
+            horrivel: raddata[4].freq
+        })
+
     }
     destaque = () => {
     }

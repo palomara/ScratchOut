@@ -39,11 +39,11 @@ export default class Influences extends Component {
         return (
             <View style={styles.container}>
                 <Humor isVisible={this.state.showHumorOptions}
-                       onSave={this.addTask}
-                       onCancel={() => this.setState({ showHumorOptions: false })} />
-                <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+                    onSave={this.addTask}
+                    onCancel={() => this.setState({ showHumorOptions: false })} />
+                <StatusBar backgroundColor='transparent' barStyle='dark-content' />
                 <View style={styles.fixedNav}>
-                    <MyBackButton style={styles.fixedNavArea}/>
+                    <MyBackButton style={styles.fixedNavArea} />
                     <Text style={styles.title}>Influências</Text>
                     <View style={styles.emptyView}></View>
                 </View>
@@ -51,7 +51,7 @@ export default class Influences extends Component {
                 <View style={styles.Entry}>
                     <TouchableOpacity style={styles.newEntry} onPress={() => { this.setState({ showHumorOptions: true }) }}>
                         <View style={styles.icon}>
-                            <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
+                            <Image source={require('../../resources/images/icons/icon-more-white.png')} />
                         </View>
 
                         <Text style={styles.newEntryText}>Como você está se sentindo
@@ -62,25 +62,49 @@ export default class Influences extends Component {
 
                 <ScrollView style={styles.mainView}>
                     <View style={styles.humorChart}>
-                        <PieChartWithDifferentArcs/>
+                        <PieChartWithDifferentArcs />
+                    </View>
+                    <View style={styles.humorLegend}>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10}}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#88ff6e', marginTop: 6, marginHorizontal: 2  }} />
+                            <Text>Radiante</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',marginHorizontal: 10}}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#15c3bf', marginTop: 6, marginHorizontal: 2  }} />
+                            <Text>feliz</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',marginHorizontal: 10}}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#faca19', marginTop: 6, marginHorizontal: 2  }} />
+                            <Text>normal</Text>
+                        </View>
+                    </View>
+                    <View style={styles.humorLegend}>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',marginHorizontal: 10}}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#FF2452',  marginTop: 6, marginHorizontal: 2 }} />
+                            <Text>triste</Text>
+                        </View>
+                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10}}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#5D5D5D', marginTop: 6, marginHorizontal: 2  }} />
+                            <Text>horrivel</Text>
+                        </View>
                     </View>
 
                 </ScrollView>
 
                 <View style={styles.Entry}>
-                <TouchableOpacity style={styles.newEntry} onPress={() => { this.props.navigation.navigate('AddInfluences')}}>
-                    <View style={styles.icon}>
-                    <Image source={require('../../resources/images/icons/icon-more-white.png')}/>
-                    </View>
+                    <TouchableOpacity style={styles.newEntry} onPress={() => { this.props.navigation.navigate('AddInfluences') }}>
+                        <View style={styles.icon}>
+                            <Image source={require('../../resources/images/icons/icon-more-white.png')} />
+                        </View>
 
-                    <Text style={styles.newEntryText}>Insira uma
+                        <Text style={styles.newEntryText}>Insira uma
                     <Text style={styles.newEntryTextBold}> nova entrada </Text>
-                    </Text>
-                </TouchableOpacity>
+                        </Text>
+                    </TouchableOpacity>
 
                 </View>
 
-                <FixedMenu/>
+                <FixedMenu />
             </View>
         );
     }
@@ -102,7 +126,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: '#F8F8F8',
         shadowColor: '#000',
-        shadowOffset: {width: 0, height: 3},
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
         marginBottom: 2,
         elevation: 3,
@@ -148,7 +172,7 @@ const styles = StyleSheet.create({
     },
     newEntry: {
         flex: 1,
-        alignItems:'center',
+        alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
 
@@ -170,8 +194,10 @@ const styles = StyleSheet.create({
     humorChart: {
         alignItems: 'center',
         justifyContent: 'center',
-
-
+    },
+    humorLegend: {
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
 
 });

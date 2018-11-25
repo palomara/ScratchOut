@@ -15,6 +15,7 @@ import BarChartHorizontalWithLabels from '../components/charts/horizontal-with-l
 import PieChartIndicator from '../components/charts/pie-chart'
 import PieChartWithLabel from '../components/charts/pie-with-labels'
 import GradientLine from '../components/charts/line-with-gradient'
+import HumorChart from '../components/charts/humorchart'
 
 
 
@@ -54,11 +55,13 @@ export default class PerformanceIndicator extends Component {
                             <Text style={styles.titleChart}> Disposição x Humor  </Text>
                             <GradientLine/>
                         </View>
-
+                        <View style={styles.Indicator}>
+                            <Text style={styles.titleChart}> Frequencia de Humor - semana  </Text>
+                            <HumorChart/>
+                        </View>
                         <View style={styles.Indicator}>
                             <Text style={styles.titleChart}> Tarefas concluídas - Semana  </Text>
                             <BarChartHorizontalWithLabels/>
-                            <Text> Legenda</Text>
                         </View>
 
 

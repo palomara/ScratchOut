@@ -20,92 +20,54 @@ module.exports = app => {
             .then(_ => res.status(204).send())
             .catch(err => res.status(400).json(err))
     }
+    const getCountQtdHumor = (req, res) => {
+        const date = req.query.date ? req.query.date
+            : moment().endOf('month').toDate()
+
+        app.db('humor')
+            .countDistinct('id as Qtd')
+            .where({ userId: req.user.id })
+            .where('dtIncluded', '<=', date)
+            .then(humorC => res.json(humorC))
+            .catch(err => res.status(400).json(err))
+    }
     const getCountHumor = (req, res) => {
         const date = req.query.date ? req.query.date
             : moment().endOf('month').toDate()
 
         app.db('humor')
-            .countDistinct('id as Qtd')
-            .where({ userId: req.user.id })
-            .where('dtIncluded', '<=', date)
-            .then(humorC => res.json(humorC))
-            .catch(err => res.status(400).json(err))
-    }
-    const getCountRadiante = (req, res) => {
-        const date = req.query.date ? req.query.date
-            : moment().endOf('month').toDate()
-
-        app.db('humor')
-            .countDistinct('id as Qtd')
+            .count('title as freq')
             .select('title')
             .where({ userId: req.user.id })
             .where('dtIncluded', '<=', date)
-            .where('title', '=', 'radiante')
+            .groupBy('title')
             .then(humorC => res.json(humorC))
             .catch(err => res.status(400).json(err))
     }
-    const getCountFeliz = (req, res) => {
-        const date = req.query.date ? req.query.date
-            : moment().endOf('month').toDate()
+    const getCountHumorBtw = (req, res) => {
+        const dateI = req.query.dateI ? req.query.dateI
+            : moment().startOf('week').toDate()
+        const dateF = req.query.dateF ? req.query.dateF
+            : moment().endOf('week').toDate()
 
         app.db('humor')
-            .countDistinct('id as Qtd')
+            .count('id as freq')
             .select('title')
+            .select('scale')
             .where({ userId: req.user.id })
-            .where('dtIncluded', '<=', date)
-            .where('title', '=', 'feliz')
-            .then(humorC => res.json(humorC))
-            .catch(err => res.status(400).json(err))
-    }
-    const getCountNormal = (req, res) => {
-        const date = req.query.date ? req.query.date
-            : moment().endOf('month').toDate()
-
-        app.db('humor')
-            .countDistinct('id as Qtd')
-            .select('title')
-            .where({ userId: req.user.id })
-            .where('dtIncluded', '<=', date)
-            .where('title', '=', 'normal')
-            .then(humorC => res.json(humorC))
-            .catch(err => res.status(400).json(err))
-    }
-    const getCountTriste = (req, res) => {
-        const date = req.query.date ? req.query.date
-            : moment().endOf('month').toDate()
-
-        app.db('humor')
-            .countDistinct('id as Qtd')
-            .select('title')
-            .where({ userId: req.user.id })
-            .where('dtIncluded', '<=', date)
-            .where('title', '=', 'triste')
-            .then(humorC => res.json(humorC))
-            .catch(err => res.status(400).json(err))
-    }
-    const getCountHorrivel = (req, res) => {
-        const date = req.query.date ? req.query.date
-            : moment().endOf('month').toDate()
-
-        app.db('humor')
-            .countDistinct('id as Qtd')
-            .select('title')
-            .where({ userId: req.user.id })
-            .where('dtIncluded', '<=', date)
-            .where('title', '=', 'horivel')
-            .then(humorC => res.json(humorC))
+            .whereBetween('dtIncluded', [dateI, dateF])
+            .groupBy('title')
+            .orderBy('freq','desc')
+            .then(tasksC => res.json(tasksC))
             .catch(err => res.status(400).json(err))
     }
 
     return {
         getHumor,
-        saveHumor, 
-        getCountFeliz,
-        getCountHorrivel,
-        getCountNormal,
-        getCountRadiante,
-        getCountTriste,
-        getCountHumor
+        saveHumor,
+        getCountHumor,
+        getCountQtdHumor,
+        getCountHumorBtw
     }
 
 };
