@@ -54,7 +54,11 @@ export default class EditTasks extends Component {
                 <Text style={styles.textTitleDescription}>DESCRIÇÃO</Text>
                 <View style={styles.editTaskDescription}>
                     <View style={styles.viewInput} >
-                        <TextInput style={styles.inputDescription}></TextInput>
+                        <TextInput
+                            style={styles.inputDescription}
+                            editable = {true}
+                            maxLength = {300}
+                            multiline={true}></TextInput>
                     </View>
                 </View>
 
@@ -164,13 +168,16 @@ const styles = StyleSheet.create({
     },
     viewInput: {
         flexWrap: 'wrap',
+        flexDirection: 'row',
+        height: height / 14,
     },
     inputDescription: {
         fontFamily: 'Roboto Light',
         fontSize: 14,
         color: '#000',
         flex: 1,
-        height: height / 14,
+
+
 
     },
     textTitle: {

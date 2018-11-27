@@ -167,11 +167,10 @@ export default class AddInfluences extends Component {
                     <TouchableOpacity onPress={() => { this.props.navigation.navigate('Influences') }} style={styles.backButtonStyle}>
                         <Image source={require('../../resources/images/icons/icon-nav_back-white.png')} />
                     </TouchableOpacity>
-                    <View style={styles.emptyView}></View>
                 </View>
 
                 <ScrollView style={styles.mainView}>
-                    <View style={styles.healthView}>
+                    <View>
                         <View style={styles.titleIconArea}>
                             <Text style={styles.title}>Sintomas</Text>
                             <Icon name='medicinebox' size={25} color={'#00ce67'} />
@@ -352,12 +351,6 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
 
-    emptyView: {
-        height: height * 0.08,
-        width: width * 0.15,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
     title: {
         fontFamily: 'Roboto',
         fontSize: 20,
@@ -367,9 +360,6 @@ const styles = StyleSheet.create({
         marginBottom: 10,
         marginLeft: 10,
         marginRight: 20,
-
-    },
-    healthView: {
 
     },
     backButtonStyle: {
