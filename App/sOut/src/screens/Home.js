@@ -51,14 +51,15 @@ export default class Home extends Component<Props> {
         const rescTasks = await axios.get(`${server}/tasks/doneat`)
         const Tasks = resTasks.data
         const cTasks = rescTasks.data
-        this.setState({ numTasks: Tasks[0].tarefas })
-        this.setState({ numCTasks: cTasks[0].TarefasConcluidas })
+        this.setState({ numTasks: !isNaN(Tasks[0].tarefas) ? Tasks[0].tarefas : 0 })
+        this.setState({ numCTasks: !isNaN(cTasks[0].TarefasConcluidas) ? cTasks[0].TarefasConcluidas : 0 })
         const t = this.state.numTasks
         const tc = this.state.numCTasks
-
-        this.setState({ ftasks: t - tc })
-
-        this.setState({ progress: ((tc * 100) / t).toFixed(2) })
+        var a = t - tc
+        this.setState({ ftasks: a > 0 ? a : 0 })
+        var b = ((tc * 100) / t).toFixed(2)
+        this.setState({ progress: b > 0 ? b : 0 })
+       
     }
 
 

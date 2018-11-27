@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
     View,
     Text,
@@ -8,7 +8,8 @@ import {
     Image,
     TouchableOpacity,
     TouchableWithoutFeedback,
-    ScrollView } from "react-native";
+    ScrollView
+} from "react-native";
 import FixedMenu from "../components/FixedMenu";
 import MyBackButton from '../components/MyBackButton'
 import BarChartHorizontalWithLabels from '../components/charts/horizontal-with-labels'
@@ -29,11 +30,14 @@ export default class PerformanceIndicator extends Component {
 
     render() {
 
+        const colors = ['#7FFFD4', '#006400', '#556B2F', '#8FBC8F', '#2E8B57', '#3CB371', '#20B2AA', '#98FB98']
+        const sintomas = ['dor de cabeça','dor na barriga','dor nas costas','fadiga','febre','insonia','estresse','doente']
+
         return (
             <View style={styles.container}>
-                <StatusBar backgroundColor='transparent' barStyle='dark-content'/>
+                <StatusBar backgroundColor='transparent' barStyle='dark-content' />
                 <View style={styles.fixedNav}>
-                    <MyBackButton style={styles.fixedNav}/>
+                    <MyBackButton style={styles.fixedNav} />
                     <Text style={styles.title}>Indicador de Performance</Text>
                     <View style={styles.emptyView}></View>
                 </View>
@@ -42,26 +46,65 @@ export default class PerformanceIndicator extends Component {
                     <View style={styles.chartsArea}>
                         <View style={styles.Indicator}>
                             <Text style={styles.titleChart}> Saúde - Sintomas </Text>
-                            <PieChartIndicator/>
-                            <Text>Legenda</Text>
+                            <PieChartIndicator />
+                            <View style={styles.humorLegend}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[0], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[0]}</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[1], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[1]}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.humorLegend}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[2], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[2]}</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[3], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[3]}</Text>
+                                </View>
+                            </View>
+                            <View style={styles.humorLegend}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[4], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[4]}</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[5], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[5]}</Text>
+                                </View>
+                                </View>
+                                <View style={styles.humorLegend}>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[6], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[6]}</Text>
+                                </View>
+                                <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
+                                    <View style={{ width: 10, height: 10, backgroundColor: colors[7], marginTop: 6, marginHorizontal: 2 }} />
+                                    <Text>{sintomas[7]}</Text>
+                                </View>
+                            </View>
                         </View>
 
                         <View style={styles.Indicator}>
                             <Text style={styles.titleChart}> Metodologias  </Text>
-                            <PieChartWithLabel/>
+                            <PieChartWithLabel />
                         </View>
 
                         <View style={styles.Indicator}>
                             <Text style={styles.titleChart}> Disposição x Humor  </Text>
-                            <GradientLine/>
+                            <GradientLine />
                         </View>
                         <View style={styles.Indicator}>
                             <Text style={styles.titleChart}> Frequencia de Humor - semana  </Text>
-                            <HumorChart/>
+                            <HumorChart />
                         </View>
                         <View style={styles.Indicator}>
                             <Text style={styles.titleChart}> Tarefas concluídas - Semana  </Text>
-                            <BarChartHorizontalWithLabels/>
+                            <BarChartHorizontalWithLabels />
                         </View>
 
 
@@ -70,7 +113,7 @@ export default class PerformanceIndicator extends Component {
 
                 </ScrollView>
 
-                <FixedMenu/>
+                <FixedMenu />
             </View>
         )
     }
@@ -93,7 +136,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         backgroundColor: '#F8F8F8',
         shadowColor: '#000',
-        shadowOffset: {width: 0, height: 3},
+        shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 0.2,
         marginBottom: 20,
         elevation: 3,
@@ -140,6 +183,11 @@ const styles = StyleSheet.create({
     },
     chartsArea: {
         justifyContent: 'space-between'
+    },
+    humorLegend: {
+        flexDirection: 'row',
+        justifyContent: 'center'
     }
+
 
 })

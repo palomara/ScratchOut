@@ -15,16 +15,20 @@ class PieChartWithDifferentArcs extends React.PureComponent {
             horrivel: 0,
         };
     }
-
     componentDidMount = async () => {
         const dataRad = await axios.get(`${server}/humor/count`)
         const raddata = dataRad.data
+        var a = [0,0,0,0,0]
+        for (let index = 0; index < raddata.length; index++) {
+            a[index] = raddata[index].freq;
+        }
+        console.warn(a)
         this.setState({
-            radiante: raddata[0].freq,
-            feliz: raddata[1].freq,
-            normal: raddata[2].freq,
-            triste: raddata[3].freq,
-            horrivel: raddata[4].freq
+            radiante: a[3],
+            feliz: a[0] ,
+            normal: a[2],
+            triste: a[4],
+            horrivel: a[1]
         })
 
     }
