@@ -54,7 +54,7 @@ const HomehallStack = createDrawerNavigator({
 
 const Application = createStackNavigator(
     {
-        
+       
         Splash: {screen: AuthOrApp},
         Hall: LoginStack,
         Home: HomehallStack

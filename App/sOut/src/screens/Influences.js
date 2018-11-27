@@ -65,27 +65,27 @@ export default class Influences extends Component {
                         <PieChartWithDifferentArcs />
                     </View>
                     <View style={styles.humorLegend}>
-                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10}}>
-                            <View style={{ width: 10, height: 10, backgroundColor: '#88ff6e', marginTop: 6, marginHorizontal: 2  }} />
-                            <Text>Radiante</Text>
+                        <View style={styles.positionSubtitle}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#88ff6e', borderRadius: 20, marginTop: 6, marginHorizontal: 2  }} />
+                            <Text style={styles.textSubtitle}>Radiante</Text>
                         </View>
-                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',marginHorizontal: 10}}>
-                            <View style={{ width: 10, height: 10, backgroundColor: '#15c3bf', marginTop: 6, marginHorizontal: 2  }} />
-                            <Text>feliz</Text>
+                        <View style={styles.positionSubtitle}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#15c3bf', borderRadius: 20, marginTop: 6, marginHorizontal: 2  }} />
+                            <Text style={styles.textSubtitle}>Feliz</Text>
                         </View>
-                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',marginHorizontal: 10}}>
-                            <View style={{ width: 10, height: 10, backgroundColor: '#faca19', marginTop: 6, marginHorizontal: 2  }} />
-                            <Text>normal</Text>
+                        <View style={styles.positionSubtitle}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#faca19', borderRadius: 20, marginTop: 6, marginHorizontal: 2  }} />
+                            <Text style={styles.textSubtitle}>Normal</Text>
                         </View>
                     </View>
                     <View style={styles.humorLegend}>
-                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly',marginHorizontal: 10}}>
-                            <View style={{ width: 10, height: 10, backgroundColor: '#FF2452',  marginTop: 6, marginHorizontal: 2 }} />
-                            <Text>triste</Text>
+                        <View style={styles.positionSubtitle}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#FF2452', borderRadius: 20, marginTop: 6, marginHorizontal: 2 }} />
+                            <Text style={styles.textSubtitle}>Triste</Text>
                         </View>
-                        <View style={{flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10}}>
-                            <View style={{ width: 10, height: 10, backgroundColor: '#5D5D5D', marginTop: 6, marginHorizontal: 2  }} />
-                            <Text>horrivel</Text>
+                        <View style={styles.positionSubtitle}>
+                            <View style={{ width: 10, height: 10, backgroundColor: '#5D5D5D', borderRadius: 20, marginTop: 6, marginHorizontal: 2  }} />
+                            <Text style={styles.textSubtitle} >Horrivel</Text>
                         </View>
                     </View>
 
@@ -198,6 +198,17 @@ const styles = StyleSheet.create({
     humorLegend: {
         flexDirection: 'row',
         justifyContent: 'center'
+    },
+    positionSubtitle: {
+        flexDirection: 'row',
+        justifyContent: 'space-evenly',
+        marginHorizontal: 10
+    },
+    textSubtitle: {
+        marginLeft: 5,
+        fontFamily: 'Roboto',
+        color: '#000',
+        fontSize: 14
     }
 
 });

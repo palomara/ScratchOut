@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         flexDirection: 'row',
         justifyContent: 'center',
-        marginLeft: 150,
-        marginTop: 20
+        marginLeft: 160,
+        marginTop: 20,
+        color: '#000'
     }
 });
