@@ -23,26 +23,28 @@ class PieChartIndicator extends React.PureComponent {
         };
     }
 
-    componentDidMount = async () => {
+    componentWillMount = async () => {
         const datasd = await axios.get(`${server}/saude/count`)
         const saudedt = datasd.data
+        var a = [0,0,0,0,0]
+        for (let index = 0; index < saudedt.length; index++) {
+            a[index] = saudedt[index].freq;
+        }
         this.setState({
-            dc: saudedt[0].freq,
-            dnb: saudedt[1].freq,
-            dnb: saudedt[1].freq,
-            dnc: saudedt[2].freq,
-            fa: saudedt[3].freq,
-            fb: saudedt[4].freq,
-            in: saudedt[5].freq,
-            es: saudedt[6].freq,
-            de: saudedt[7].freq,
+            de: a[0],
+            dnb: a[1],
+            dc: a[2],
+            dnc: a[3],
+            es: a[4],
+            fa: a[5],
+            fb: a[6],
+            in: a[7],
 
         })
 
     }
 
     render() {
-
         const data = [this.state.dc, this.state.dnb, this.state.dnc, this.state.fa, this.state.fb, this.state.in, this.state.es, this.state.de]
         const colors = ['#7FFFD4', '#006400', '#556B2F', '#8FBC8F', '#2E8B57', '#3CB371', '#20B2AA', '#98FB98']
         var c = 0;

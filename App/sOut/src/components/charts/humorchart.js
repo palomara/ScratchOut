@@ -21,8 +21,8 @@ class HumorChart extends React.PureComponent {
         super(props);
         this.state = {
             f1: 0,
+            f2: 0,
             f3: 0,
-            f4: 0,
             f4: 0,
         };
     }
@@ -32,16 +32,22 @@ class HumorChart extends React.PureComponent {
         const dtHwk3 = await axios.get(`${server}/humor/week?dateI=${week3i}&dateF=${week3e}`)
         const dtHwk4 = await axios.get(`${server}/humor/week?dateI=${week4i}&dateF=${week4e}`)
         this.setState({
-            f1: dtHwk1.data[0].scale != null ? dtHwk1.data[0].scale : 0,
-            f3: dtHwk2.data[0].scale != null ? dtHwk1.data[0].scale : 0,
-            f4: dtHwk3.data[0].scale != null ? dtHwk1.data[0].scale : 0,
-            f4: dtHwk4.data[0].scale != null ? dtHwk1.data[0].scale : 0,
+            f1: dtHwk1.data[0].scale,
+            f2: dtHwk2.data[0].scale,
+            f3: dtHwk3.data[0].scale,
+            f4: dtHwk4.data[0].scale 
         })
-
+        console.warn(this.state.f1);
+        console.warn(this.state.f2);
+        console.warn(this.state.f3);
+        console.warn(this.state.f4);
+        
     }
 
 
     render() {
+
+        const data = [0,5,2,3,2]
 
         const escala = [{
             value: 5,
@@ -65,10 +71,10 @@ class HumorChart extends React.PureComponent {
 
         },]
 
-        const data = [2,5,3,2]
+        
 
         const axesSvg = { fontSize: 10, fill: 'grey' };
-        const verticalContentInset = { top: 10, bottom: 10 }
+        const verticalContentInset = { top: 13, bottom: 13 }
         const xAxisHeight = 30
 
         return (
@@ -78,8 +84,7 @@ class HumorChart extends React.PureComponent {
                     style={{ marginBottom: xAxisHeight }}
                     yAccessor={({ index }) => index}
                     scale={scale.scaleBand}
-                    contentInset={{ top: 10, bottom: 10 }}
-                    spacing={1}
+                    spacing={0.5}
                     numberOfTicks={5}
                     formatLabel={(_, index) => escala[ index ].label}
                     svg={axesSvg}
@@ -91,7 +96,8 @@ class HumorChart extends React.PureComponent {
                         contentInset={verticalContentInset}
                         svg={{ stroke: 'rgb(134, 65, 244)' }}
                     >
-                        <Grid />
+                        <Grid
+                        direction={'BOTH'} />
                     </LineChart>
                     <XAxis
                         style={{ marginHorizontal: -10, height: xAxisHeight }}

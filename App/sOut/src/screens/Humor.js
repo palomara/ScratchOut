@@ -56,27 +56,22 @@ export default class Humor extends Component {
     onRadiante = () => {
 
         this.setState({ radianteS: !this.state.radianteS })
-        console.warn(this.state.humor, this.state.date)
         this.state = { uri: require('../../resources/images/icons/icon-5.png') }
     }
     onFeliz = () => {
         this.setState({ felisS: !this.state.felisS })
-        console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-4.png') }
     }
     onNormal = () => {
         this.setState({ normalS: !this.state.normalS })
-        console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-3.png') }
     }
     onTriste = () => {
         this.setState({ tristeS: !this.state.tristeS })
-        console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-2.png') }
     }
     onHorrivel = () => {
         this.setState({ horrivelS: !this.state.horrivelS })
-        console.warn(this.state.humor)
         this.state = { uri: require('../../resources/images/icons/icon-1.png') }
     }
     onSave = async () => {
