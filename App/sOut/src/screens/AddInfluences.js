@@ -63,7 +63,6 @@ export default class AddInfluences extends Component {
 
     _handleDatePicked = time => {
         this.setState({ time: moment(time).format('HH:mm') })
-        console.warn(this.state.time);
         this._hideDateTimePicker();
     };
 
@@ -95,7 +94,6 @@ export default class AddInfluences extends Component {
                 })
             }
             if (this.state.checkedDorCab) {
-                console.warn('aqui')
                 await axios.post(`${server}/saude`, {
                     sintomas: "dor de cabeca",
                     dtIncluded: datatime
@@ -145,7 +143,6 @@ export default class AddInfluences extends Component {
                 dtIncluded: datatime,
                 disposicao: this.state.value
             })
-            console.warn("rotina salva!")
         } catch (err) {
             showError(err)
         }

@@ -18,7 +18,6 @@ class AddTaskButton extends React.Component {
 
     addTask = async task => {
         const data = moment(task.date).locale('pt-br').format('YYYY-MM-DD')
-        //console.warn(data)
        try {
             await axios.post(`${server}/tasks`, {
                 title: task.title,

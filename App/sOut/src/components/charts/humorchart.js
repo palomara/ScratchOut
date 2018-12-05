@@ -37,17 +37,15 @@ class HumorChart extends React.PureComponent {
             f3: dtHwk3.data[0].scale,
             f4: dtHwk4.data[0].scale 
         })
-        console.warn(this.state.f1);
-        console.warn(this.state.f2);
-        console.warn(this.state.f3);
-        console.warn(this.state.f4);
+        
         
     }
 
 
     render() {
 
-        const data = [0,5,2,3,2]
+        const data = [5,2,4,5]
+        const label = [0,1,2,3]
 
         const escala = [{
             value: 5,
@@ -97,11 +95,11 @@ class HumorChart extends React.PureComponent {
                         svg={{ stroke: 'rgb(134, 65, 244)' }}
                     >
                         <Grid
-                        direction={'BOTH'} />
+                        direction={'HORIZONTAL'} />
                     </LineChart>
                     <XAxis
                         style={{ marginHorizontal: -10, height: xAxisHeight }}
-                        data={data}
+                        data={label}
                         formatLabel={(value, index) => index}
                         contentInset={{ left: 10, right: 10 }}
                         svg={axesSvg}

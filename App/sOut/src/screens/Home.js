@@ -95,7 +95,7 @@ export default class Home extends Component<Props> {
                         <View style={styles.chartArea}>
                             <Text> </Text>
                             <CircleChart progresso={this.state.progress} />
-                            <Text style={styles.progressMessage}>{this.state.ftasks > 1 ? 'Faltam' : 'Falta'} {this.state.ftasks} {this.state.ftasks > 1 ? 'tarefas' : 'tarefa'}</Text>
+                            <Text style={styles.progressMessage}>{this.state.ftasks > 0 ? this.state.ftasks > 1 ? `Faltam ${this.state.ftasks} tarefas` : `Falta ${this.state.ftasks} tarefa` : 'Você não tem tarefas'} </Text>
                         </View>
                     </View>
 

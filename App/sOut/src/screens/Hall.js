@@ -98,7 +98,7 @@ export default class Hall extends Component<Props> {
         </View>
 
         <View style={styles.fieldTermos}>
-          <Text style={styles.textTermos} onPress={()=>{ Linking.openURL('https://google.com')}}>Ao continuar você aceita os nossos
+          <Text style={styles.textTermos} onPress={()=>{ Linking.openURL('https://drive.google.com/file/d/1sahDnIODUgOErsdBtiK6z0NX_27CNsO9/view?usp=sharing')}}>Ao continuar você aceita os nossos
             <Text> <Text style={styles.textTermosBold}>Termos de Uso</Text></Text>
           </Text>
         </View>

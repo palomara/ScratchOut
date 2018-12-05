@@ -17,6 +17,7 @@ import ImagePicker from 'react-native-image-picker'
 import FixedMenu from '../components/FixedMenu';
 import MyBackButton from '../components/MyBackButton'
 import { Avatar } from 'react-native-elements'
+var md5 = require('md5');
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
@@ -88,7 +89,7 @@ export default class Profile extends Component {
                                 width={130}
                                 rounded
                                 containerStyle={{ marginLeft: 70, borderWidth: 2, borderColor: '#00ce67', borderStyle: 'solid' }}
-                                source={{ uri: this.state.imagePath }}
+                                source={{uri: `https://www.gravatar.com/avatar/${md5(this.state.email)}`}}
                                 onPress={this.openImagePicker.bind(this)}
                                 activeOpacity={0.7}
                             />

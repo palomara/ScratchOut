@@ -18,7 +18,6 @@ export const login = (usuario, senha) => {
         .then((res) => {
 
             if (res.success === true) {
-                console.warn(res.usuario);
                 AsyncStorage.setItem('token', '1');
                 this.props.navigation.navigate('Home')
 

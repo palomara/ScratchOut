@@ -13,6 +13,9 @@ import {
 import {Avatar} from 'react-native-elements'
 import axios from "axios"
 import ImagePicker from 'react-native-image-picker'
+import {Gravatar} from 'react-native-gravatar'
+var md5 = require('md5');
+
 
 
 const width = Dimensions.get('screen').width;
@@ -38,7 +41,6 @@ class SideMenu extends Component {
         const image = await AsyncStorage.getItem('userImage')
         if(image !== null){
             await this.setState({imagePath: image})
-            console.warn(this.state.imagePath)
         }
         
         this.setState({email: userData.email})
@@ -54,8 +56,6 @@ class SideMenu extends Component {
     _cacheImage = async () => {
         try {
             await AsyncStorage.setItem('userImage', this.state.imagePath);
-           
-            console.warn(image)   
           } catch (error) {
             // Error saving data
           }
@@ -102,7 +102,7 @@ class SideMenu extends Component {
                         width={160}
                         rounded
                         containerStyle={{marginLeft: 70, borderWidth: 2, borderColor: '#00ce67', borderStyle:'solid' }}
-                        source={{uri: this.state.imagePath}}
+                        source={{uri: `https://www.gravatar.com/avatar/${md5(this.state.email)}`}}
                         onPress={() => this.props.navigation.navigate('Profile')}
                         onLongPress={this.openImagePicker.bind(this)}
                         activeOpacity={0.7}
@@ -130,7 +130,7 @@ class SideMenu extends Component {
                         <Text style={styles.textSide} >   Sair</Text>
                     </TouchableOpacity>
                 </ScrollView>
-                    <TouchableOpacity onPress={()=>{ Linking.openURL('https://google.com')}} style={styles.footer}>
+                    <TouchableOpacity onPress={()=>{ Linking.openURL('https://docs.google.com/forms/d/1Rp0ezNshHqg2r-ISzJqOJQeKp7QzzZDRIMWAzs37MgQ/edit?usp=sharing')}} style={styles.footer}>
                         <Image style={{width: 20, height: 20, marginRight: 10}} source={require('../../resources/images/icons/bugIcon.png')}/>
                         <Text>Reportar</Text>
                     </TouchableOpacity>
