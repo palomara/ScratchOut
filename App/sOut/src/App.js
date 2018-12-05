@@ -28,6 +28,7 @@ const LoginStack = createStackNavigator({
         Hall: {screen: Hall},
         Login: {screen: Login},
         Register: {screen: Register},
+        ForgotPassword: {screen: ForgotPassword}
 
     },
     {headerMode: 'none'}
@@ -42,9 +43,6 @@ const HomehallStack = createDrawerNavigator({
         AddInfluences: {screen: AddInfluences},
         EditTasks: {screen: EditTasks},
         CalendarsList: {screen: CalendarsList},
-        ForgotPassword: {screen: ForgotPassword}
-
-
     },
     {
         headerMode: 'none',

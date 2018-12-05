@@ -42,7 +42,7 @@ export default class ForgotPassword extends Component {
                         </View>
                     </View>
                         <View style={styles.buttonArea}>
-                            <TouchableOpacity style={styles.button}>
+                            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Hall')}>
                                 <Text style={styles.textButton}> Enviar</Text>
                             </TouchableOpacity>
                         </View>
