@@ -17,6 +17,8 @@ import {
 import {server, showError} from "../components/common";
 import axios from  'axios'
 
+import ForgotPassword from './ForgotPassword'
+
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
@@ -124,7 +126,7 @@ export default class Login extends Component<Props> {
 
                         <View style={styles.dataField}>
                             <Text style={styles.textLink}
-                                  onPress={() => console.warn("Ir para a tela esqueci minha senha!")}> Não consegue
+                                  onPress={() => { this.props.navigation.navigate('ForgotPassword') }}> Não consegue
                                 entrar? </Text>
                         </View>
 

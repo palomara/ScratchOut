@@ -18,6 +18,7 @@ import AuthOrApp from './screens/AuthOrApp'
 import PerformanceIndicator from './screens/PerformanceIndicator'
 import AddInfluences from './screens/AddInfluences'
 import EditTasks from './screens/EditTasks'
+import ForgotPassword from './screens/ForgotPassword'
 import SideMenu from './components/SideMenu'
 import CalendarsList from './components/calendarList'
 
@@ -40,7 +41,8 @@ const HomehallStack = createDrawerNavigator({
         PerformanceIndicator: {screen: PerformanceIndicator},
         AddInfluences: {screen: AddInfluences},
         EditTasks: {screen: EditTasks},
-        CalendarsList: {screen: CalendarsList}
+        CalendarsList: {screen: CalendarsList},
+        ForgotPassword: {screen: ForgotPassword}
 
 
     },
@@ -54,7 +56,7 @@ const HomehallStack = createDrawerNavigator({
 
 const Application = createStackNavigator(
     {
-       
+
         Splash: {screen: AuthOrApp},
         Hall: LoginStack,
         Home: HomehallStack
