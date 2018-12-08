@@ -1,18 +1,18 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
-    ImageBackground,
-    View,
-    Image,
-    Text,
-    StyleSheet,
-    Dimensions,
-    StatusBar,
-    TouchableOpacity,
-    AsyncStorage,
-    Linking
+  ImageBackground,
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  Dimensions,
+  StatusBar,
+  TouchableOpacity,
+  AsyncStorage,
+  Linking
 } from 'react-native';
 
-import { LoginManager } from 'react-native-fbsdk'
+import { LoginManager, AccessToken } from 'react-native-fbsdk'
 import Carousel from '../components/Carousel'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -23,40 +23,50 @@ const height = Dimensions.get('screen').height;
 
 export default class Hall extends Component<Props> {
 
-  componentDidMount(){
-    this._loadInitialState ().done();
+  componentDidMount() {
+    this._loadInitialState().done();
   }
 
-  _loadInitialState  = async () => {
+  _loadInitialState = async () => {
 
     var value = await AsyncStorage.getItem('token');
-    if(value !== null){
+    if (value !== null) {
       this.props.navigation.navigate('Home')
     }
   };
 
-    handleFacebookLogin () {
-        LoginManager.logInWithReadPermissions(['public_profile', 'email', 'user_friends']).then(
-            function (result) {
-                if (result.isCancelled) {
-                    console.log('Login cancelled')
-                } else {
-                    console.log('Login success with permissions: ' + result.grantedPermissions.toString())
-                }
-            },
-            function (error) {
-                console.log('Login fail with error: ' + error)
+  handleFacebookLogin = async () => {
+    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
+      function (result) {
+        if (result.isCancelled) {
+          console.log('Login cancelled')
+        } else {
+          AccessToken.getCurrentAccessToken().then(
+             async (data) => {
+              console.log(data.accessToken.toString())
+              const baseUrl = `https://graph.facebook.com/me?access_token=${data.accessToken}`
+              const fields = '&fields=email,first_name,last_name,birthday';
+              const userdata = await fetch(`${baseUrl}${fields}`)
+              let response = await userdata.json
+              console.log(response.email)
+                
             }
-        )
-    }
+          )
+        }
+      },
+      function (error) {
+        console.warn('Login fail with error: ' + error)
+      }
+    )
+  }
 
-  render () {
+  render() {
     return (
       <ImageBackground source={require('../../resources/images/green-galaxy.png')} style={styles.container} blurRadius={4}>
-        <StatusBar translucent={true} backgroundColor={'transparent'}/>
+        <StatusBar translucent={true} backgroundColor={'transparent'} />
         <View style={styles.emptyView}></View>
         <View style={styles.logoField}>
-          <Image style={styles.logo} source={require('../../resources/images/logos/logo-sout-white.png')}/>
+          <Image style={styles.logo} source={require('../../resources/images/logos/logo-sout-white.png')} />
         </View>
 
         <View>
@@ -68,7 +78,7 @@ export default class Hall extends Component<Props> {
         <View style={styles.withSocial}>
           <TouchableOpacity style={styles.withSocialGoogle} onPress={() => console.warn("Login com Google")}>
             <View style={styles.SocialGoogleArea}>
-              <Image style={styles.SocialGoogle} source={require('../../resources/images/drawables/draw-g_google.png')}/>
+              <Image style={styles.SocialGoogle} source={require('../../resources/images/drawables/draw-g_google.png')} />
             </View>
             <Text style={styles.withSocialGoogleText}>Entre com Facebook</Text>
             <View style={styles.emptyView}></View>
@@ -98,7 +108,7 @@ export default class Hall extends Component<Props> {
         </View>
 
         <View style={styles.fieldTermos}>
-          <Text style={styles.textTermos} onPress={()=>{ Linking.openURL('https://drive.google.com/file/d/1sahDnIODUgOErsdBtiK6z0NX_27CNsO9/view?usp=sharing')}}>Ao continuar você aceita os nossos
+          <Text style={styles.textTermos} onPress={() => { Linking.openURL('https://drive.google.com/file/d/1sahDnIODUgOErsdBtiK6z0NX_27CNsO9/view?usp=sharing') }}>Ao continuar você aceita os nossos
             <Text> <Text style={styles.textTermosBold}>Termos de Uso</Text></Text>
           </Text>
         </View>
@@ -112,49 +122,49 @@ const styles = StyleSheet.create({
 
   container: {
     flex: 1,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'space-between',
     width: width,
     height: height,
   },
 
-  logoField:{
-    alignItems:'center',
+  logoField: {
+    alignItems: 'center',
     justifyContent: 'center',
     width: width,
     height: height / 2.5,
   },
 
-  logo:{
+  logo: {
     width: width * 0.90,
   },
 
-  fieldNewAccount:{
-    alignItems:'center',
+  fieldNewAccount: {
+    alignItems: 'center',
     justifyContent: 'center',
     width: width * 0.9,
     marginBottom: height / 60,
   },
 
-  textNewAccount:{
+  textNewAccount: {
     fontFamily: 'Roboto',
     fontSize: 14,
     color: '#fff',
   },
 
-  textNewAccountBold:{
+  textNewAccountBold: {
     fontFamily: 'Roboto Bold',
     fontSize: 14,
     color: '#fff',
   },
 
-  text:{
+  text: {
     fontFamily: 'Roboto',
     fontSize: 14,
     color: '#fff',
   },
 
-  textInfo:{
+  textInfo: {
     fontFamily: 'Roboto Light',
     fontSize: 18,
     color: '#fff',
@@ -164,17 +174,17 @@ const styles = StyleSheet.create({
   withEmail: {
     width: width * 0.9,
     height: height / 12.8,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "#fff",
     borderRadius: 40,
     marginBottom: height / 60,
   },
 
-  withEmailTouch:{
+  withEmailTouch: {
     flex: 1,
     width: width * 0.9,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 
@@ -189,7 +199,7 @@ const styles = StyleSheet.create({
     width: width * 0.9,
     height: height / 12.8,
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'space-between',
     backgroundColor: "#518EF8",
     borderRadius: 40,
@@ -200,7 +210,7 @@ const styles = StyleSheet.create({
   withSocialGoogle: {
     flex: 1,
     flexDirection: 'row',
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'space-between',
   },
 
@@ -211,50 +221,50 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  SocialGoogle:{
+  SocialGoogle: {
     width: height / 15,
     height: height / 15,
   },
 
-  SocialGoogleArea:{
+  SocialGoogleArea: {
     width: height / 12.8,
     height: height / 12.8,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 
-  withSocialFacebook:{
+  withSocialFacebook: {
     backgroundColor: "#3B5999",
     borderRadius: 40,
     height: 70,
     width: 70,
-    alignItems:'center',
+    alignItems: 'center',
     justifyContent: 'center',
   },
 
-  SocialFacebook:{
+  SocialFacebook: {
     width: height / 20,
     height: height / 20,
   },
 
-  fieldTermos:{
+  fieldTermos: {
     width: width,
     height: height / 20,
-    alignItems:'center',
+    alignItems: 'center',
   },
 
-  textTermos:{
+  textTermos: {
     fontFamily: 'Roboto',
     fontSize: 11,
     color: '#fff',
     alignItems: 'center',
   },
 
-  textTermosBold:{
+  textTermosBold: {
     fontFamily: 'Roboto Bold',
     fontSize: 11,
     color: '#fff',
     alignItems: 'center',
-    textDecorationLine:'underline',
+    textDecorationLine: 'underline',
   }
 })

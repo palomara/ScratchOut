@@ -9,13 +9,34 @@ import {
     StatusBar,
     KeyboardAvoidingView,
     Image,
-    TouchableOpacity
+    TouchableOpacity,
+    AsyncStorage
 } from 'react-native';
+import axios from 'axios'
+import {server, showError} from '../components/common'
 
 const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class ForgotPassword extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+          email: ''
+        }
+    }
+
+    forgot = async () =>{
+        try{
+        await axios.post(`${server}/forgotme`,{
+            email: this.state.email
+        })
+        }catch(err){
+            showError(err)
+        }
+        this.props.navigation.navigate('Hall')
+    }
 
     render() {
         return (
@@ -38,11 +59,13 @@ export default class ForgotPassword extends Component {
                                        returnKeyType="next"
                                        keyboardType="email-address"
                                        autoCorrect={false}
-                                       autoCapitalize="none"/>
+                                       autoCapitalize="none"
+                                       onChangeText={(email) => this.setState({email})}/>
+                                       
                         </View>
                     </View>
                         <View style={styles.buttonArea}>
-                            <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Hall')}>
+                            <TouchableOpacity style={styles.button} onPress={() => this.forgot() }>
                                 <Text style={styles.textButton}> Enviar</Text>
                             </TouchableOpacity>
                         </View>
