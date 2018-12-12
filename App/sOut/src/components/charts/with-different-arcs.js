@@ -20,14 +20,15 @@ class PieChartWithDifferentArcs extends React.PureComponent {
         const raddata = dataRad.data
         var a = [0,0,0,0,0]
         for (let index = 0; index < raddata.length; index++) {
-            a[index] = raddata[index].freq;
+            a[raddata[index].scale] = raddata[index].freq;
         }
+        console.warn(a)
         this.setState({
-            radiante: a[3],
-            feliz: a[0] ,
+            radiante: a[4],
+            feliz: a[3] ,
             normal: a[2],
-            triste: a[4],
-            horrivel: a[1]
+            triste: a[1],
+            horrivel: a[0]
         })
 
     }

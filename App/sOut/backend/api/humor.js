@@ -38,6 +38,7 @@ module.exports = app => {
         app.db('humor')
             .count('title as freq')
             .select('title')
+            .select('scale')
             .where({ userId: req.user.id })
             .where('dtIncluded', '<=', date)
             .groupBy('title')
@@ -57,9 +58,22 @@ module.exports = app => {
             .where({ userId: req.user.id })
             .whereBetween('dtIncluded', [dateI, dateF])
             .groupBy('title')
-            .orderBy('freq','desc')
+            .orderBy('freq', 'desc')
             .then(tasksC => res.json(tasksC))
             .catch(err => res.status(400).json(err))
+    }
+    const getHumorBtw = (req, res) => {
+        const dateI = req.query.dateI ? req.query.dateI
+            : moment().startOf('week').toDate()
+        const dateF = req.query.dateF ? req.query.dateF
+            : moment().endOf('week').toDate()
+
+        app.db('humor')
+            .where({ userId: req.user.id })
+            .whereBetween('dtIncluded', [dateI, dateF])
+            .orderBy('dtIncluded')
+            .then(humor => res.json(humor))
+            .catch(err => res.status(500).json(err))
     }
 
     return {
@@ -67,7 +81,8 @@ module.exports = app => {
         saveHumor,
         getCountHumor,
         getCountQtdHumor,
-        getCountHumorBtw
+        getCountHumorBtw,
+        getHumorBtw
     }
 
 };

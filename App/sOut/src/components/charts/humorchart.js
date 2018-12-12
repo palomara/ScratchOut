@@ -32,10 +32,10 @@ class HumorChart extends React.PureComponent {
         const dtHwk3 = await axios.get(`${server}/humor/week?dateI=${week3i}&dateF=${week3e}`)
         const dtHwk4 = await axios.get(`${server}/humor/week?dateI=${week4i}&dateF=${week4e}`)
         this.setState({
-            f1: dtHwk1.data[0].scale,
-            f2: dtHwk2.data[0].scale,
-            f3: dtHwk3.data[0].scale,
-            f4: dtHwk4.data[0].scale 
+            f1: parseInt(dtHwk1.data[0].scale),
+            f2: parseInt(dtHwk2.data[0].scale),
+            f3: parseInt(dtHwk3.data[0].scale),
+            f4: parseInt(dtHwk4.data[0].scale) 
         })
         
         
@@ -44,7 +44,7 @@ class HumorChart extends React.PureComponent {
 
     render() {
 
-        const data = [5,2,4,5]
+        const data = [this.state.f1,this.state.f2,this.state.f3,this.state.f4]
         const label = [0,1,2,3]
 
         const escala = [{

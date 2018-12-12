@@ -14,6 +14,8 @@ import {
 
 import { LoginManager, AccessToken } from 'react-native-fbsdk'
 import Carousel from '../components/Carousel'
+import { server, showError } from "../components/common";
+import axios from 'axios'
 
 import Icon from 'react-native-vector-icons/FontAwesome';
 
@@ -22,6 +24,16 @@ const width = Dimensions.get('screen').width;
 const height = Dimensions.get('screen').height;
 
 export default class Hall extends Component<Props> {
+
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      password: "",
+    }
+  }
 
   componentDidMount() {
     this._loadInitialState().done();
@@ -36,29 +48,60 @@ export default class Hall extends Component<Props> {
   };
 
   handleFacebookLogin = async () => {
-    LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
+    await LoginManager.logInWithReadPermissions(['public_profile', 'email']).then(
       function (result) {
         if (result.isCancelled) {
           console.log('Login cancelled')
         } else {
-          AccessToken.getCurrentAccessToken().then(
-             async (data) => {
-              console.log(data.accessToken.toString())
-              const baseUrl = `https://graph.facebook.com/me?access_token=${data.accessToken}`
-              const fields = '&fields=email,first_name,last_name,birthday';
-              const userdata = await fetch(`${baseUrl}${fields}`)
-              let response = await userdata.json
-              console.log(response.email)
-                
-            }
-          )
         }
       },
       function (error) {
         console.warn('Login fail with error: ' + error)
       }
     )
+    AccessToken.getCurrentAccessToken().then(
+      async (data) => {
+        console.log(data.accessToken.toString())
+        const baseUrl = `https://graph.facebook.com/me?access_token=${data.accessToken}`
+        const fields = '&fields=email,first_name,last_name,birthday';
+        const userdata = await fetch(`${baseUrl}${fields}`)
+        let response = await userdata.json()
+        console.warn(response.first_name)
+        await this.singun(response)
+        await this.login(response)
+      }
+    )
   }
+
+  login = async (res) => {
+    try {
+        const user = await axios.post(`${server}/signin`, {
+            email: res.email,
+            password: res.email
+        });
+
+        axios.defaults.headers.common['Authorization'] = `bearer ${user.data.token}`;
+        AsyncStorage.setItem('userData', JSON.stringify(user.data));
+        this.props.navigation.navigate('Home')
+
+    } catch(e) {
+       
+    }
+};
+
+   
+  singun = async (res) => {
+        try{
+            await axios.post(`${server}/signup`,{
+                name: `${res.first_name}`,
+                email: res.email,
+                password: res.email,
+            });
+        }catch (err) {
+            showError(err)
+        }
+    
+};
 
   render() {
     return (

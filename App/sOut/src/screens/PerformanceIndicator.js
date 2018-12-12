@@ -31,7 +31,7 @@ export default class PerformanceIndicator extends Component {
     render() {
 
         const colors = ['#7FFFD4', '#006400', '#556B2F', '#8FBC8F', '#2E8B57', '#3CB371', '#20B2AA', '#98FB98']
-        const sintomas = ['dor de cabeça','dor na barriga','dor nas costas','fadiga','febre','insonia','estresse','doente']
+        const sintomas = ['dor de cabeça', 'dor na barriga', 'dor nas costas', 'fadiga', 'febre', 'insonia', 'estresse', 'doente']
 
         return (
             <View style={styles.container}>
@@ -76,8 +76,8 @@ export default class PerformanceIndicator extends Component {
                                     <View style={{ width: 10, height: 10, backgroundColor: colors[5], marginTop: 6, marginHorizontal: 2 }} />
                                     <Text>{sintomas[5]}</Text>
                                 </View>
-                                </View>
-                                <View style={styles.humorLegend}>
+                            </View>
+                            <View style={styles.humorLegend}>
                                 <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginHorizontal: 10 }}>
                                     <View style={{ width: 10, height: 10, backgroundColor: colors[6], marginTop: 6, marginHorizontal: 2 }} />
                                     <Text>{sintomas[6]}</Text>
@@ -88,12 +88,6 @@ export default class PerformanceIndicator extends Component {
                                 </View>
                             </View>
                         </View>
-
-                        <View style={styles.Indicator}>
-                            <Text style={styles.titleChart}> Metodologias  </Text>
-                            <PieChartWithLabel />
-                        </View>
-
                         <View style={styles.Indicator}>
                             <Text style={styles.titleChart}> Disposição x Humor  </Text>
                             <GradientLine />
@@ -102,13 +96,6 @@ export default class PerformanceIndicator extends Component {
                             <Text style={styles.titleChart}> Frequencia de Humor - semana  </Text>
                             <HumorChart />
                         </View>
-                        <View style={styles.Indicator}>
-                            <Text style={styles.titleChart}> Tarefas concluídas - Semana  </Text>
-                            <BarChartHorizontalWithLabels />
-                        </View>
-
-
-
                     </View>
 
                 </ScrollView>

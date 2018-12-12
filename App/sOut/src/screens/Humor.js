@@ -78,35 +78,35 @@ export default class Humor extends Component {
         if (this.state.radianteS) {
             await axios.post(`${server}/humor`, {
                 title: 'radiante',
-                scale: '5',
+                scale: '4',
                 dtIncluded: datatime
             })   
         }
         if (this.state.felisS) {
             await axios.post(`${server}/humor`, {
                 title: 'feliz',
-                scale: '4',
+                scale: '3',
                 dtIncluded: datatime
             })
         }
         if (this.state.normalS) {
             await axios.post(`${server}/humor`, {
                 title: 'normal',
-                scale: '3',
+                scale: '2',
                 dtIncluded: datatime
             })
         }
         if (this.state.tristeS) {
             await axios.post(`${server}/humor`, {
                 title: 'triste',
-                scale: '2',
+                scale: '1',
                 dtIncluded: datatime
             })
         }
         if (this.state.horrivelS) {
             await axios.post(`${server}/humor`, {
                 title: 'horrivel',
-                scale: '1',
+                scale: '0',
                 dtIncluded: datatime
             })
         }

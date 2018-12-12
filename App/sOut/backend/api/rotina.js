@@ -11,6 +11,19 @@ module.exports = app => {
             .then(rotina => res.json(rotina))
             .catch(err => res.status(500).json(err))
     }
+    const getRotinaBetween = (req, res) => {
+        const dateI = req.query.dateI ? req.query.dateI
+            :  moment().startOf('week').toDate()
+        const dateF = req.query.dateF ? req.query.dateF
+            :  moment().endOf('week').toDate()
+        console.log(dateI)
+        app.db('rotina_dia')
+            .where({userId: req.user.id})
+            .whereBetween('dtIncluded', [dateI, dateF])
+            .orderBy('dtIncluded')
+            .then(rotina => res.json(rotina))
+            .catch(err => res.status(500).json(err))
+    }
     const saveRotina = (req, res) => {
         req.body.userId = req.user.id
 
@@ -21,5 +34,5 @@ module.exports = app => {
 
     }
 
-    return{getRotina, saveRotina}
+    return{getRotina, saveRotina, getRotinaBetween}
 }

@@ -1,7 +1,7 @@
 module.exports = app => {
     app.post('/signup', app.api.user.save)
     app.post('/signin', app.api.auth.signin)
-    
+
     app.post('/forgotme', app.api.user.forgotSenha)
 
     app.route('/tasks')
@@ -44,6 +44,9 @@ module.exports = app => {
     app.route('/humor/week')
         .all(app.config.passport.authenticate())
         .get(app.api.humor.getCountHumorBtw)
+    app.route('/humor/between')
+        .all(app.config.passport.authenticate())
+        .get(app.api.humor.getHumorBtw)
 
     app.route('/ambiente')
         .all(app.config.passport.authenticate())
@@ -71,4 +74,8 @@ module.exports = app => {
         .all(app.config.passport.authenticate())
         .get(app.api.rotina.getRotina)
         .post(app.api.rotina.saveRotina)
+
+    app.route('/rotina/between')
+        .all(app.config.passport.authenticate())
+        .get(app.api.rotina.getRotinaBetween)
 };

@@ -32,7 +32,16 @@ allprojects {
         google()
     }
 }
-
+subprojects { 
+  project ->
+    if (project.name.contains('react-native-image-picker')) {
+      buildscript {
+          repositories {
+              maven { url "https://dl.bintray.com/android/android-tools/"  }
+          }
+      }
+  } 
+}
 
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
